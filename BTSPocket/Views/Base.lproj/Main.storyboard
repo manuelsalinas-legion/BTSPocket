@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgQ-aG-dAj">
+                                <rect key="frame" x="20" y="154" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textEmail:" destination="O48-fK-cjb" eventType="editingDidEnd" id="ehR-xe-YKk"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhe-21-qfM">
+                                <rect key="frame" x="20" y="238" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cz-xB-Hv2">
+                                <rect key="frame" x="117" y="332" width="180" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dwL-va-Kug"/>
+                                    <constraint firstAttribute="width" constant="180" id="j9i-NV-jpn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" red="0.025467682629823685" green="0.0027365062851458788" blue="0.015075783245265484" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loguinButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1tW-ow-ta2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vgQ-aG-dAj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7AI-mS-KQm"/>
+                            <constraint firstItem="Xhe-21-qfM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FMG-Gd-ff4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xhe-21-qfM" secondAttribute="trailing" constant="20" id="Qe3-Yq-LuJ"/>
+                            <constraint firstItem="1Cz-xB-Hv2" firstAttribute="centerX" secondItem="Xhe-21-qfM" secondAttribute="centerX" id="WY3-U7-3lc"/>
+                            <constraint firstItem="Xhe-21-qfM" firstAttribute="top" secondItem="vgQ-aG-dAj" secondAttribute="bottom" constant="50" id="Wue-eh-NUT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vgQ-aG-dAj" secondAttribute="trailing" constant="20" id="Ytf-f1-PW7"/>
+                            <constraint firstItem="vgQ-aG-dAj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="110" id="hD9-NR-ehC"/>
+                            <constraint firstItem="1Cz-xB-Hv2" firstAttribute="top" secondItem="Xhe-21-qfM" secondAttribute="bottom" constant="60" id="jyv-U5-6sc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textEmail" destination="vgQ-aG-dAj" id="1Tz-BC-s0M"/>
+                        <outlet property="textPassword" destination="Xhe-21-qfM" id="6zO-BO-K30"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="O48-fK-cjb" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-35" y="114"/>
+        </scene>
+        <!--Home Tab Bar Controller-->
+        <scene sceneID="tJo-Vw-Ao8">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5go-cu-ztK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController storyboardIdentifier="HomeTabBarController" id="OxG-q9-zUm" customClass="HomeTabBarController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mr8-YZ-ayc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qlj-5a-c27" kind="relationship" relationship="viewControllers" id="mZO-Hr-32A"/>
+                        <segue destination="Yez-D9-iu2" kind="relationship" relationship="viewControllers" id="Erd-yj-sBE"/>
+                        <segue destination="Swg-RM-mAp" kind="relationship" relationship="viewControllers" id="v8N-GD-fxW"/>
+                        <segue destination="lOb-ad-JoF" kind="relationship" relationship="viewControllers" id="Qqw-CM-KUU"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="723" y="114"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="4vh-ZO-wKz">
+            <objects>
+                <viewController id="qlj-5a-c27" customClass="ProfileViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oTs-VF-EYW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="dyg-aT-iQj"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ud2-YG-C88"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SXB-fJ-jDl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-262" y="840"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="iWL-pJ-SS3">
+            <objects>
+                <viewController id="Yez-D9-iu2" customClass="TimesheetViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ga9-wK-TW3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="xAO-fw-wyZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="BNm-UL-HxE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zRh-rB-W9j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="420" y="840"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="drj-UK-b1i">
+            <objects>
+                <viewController id="Swg-RM-mAp" customClass="TeamViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hfO-C2-yYg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="y3H-4G-p0d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Ahl-89-M1P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6a7-uX-YaB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1100" y="840"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="jRc-9X-2cP">
+            <objects>
+                <viewController id="lOb-ad-JoF" customClass="ProjectsViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="16Z-XM-Jga">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="bJD-ql-Rhe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Zwa-9N-HUZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clj-MY-Hth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="840"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
