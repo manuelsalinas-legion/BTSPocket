@@ -19,9 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // check if the credentials are in the keychain
-        if true {
+        if false {
             let homeVC = storyboard.instantiateViewController(identifier: "HomeTabBarController")
             let	navController = UINavigationController(rootViewController: homeVC)
+            navController.navigationBar.isTranslucent = false
             self.window?.rootViewController = navController
         } else {
             let loguinVC = storyboard.instantiateViewController(identifier: "LoginViewController")
