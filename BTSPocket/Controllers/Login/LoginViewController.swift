@@ -12,12 +12,27 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var textEmail: UITextField!
     @IBOutlet weak var textPassword: UITextField!
     
+    #warning("Investigate how to put status bar in white instead of black")
+    
     //MARK:- Variables
     let loguinPath: String = "https://platform.bluetrail.software/api/users/login"
+    private var loginVM: LoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginVM = LoginViewModel()
         
+        #warning("Hey Cristian Look at me and analyze. Then Remove me")
+        // Requesting endpoint DUMMY sample
+        self.loginVM?.nameOfYourMethodWithArguments("Cristian", "yourPassword", { error in
+           
+            if let error = error  {
+                print("Handle your error in UI here")
+                print(error.localizedDescription)
+            } else {
+                print("Login successfull, Do something!")
+            }
+        })
     }
     
     @IBAction func loguinButton(_ sender: Any) {

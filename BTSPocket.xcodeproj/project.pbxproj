@@ -14,15 +14,24 @@
 		2BF89303260C012700061491 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF89301260C012700061491 /* LaunchScreen.storyboard */; };
 		2BF8930F260C07B800061491 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8930E260C07B800061491 /* LoginViewController.swift */; };
 		2BF89320260CE20900061491 /* Loguin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8931F260CE20900061491 /* Loguin.swift */; };
-		2BF89329260CE6CE00061491 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89327260CE6CE00061491 /* KeychainWrapper.swift */; };
-		2BF8932A260CE6CE00061491 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89328260CE6CE00061491 /* KeychainItemAccessibility.swift */; };
 		2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89338260D0D6A00061491 /* HomeTabBarController.swift */; };
 		2BF89346260D217C00061491 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89345260D217C00061491 /* ProfileViewController.swift */; };
 		2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934A260D21AF00061491 /* TeamViewController.swift */; };
 		2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934F260D225400061491 /* ProjectsViewController.swift */; };
 		2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89354260D227B00061491 /* TimesheetViewController.swift */; };
-		2BF89362260D2BCB00061491 /* BackedObjectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89361260D2BCB00061491 /* BackedObjectResponse.swift */; };
 		CB258E80B76D01E40F8EB534 /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0EA5B03C3A981F4BA80D91 /* Pods_BTSPocket.framework */; };
+		FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */; };
+		FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */; };
+		FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */; };
+		FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFD9260D47F9003F2224 /* BTSApi.swift */; };
+		FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFDD260D48A1003F2224 /* WSAPI.swift */; };
+		FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE0260D491B003F2224 /* Array+extensions.swift */; };
+		FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE3260D4943003F2224 /* Constants.swift */; };
+		FF0DDFE8260D4ACB003F2224 /* Dictionary+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE7260D4ACB003F2224 /* Dictionary+extension.swift */; };
+		FF0DDFEB260D4BFF003F2224 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEA260D4BFF003F2224 /* String+extension.swift */; };
+		FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */; };
+		FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */; };
+		FF0DDFF8260D5166003F2224 /* DummyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF7260D5166003F2224 /* DummyResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,17 +44,26 @@
 		2BF89304260C012700061491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF8930E260C07B800061491 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2BF8931F260CE20900061491 /* Loguin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loguin.swift; sourceTree = "<group>"; };
-		2BF89327260CE6CE00061491 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
-		2BF89328260CE6CE00061491 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		2BF89338260D0D6A00061491 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		2BF89345260D217C00061491 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2BF8934A260D21AF00061491 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		2BF8934F260D225400061491 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		2BF89354260D227B00061491 /* TimesheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetViewController.swift; sourceTree = "<group>"; };
-		2BF89361260D2BCB00061491 /* BackedObjectResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackedObjectResponse.swift; sourceTree = "<group>"; };
 		5504278803ABFF4026FD37BC /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
 		9E0EA5B03C3A981F4BA80D91 /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A917D177F0196D0DCE06A569 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
+		FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendResponse.swift; sourceTree = "<group>"; };
+		FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		FF0DDFD9260D47F9003F2224 /* BTSApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSApi.swift; sourceTree = "<group>"; };
+		FF0DDFDD260D48A1003F2224 /* WSAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSAPI.swift; sourceTree = "<group>"; };
+		FF0DDFE0260D491B003F2224 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
+		FF0DDFE3260D4943003F2224 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FF0DDFE7260D4ACB003F2224 /* Dictionary+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+extension.swift"; sourceTree = "<group>"; };
+		FF0DDFEA260D4BFF003F2224 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSPlatformEndpoints.swift; sourceTree = "<group>"; };
+		FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FF0DDFF7260D5166003F2224 /* DummyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,19 +99,17 @@
 		2BF892F5260C012300061491 /* BTSPocket */ = {
 			isa = PBXGroup;
 			children = (
-				2BF89331260CF3C700061491 /* Extensions */,
-				2BF89332260CF3D600061491 /* Components */,
+				FF0DDFC4260D3F8F003F2224 /* Resources */,
+				FF0DDFD8260D47C5003F2224 /* Networking */,
 				2BF89333260CF3F700061491 /* Models */,
+				FF0DDFF2260D5062003F2224 /* ViewModels */,
 				2BF8933B260D207100061491 /* Controllers */,
+				2BF89330260CF3B600061491 /* Views */,
 				2BF892F8260C012300061491 /* SceneDelegate.swift */,
 				2BF892F6260C012300061491 /* AppDelegate.swift */,
 				2BF89304260C012700061491 /* Info.plist */,
 				2BF89301260C012700061491 /* LaunchScreen.storyboard */,
 				2BF892FF260C012600061491 /* Assets.xcassets */,
-				2BF89330260CF3B600061491 /* Views */,
-				2BF8935A260D273100061491 /* Networking */,
-				2BF8935B260D274500061491 /* ViewModels */,
-				2BF89335260CF52000061491 /* Manager */,
 			);
 			path = BTSPocket;
 			sourceTree = "<group>";
@@ -106,48 +122,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2BF89331260CF3C700061491 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2BF89332260CF3D600061491 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		2BF89333260CF3F700061491 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2BF8935C260D27DB00061491 /* Protocols */,
-				2BF8935D260D27E500061491 /* Response */,
+				FF0DDFCD260D402A003F2224 /* EndpointResponses */,
 				2BF8935E260D27EF00061491 /* Entities */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2BF89335260CF52000061491 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				2BF89328260CE6CE00061491 /* KeychainItemAccessibility.swift */,
-				2BF89327260CE6CE00061491 /* KeychainWrapper.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
 		2BF8933B260D207100061491 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2BF8933C260D20BF00061491 /* Login */,
+				2BF8933D260D20CA00061491 /* HomeTabBar */,
 				2BF8933F260D213300061491 /* Profile */,
-				2BF89353260D225A00061491 /* Timesheet */,
 				2BF89348260D218B00061491 /* Team */,
 				2BF8934E260D224500061491 /* Project */,
-				2BF8933D260D20CA00061491 /* HomeTabBar */,
-				2BF8933C260D20BF00061491 /* Login */,
+				2BF89353260D225A00061491 /* Timesheet */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -200,35 +192,6 @@
 			path = Timesheet;
 			sourceTree = "<group>";
 		};
-		2BF8935A260D273100061491 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		2BF8935B260D274500061491 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		2BF8935C260D27DB00061491 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				2BF89361260D2BCB00061491 /* BackedObjectResponse.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		2BF8935D260D27E500061491 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Response;
-			sourceTree = "<group>";
-		};
 		2BF8935E260D27EF00061491 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +215,86 @@
 				9E0EA5B03C3A981F4BA80D91 /* Pods_BTSPocket.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF0DDFC4260D3F8F003F2224 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFC6260D3F8F003F2224 /* Components */,
+				FF0DDFCE260D40D3003F2224 /* Managers */,
+				FF0DDFC5260D3F8F003F2224 /* Extensions */,
+				FF0DDFC7260D3F8F003F2224 /* Protocols */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FF0DDFC5260D3F8F003F2224 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFE0260D491B003F2224 /* Array+extensions.swift */,
+				FF0DDFE7260D4ACB003F2224 /* Dictionary+extension.swift */,
+				FF0DDFEA260D4BFF003F2224 /* String+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FF0DDFC6260D3F8F003F2224 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FF0DDFC7260D3F8F003F2224 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		FF0DDFCD260D402A003F2224 /* EndpointResponses */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFF7260D5166003F2224 /* DummyResponse.swift */,
+			);
+			path = EndpointResponses;
+			sourceTree = "<group>";
+		};
+		FF0DDFCE260D40D3003F2224 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */,
+				FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FF0DDFD8260D47C5003F2224 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFED260D4D3E003F2224 /* Endpoints */,
+				FF0DDFE3260D4943003F2224 /* Constants.swift */,
+				FF0DDFDD260D48A1003F2224 /* WSAPI.swift */,
+				FF0DDFD9260D47F9003F2224 /* BTSApi.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		FF0DDFED260D4D3E003F2224 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		FF0DDFF2260D5062003F2224 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,18 +411,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF0DDFE8260D4ACB003F2224 /* Dictionary+extension.swift in Sources */,
+				FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */,
 				2BF89320260CE20900061491 /* Loguin.swift in Sources */,
 				2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */,
+				FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */,
 				2BF8930F260C07B800061491 /* LoginViewController.swift in Sources */,
-				2BF89329260CE6CE00061491 /* KeychainWrapper.swift in Sources */,
 				2BF892F7260C012300061491 /* AppDelegate.swift in Sources */,
-				2BF8932A260CE6CE00061491 /* KeychainItemAccessibility.swift in Sources */,
+				FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */,
+				FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */,
 				2BF89346260D217C00061491 /* ProfileViewController.swift in Sources */,
+				FF0DDFEB260D4BFF003F2224 /* String+extension.swift in Sources */,
+				FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */,
+				FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
 				2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */,
-				2BF89362260D2BCB00061491 /* BackedObjectResponse.swift in Sources */,
+				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
+				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
+				FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */,
+				FF0DDFF8260D5166003F2224 /* DummyResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
