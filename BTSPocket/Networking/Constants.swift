@@ -10,7 +10,8 @@ struct Constants {
     static let kTimeout: TimeInterval = 60
     
     struct Endpoints {
-        static let authentication = "https://platform.bluetrail.software/api/users/login"
+        static let postAuthentication = "https://platform.bluetrail.software/api/users/login"
+        static let getUserProfile = "https://platform.bluetrail.software/api/users/{userId}/profile"
     }
 }
 
