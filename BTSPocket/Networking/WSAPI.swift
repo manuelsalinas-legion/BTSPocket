@@ -11,6 +11,7 @@ class WSAPI {
         var headers = [String: String]()
         headers += [
             "Content-Type": "application/json",
+            "Authentication": KeychainWrapper.standard.string(forKey: "TokenSecret") ?? ""
         ]
 
         return headers

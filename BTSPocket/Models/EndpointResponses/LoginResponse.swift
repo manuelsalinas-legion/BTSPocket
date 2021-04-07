@@ -9,9 +9,7 @@ import Foundation
 
 struct LoginResponse: BackedResponse {
     var status: String?
-    
     var message: String?
-    
     var data: LoginData?
     
 }

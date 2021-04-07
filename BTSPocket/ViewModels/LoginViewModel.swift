@@ -5,19 +5,24 @@
 //
 
 import Foundation
+import UIKit
 
 struct LoginViewModel {
+    private let kSECRET_TOKEN = "SecretToken"
+    
     func login(_ email: String, _ password: String, _ completion: @escaping((_ error: NSError?) -> Void)) {
-        let authParams = ["email" : email, "password" : password]
+        let authParams = ["email" : "cristianp@bluetrailsoft.com", "password" : "Ch1rr1z."]
         BTSApi.shared.platformEP.postMethod(Constants.Endpoints.postAuthentication, nil, authParams) { (responseLogin: LoginResponse) in
             
             if let userId = responseLogin.data?.id, let token = responseLogin.data?.token {
                 let urlProfile = Constants.Endpoints.getUserProfile.replacingOccurrences(of: "{userId}", with: String(userId))
-                // inprove way to send token in header
+                
                 let headerAuth = ["Authorization": token]
                 BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
-                    // save the token here
-                    KeychainWrapper.standard.set(token, forKey: "SecretToken")
+                    
+                    KeychainWrapper.standard.set(token, forKey: kSECRET_TOKEN)
+                    
+                    BTSApi.shared.profileSession = responseProfile.data
                     
                     completion(nil)
                 } onError: { error in

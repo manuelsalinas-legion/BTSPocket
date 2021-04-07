@@ -17,9 +17,11 @@ struct ProfileData: Codable {
     var location: String?
     var seniority: String?
     var region: String?
-    var startDate: Date?
+    var startDate: String?
     var email: String?
     var photo: String?
-    var experiences: [Experience?]
-    var skills: [Skill?]
+    var experiences: [Experience]?
+    var skills: [Skill]?
+    // convertir how to create date from string
+//    var starts: Date { return Date(startDate) }
 }

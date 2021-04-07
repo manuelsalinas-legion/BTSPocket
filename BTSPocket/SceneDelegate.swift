@@ -7,10 +7,13 @@
 
 import UIKit
 
+public enum TypeRoot {
+    case login, home
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         //choose initial ViewController
@@ -18,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let text = KeychainWrapper.standard.string(forKey: "TokenSecret")
+        
         // check if the credentials are in the keychain
         if text != nil {
             let homeVC = storyboard.instantiateViewController(identifier: "HomeTabBarController")
@@ -59,6 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    /// Choose root view controller betwen tabBarHome and Loguin
     func switchRoot(to: TypeRoot) {
         switch to {
         case .home:

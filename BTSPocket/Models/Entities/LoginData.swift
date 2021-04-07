@@ -9,6 +9,6 @@ import Foundation
 
 struct LoginData: Codable {
     var id: Int?
-    var permissions: [Permissions?]
+    var permissions: [Permissions]?
     var token: String?
 }
