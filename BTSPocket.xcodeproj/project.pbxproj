@@ -27,11 +27,19 @@
 		FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFDD260D48A1003F2224 /* WSAPI.swift */; };
 		FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE0260D491B003F2224 /* Array+extensions.swift */; };
 		FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE3260D4943003F2224 /* Constants.swift */; };
-		FF0DDFE8260D4ACB003F2224 /* Dictionary+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE7260D4ACB003F2224 /* Dictionary+extension.swift */; };
-		FF0DDFEB260D4BFF003F2224 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEA260D4BFF003F2224 /* String+extension.swift */; };
+		FF0DDFE8260D4ACB003F2224 /* Dictionary+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFE7260D4ACB003F2224 /* Dictionary+extensions.swift */; };
+		FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */; };
 		FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */; };
 		FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */; };
 		FF0DDFF8260D5166003F2224 /* DummyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF7260D5166003F2224 /* DummyResponse.swift */; };
+		FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48DE2620B59B0030527D /* RealmAPI.swift */; };
+		FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E32620B6BE0030527D /* Storyboard.swift */; };
+		FFCC48E72620B7550030527D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E62620B7550030527D /* MessageManager.swift */; };
+		FFCC48FC2620BB480030527D /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48FB2620BB480030527D /* UITableView+extensions.swift */; };
+		FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48FE2620BC4C0030527D /* NSMutableAttributedString+extensions.swift */; };
+		FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */; };
+		FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC49032620BE7A0030527D /* UIView+extensions.swift */; };
+		FFCC490E2620C0420030527D /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC490D2620C0420030527D /* Persistable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,11 +67,19 @@
 		FF0DDFDD260D48A1003F2224 /* WSAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSAPI.swift; sourceTree = "<group>"; };
 		FF0DDFE0260D491B003F2224 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		FF0DDFE3260D4943003F2224 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FF0DDFE7260D4ACB003F2224 /* Dictionary+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+extension.swift"; sourceTree = "<group>"; };
-		FF0DDFEA260D4BFF003F2224 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		FF0DDFE7260D4ACB003F2224 /* Dictionary+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+extensions.swift"; sourceTree = "<group>"; };
+		FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSPlatformEndpoints.swift; sourceTree = "<group>"; };
 		FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FF0DDFF7260D5166003F2224 /* DummyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyResponse.swift; sourceTree = "<group>"; };
+		FFCC48DE2620B59B0030527D /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
+		FFCC48E32620B6BE0030527D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		FFCC48E62620B7550030527D /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		FFCC48FB2620BB480030527D /* UITableView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
+		FFCC48FE2620BC4C0030527D /* NSMutableAttributedString+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+extensions.swift"; sourceTree = "<group>"; };
+		FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+extensions.swift"; sourceTree = "<group>"; };
+		FFCC49032620BE7A0030527D /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
+		FFCC490D2620C0420030527D /* Persistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				FF0DDFC4260D3F8F003F2224 /* Resources */,
+				FFCC48DD2620B58A0030527D /* Persistence */,
 				FF0DDFD8260D47C5003F2224 /* Networking */,
 				2BF89333260CF3F700061491 /* Models */,
 				FF0DDFF2260D5062003F2224 /* ViewModels */,
@@ -220,10 +237,10 @@
 		FF0DDFC4260D3F8F003F2224 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FF0DDFC6260D3F8F003F2224 /* Components */,
 				FF0DDFCE260D40D3003F2224 /* Managers */,
 				FF0DDFC5260D3F8F003F2224 /* Extensions */,
 				FF0DDFC7260D3F8F003F2224 /* Protocols */,
+				FFCC48E22620B6B70030527D /* Subclasses */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -232,17 +249,14 @@
 			isa = PBXGroup;
 			children = (
 				FF0DDFE0260D491B003F2224 /* Array+extensions.swift */,
-				FF0DDFE7260D4ACB003F2224 /* Dictionary+extension.swift */,
-				FF0DDFEA260D4BFF003F2224 /* String+extension.swift */,
+				FF0DDFE7260D4ACB003F2224 /* Dictionary+extensions.swift */,
+				FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */,
+				FFCC48FB2620BB480030527D /* UITableView+extensions.swift */,
+				FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */,
+				FFCC48FE2620BC4C0030527D /* NSMutableAttributedString+extensions.swift */,
+				FFCC49032620BE7A0030527D /* UIView+extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		FF0DDFC6260D3F8F003F2224 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		FF0DDFC7260D3F8F003F2224 /* Protocols */ = {
@@ -266,6 +280,7 @@
 			children = (
 				FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */,
 				FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */,
+				FFCC48E62620B7550030527D /* MessageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -295,6 +310,31 @@
 				FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FFCC48DD2620B58A0030527D /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				FFCC490C2620C0420030527D /* Protocol */,
+				FFCC48DE2620B59B0030527D /* RealmAPI.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		FFCC48E22620B6B70030527D /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				FFCC48E32620B6BE0030527D /* Storyboard.swift */,
+			);
+			path = Subclasses;
+			sourceTree = "<group>";
+		};
+		FFCC490C2620C0420030527D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				FFCC490D2620C0420030527D /* Persistable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,8 +451,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF0DDFE8260D4ACB003F2224 /* Dictionary+extension.swift in Sources */,
+				FF0DDFE8260D4ACB003F2224 /* Dictionary+extensions.swift in Sources */,
+				FFCC490E2620C0420030527D /* Persistable.swift in Sources */,
 				FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */,
+				FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */,
 				2BF89320260CE20900061491 /* Loguin.swift in Sources */,
 				2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */,
 				FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */,
@@ -421,12 +463,18 @@
 				FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */,
 				FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */,
 				2BF89346260D217C00061491 /* ProfileViewController.swift in Sources */,
-				FF0DDFEB260D4BFF003F2224 /* String+extension.swift in Sources */,
+				FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */,
 				FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */,
 				FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
+				FFCC48E72620B7550030527D /* MessageManager.swift in Sources */,
+				FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */,
+				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
+				FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */,
+				FFCC48FC2620BB480030527D /* UITableView+extensions.swift in Sources */,
 				2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */,
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
+				FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
 				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
