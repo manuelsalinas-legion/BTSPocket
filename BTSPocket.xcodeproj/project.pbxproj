@@ -19,7 +19,7 @@
 		2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934A260D21AF00061491 /* TeamViewController.swift */; };
 		2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934F260D225400061491 /* ProjectsViewController.swift */; };
 		2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89354260D227B00061491 /* TimesheetViewController.swift */; };
-		CB258E80B76D01E40F8EB534 /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0EA5B03C3A981F4BA80D91 /* Pods_BTSPocket.framework */; };
+		35005D0A663C29559A3B590F /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E94E45CE4DCAEE91758B411 /* Pods_BTSPocket.framework */; };
 		FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */; };
 		FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */; };
 		FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */; };
@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E94E45CE4DCAEE91758B411 /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF892F3260C012300061491 /* BTSPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTSPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF892F6260C012300061491 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BF892F8260C012300061491 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +58,7 @@
 		2BF8934A260D21AF00061491 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		2BF8934F260D225400061491 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		2BF89354260D227B00061491 /* TimesheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetViewController.swift; sourceTree = "<group>"; };
-		5504278803ABFF4026FD37BC /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
-		9E0EA5B03C3A981F4BA80D91 /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A917D177F0196D0DCE06A569 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
+		660AA7A6FD8D51EA45C0A710 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
 		FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendResponse.swift; sourceTree = "<group>"; };
 		FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSPlatformEndpoints.swift; sourceTree = "<group>"; };
 		FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FF0DDFF7260D5166003F2224 /* DummyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyResponse.swift; sourceTree = "<group>"; };
+		FFA9DCCCFFE6DCE22ED3E2A3 /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
 		FFCC48DE2620B59B0030527D /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		FFCC48E32620B6BE0030527D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		FFCC48E62620B7550030527D /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB258E80B76D01E40F8EB534 /* Pods_BTSPocket.framework in Frameworks */,
+				35005D0A663C29559A3B590F /* Pods_BTSPocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 				2BF892F5260C012300061491 /* BTSPocket */,
 				2BF892F4260C012300061491 /* Products */,
 				6315D35E6D5D6AA08DBCFB3D /* Pods */,
-				E1D9D323DE5E1818A85BF14A /* Frameworks */,
+				77DE8B550509D918F6644E52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,16 +220,16 @@
 		6315D35E6D5D6AA08DBCFB3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5504278803ABFF4026FD37BC /* Pods-BTSPocket.debug.xcconfig */,
-				A917D177F0196D0DCE06A569 /* Pods-BTSPocket.release.xcconfig */,
+				FFA9DCCCFFE6DCE22ED3E2A3 /* Pods-BTSPocket.debug.xcconfig */,
+				660AA7A6FD8D51EA45C0A710 /* Pods-BTSPocket.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E1D9D323DE5E1818A85BF14A /* Frameworks */ = {
+		77DE8B550509D918F6644E52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9E0EA5B03C3A981F4BA80D91 /* Pods_BTSPocket.framework */,
+				1E94E45CE4DCAEE91758B411 /* Pods_BTSPocket.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -344,11 +344,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BF89307260C012700061491 /* Build configuration list for PBXNativeTarget "BTSPocket" */;
 			buildPhases = (
-				C3BFD0FD0D2C708B3D46C0CB /* [CP] Check Pods Manifest.lock */,
+				0BBB0522AACCF1E44D32C077 /* [CP] Check Pods Manifest.lock */,
 				2BF892EF260C012300061491 /* Sources */,
 				2BF892F0260C012300061491 /* Frameworks */,
 				2BF892F1260C012300061491 /* Resources */,
-				862968CE1417771C5CD2001A /* [CP] Embed Pods Frameworks */,
+				906938D50AF18AB3263FC385 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,24 +405,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		862968CE1417771C5CD2001A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3BFD0FD0D2C708B3D46C0CB /* [CP] Check Pods Manifest.lock */ = {
+		0BBB0522AACCF1E44D32C077 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -442,6 +425,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		906938D50AF18AB3263FC385 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -623,7 +623,7 @@
 		};
 		2BF89308260C012700061491 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5504278803ABFF4026FD37BC /* Pods-BTSPocket.debug.xcconfig */;
+			baseConfigurationReference = FFA9DCCCFFE6DCE22ED3E2A3 /* Pods-BTSPocket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -643,7 +643,7 @@
 		};
 		2BF89309260C012700061491 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A917D177F0196D0DCE06A569 /* Pods-BTSPocket.release.xcconfig */;
+			baseConfigurationReference = 660AA7A6FD8D51EA45C0A710 /* Pods-BTSPocket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
