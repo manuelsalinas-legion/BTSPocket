@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loguinButton(_ sender: Any) {
+        
         if let email = textEmail.text, let pass = textPassword.text {
             let credentials = Loguin(email: email, password: pass)
             AF.request(loguinPath,
@@ -51,5 +52,12 @@ class LoginViewController: UIViewController {
         } else {
             print("Empty")
         }
+    }
+}
+
+// MARK: - TAP GESTURE (Dismiss Keyboard)
+extension LoginViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
