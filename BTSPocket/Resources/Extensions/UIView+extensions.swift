@@ -120,13 +120,13 @@ extension UIView
     
     func setBorder()
     {
-        self.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        self.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
         self.layer.borderWidth = 1
     }
     
     func setBorderAndCornerRadius()
     {
-        self.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        self.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
         self.layer.borderWidth = 1
         
         self.layer.cornerRadius = 3
@@ -141,7 +141,7 @@ extension UIView
     
     func setBorderWidth(_ width: CGFloat)
     {
-        self.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        self.layer.borderColor = UIColor.secondarySystemGroupedBackground.cgColor
         self.layer.borderWidth = width
     }
     
