@@ -7,27 +7,37 @@
 
 import UIKit
 
+public enum TypeRoot {
+    case login, home
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         //choose initial ViewController
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+        let emailKeychain = KeychainWrapper.standard.string(forKey: "authEmail")
+        let passwordKeychain = KeychainWrapper.standard.string(forKey: "authPassword")
+        KeychainWrapper.standard.removeAllKeys()
         // check if the credentials are in the keychain
-        if false {
-            let homeVC = storyboard.instantiateViewController(identifier: "HomeTabBarController")
-            let	navController = UINavigationController(rootViewController: homeVC)
-            navController.navigationBar.isTranslucent = false
-            self.window?.rootViewController = navController
+        if emailKeychain != nil && passwordKeychain != nil {
+            let profileVM: ProfileViewModel = ProfileViewModel()
+            profileVM.getProfile { (error) in
+                if error != nil {
+                    self.switchRoot(to: .login)
+                    return
+                }
+            }
+            self.switchRoot(to: .home)
+//            let homeVC = storyboard.instantiateViewController(identifier: "HomeTabBarController")
+//            let	navController = UINavigationController(rootViewController: homeVC)
+//            navController.navigationBar.isTranslucent = false
+//            self.window?.rootViewController = navController
         } else {
-            let loguinVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-//            let navController = UINavigationController(rootViewController: loguinVC)
-            self.window?.rootViewController = loguinVC
+            switchRoot(to: .login)
         }
         self.window?.makeKeyAndVisible()
     }
@@ -60,6 +70,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    /// Choose root view controller betwen tabBarHome and Loguin
+    func switchRoot(to: TypeRoot) {
+        switch to {
+        case .home:
+            let homeVC: HomeTabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeTabBarController") as! HomeTabBarController
+            self.window?.rootViewController = homeVC
+        case .login:
+        let loginVC: LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+            self.window?.rootViewController = loginVC
+        }
+    }
 }
 

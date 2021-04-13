@@ -6,52 +6,113 @@
 //
 
 import UIKit
-import Alamofire
+import LocalAuthentication
+
 class LoginViewController: UIViewController {
     //MARK:- Outlets
-    @IBOutlet weak var textEmail: UITextField!
-    @IBOutlet weak var textPassword: UITextField!
-    
-    #warning("Investigate how to put status bar in white instead of black")
+    @IBOutlet weak private var textEmail: UITextField!
+    @IBOutlet weak private var textPassword: UITextField!
+    @IBOutlet weak var buttonFaceIdTouchId: UIButton!
     
     //MARK:- Variables
-    let loguinPath: String = "https://platform.bluetrail.software/api/users/login"
     private var loginVM: LoginViewModel?
+    private let localAuthenticationContext = LAContext()
+    private var authorizationError: NSError?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginVM = LoginViewModel()
+        self.textEmail.delegate = self
+        self.textPassword.delegate = self
         
-        #warning("Hey Cristian Look at me and analyze. Then Remove me")
-        // Requesting endpoint DUMMY sample
-        self.loginVM?.nameOfYourMethodWithArguments("Cristian", "yourPassword", { error in
-           
-            if let error = error  {
-                print("Handle your error in UI here")
-                print(error.localizedDescription)
-            } else {
-                print("Login successfull, Do something!")
+        localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode"
+        
+        let emailExist = KeychainWrapper.standard.string(forKey: "authEmail")
+        let passwordExist = KeychainWrapper.standard.string(forKey: "authEmail")
+
+        if canUseLocalBiometricAutentication() {
+            if emailExist == nil && passwordExist == nil {
+                self.buttonFaceIdTouchId.isHidden = true
             }
-        })
+        } else {
+            self.buttonFaceIdTouchId.isHidden = true
+        }
+        
     }
     
-    @IBAction func loguinButton(_ sender: Any) {
-        
-        if let email = textEmail.text, let pass = textPassword.text {
-            let credentials = Loguin(email: email, password: pass)
-            AF.request(loguinPath,
-                       method: .post,
-                       parameters: credentials,
-                       encoder: JSONParameterEncoder.default).responseJSON { response in
-                        
-                        print(response)
-                        
-//                        let homeVC: HomeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-                        // show home view controller
-                       }
+    @IBAction private func loginButton(_ sender: Any) {
+        if let email = textEmail.text?.trim(), let pass = textPassword.text?.trim(), email.isEmail(), !email.isEmpty, !pass.isEmpty {
+            self.loginVM?.login(email, pass, { error in
+                if let error = error {
+                    print(error)
+                    showAlert(view: self, title: "Server Error", message: "Bad credentials")
+                } else {
+                    // preguntar si guardar credenciales en keychain
+                    if self.canUseLocalBiometricAutentication() {
+                        // si hay credenciales en el key chain
+                        if (KeychainWrapper.standard.string(forKey: "Credentials") == nil) {
+                            // show alert
+                            let alert = UIAlertController(title: "Relate credentials", message: "Relate credentials with biometric autentication", preferredStyle: .alert)
+                            // action no
+                            alert.addAction(UIAlertAction(title: "NO", style: .default, handler: { (action) in
+                                self.showHome()
+                            }))
+                            // action yes
+                            alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+                                
+                                // autenticate with LA
+                                self.localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Reason") { (success, error) in
+                                    if success {
+                                        // save credentials in keychan reted with faceId
+                                        KeychainWrapper.standard.set(email, forKey: "authEmail")
+                                        KeychainWrapper.standard.set(pass, forKey: "authPassword")
+                                        self.showHome()
+                                    } else {
+                                        self.showHome()
+                                    }
+                                }
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            self.showHome()
+                        }
+                    } else {
+                        self.showHome()
+                    }
+                }
+            })
         } else {
-            print("Empty")
+            showAlert(view: self, title: "Error", message: "Invalid credentials")
         }
+    }
+    
+    func showHome() {
+        let sceneDelegateVariable = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegateVariable?.switchRoot(to: .home)
+    }
+    
+    // check if it have a local autentication
+    func canUseLocalBiometricAutentication() -> Bool {
+        if localAuthenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &authorizationError) {
+            print("can use local auth")
+            return true
+        }
+        else {print("cannot use local auth")
+            return false
+        }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == textEmail {
+            textField.resignFirstResponder()
+            self.textPassword.becomeFirstResponder()
+        } else if textField == textPassword {
+            textField.resignFirstResponder()
+            self.loginButton((Any).self)
+        }
+        return false
     }
 }
 

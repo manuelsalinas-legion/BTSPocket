@@ -5,21 +5,37 @@
 //
 
 import Foundation
+import UIKit
 
 struct LoginViewModel {
+    private let kSECRET_TOKEN = "SecretToken"
     
-    // Dummy function
-    #warning("Hey Cristian Look at me and analyze. Then Adapt your own functions according UI needs")
-    func nameOfYourMethodWithArguments(_ username: String, _ password: String, _ completion: @escaping((_ error: NSError?) -> Void)) {
-        
-        let wsParams = ["username" : username, "password" : password]
-        BTSApi.shared.platformEP.getMethod(Constants.Endpoints.authentication, wsParams) { (response: DummyResponse) in
-            print(response.message)
+    func login(_ email: String, _ password: String, _ completion: @escaping((_ error: NSError?) -> Void)) {
+        let authParams = ["email" : email, "password" : password]
+        BTSApi.shared.platformEP.postMethod(Constants.Endpoints.postAuthentication, nil, authParams) { (responseLogin: LoginResponse) in
+            
+            if let userId = responseLogin.data?.id, let token = responseLogin.data?.token {
+                let urlProfile = Constants.Endpoints.getUserProfile.replacingOccurrences(of: "{userId}", with: String(userId))
+                
+                let headerAuth = ["Authorization": token]
+                BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
+                    
+                    KeychainWrapper.standard.set(token, forKey: kSECRET_TOKEN)
+                    KeychainWrapper.standard.set((responseProfile.data?.id)!, forKey: "id")
+                    
+                    BTSApi.shared.profileSession = responseProfile.data
+                    BTSApi.shared.credentials = Login(email: email, password: password)
+                    
+                    completion(nil)
+                } onError: { error in
+                    print(error.localizedDescription)
+                    completion(error)
+                }
+            }
             completion(nil)
         } onError: { error in
             print(error.localizedDescription)
             completion(error)
         }
-
     }
 }
