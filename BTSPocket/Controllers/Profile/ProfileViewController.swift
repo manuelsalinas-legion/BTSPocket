@@ -46,7 +46,11 @@ class ProfileViewController: UIViewController {
             self.imageProfile.loadProfileImage(urlString: urlImage)
         }
     }
-        
+    @IBAction func buttonLogout(_ sender: Any) {
+        //Here call to method of delete all data and send to loguin
+        BTSApi.shared.deleteUserData()
+    }
+    
 }
 
 // MARK:- Table view data source
@@ -112,7 +116,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case ProfileSections.skills.rawValue:
             let cell = createDefaultCell()
             cell.textLabel?.text = BTSApi.shared.profileSession?.skills?[indexPath.row].skill
-            cell.textLabel?.font = UIFont(name: "Galvji Bold", size: 13)
+            cell.textLabel?.font = UIFont(name: "Hiragino Sans", size: 13)
             return cell
         //case experiences
         case ProfileSections.experience.rawValue:
@@ -150,7 +154,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
             headerView.contentView.backgroundColor = .white
-            headerView.textLabel?.font = UIFont.init(name: "Galvji Bold", size: 18.0)
+            headerView.textLabel?.font = UIFont.init(name: "Hiragino Sans", size: 18.0)
         }
     }
 }

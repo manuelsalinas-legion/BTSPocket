@@ -14,31 +14,35 @@ public enum TypeRoot {
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private let kSECRET_TOKEN = "SecretToken"
+    private var profileVM: ProfileViewModel?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        KeychainWrapper.standard.removeAllKeys()
         //choose initial ViewController
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let emailKeychain = KeychainWrapper.standard.string(forKey: "authEmail")
-        let passwordKeychain = KeychainWrapper.standard.string(forKey: "authPassword")
-        KeychainWrapper.standard.removeAllKeys()
-        // check if the credentials are in the keychain
-        if emailKeychain != nil && passwordKeychain != nil {
-            let profileVM: ProfileViewModel = ProfileViewModel()
-            profileVM.getProfile { (error) in
-                if error != nil {
-                    self.switchRoot(to: .login)
-                    return
+        
+        if let result = RealmAPI.shared.select(className: ProfileDataRealm.self, predicate: nil) as? [ProfileDataRealm], let sessionResult = result.first {
+            // check if the credentials are in the keychain
+            if let tokenChain = KeychainWrapper.standard.string(forKey: kSECRET_TOKEN) {
+                self.profileVM = ProfileViewModel()
+                self.profileVM?.getProfile(tokenChain) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        self.switchRoot(to: .login)
+                        return
+                    } else {
+                        self.switchRoot(to: .home)
+                    }
                 }
+            } else {
+                switchRoot(to: .login)
             }
-            self.switchRoot(to: .home)
-//            let homeVC = storyboard.instantiateViewController(identifier: "HomeTabBarController")
-//            let	navController = UINavigationController(rootViewController: homeVC)
-//            navController.navigationBar.isTranslucent = false
-//            self.window?.rootViewController = navController
         } else {
             switchRoot(to: .login)
         }
+        
         self.window?.makeKeyAndVisible()
     }
 
@@ -74,11 +78,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func switchRoot(to: TypeRoot) {
         switch to {
         case .home:
-            let homeVC: HomeTabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeTabBarController") as! HomeTabBarController
+            let vcHome = Storyboard.getInstanceOf(HomeTabBarController.self)
+            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeTabBarController") as! HomeTabBarController
             self.window?.rootViewController = homeVC
         case .login:
-        let loginVC: LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-            self.window?.rootViewController = loginVC
+            let vcLogin = Storyboard.getInstanceOf(LoginViewController.self)
+            self.window?.rootViewController = vcLogin
         }
     }
 }

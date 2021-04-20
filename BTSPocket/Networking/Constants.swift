@@ -12,6 +12,7 @@ struct Constants {
     struct Endpoints {
         static let postAuthentication = "https://platform.bluetrail.software/api/users/login"
         static let getUserProfile = "https://platform.bluetrail.software/api/users/{userId}/profile"
+        static let serverAddress = "https://platform.bluetrail.software/"
     }
 }
 

@@ -8,22 +8,17 @@
 import Foundation
 
 struct ProfileViewModel {
-    func getProfile(_ completition: @escaping((_ error: NSError?) -> Void ) ) {
-        // obtener el perfil
-        // el id se debe de guardar en el keychain?
+    func getProfile(_ token: String, _ completition: @escaping((_ error: NSError?) -> Void ) ) {
         if let userId = KeychainWrapper.standard.integer(forKey: "id") {
             let urlProfile = Constants.Endpoints.getUserProfile.replacingOccurrences(of: "{userId}", with: String(userId))
-            BTSApi.shared.platformEP.getMethod(urlProfile) { (responseProfile: ProfileResponse) in
-                
+            let headerAuth = ["Authorization": token]
+            BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) { (responseProfile: ProfileResponse) in
+                print(responseProfile)
                 BTSApi.shared.profileSession = responseProfile.data
                 completition(nil)
             } onError: { error in
                 print(error.localizedDescription)
                 completition(error)
-                // si falla mostrar loguin desde aqui??
-                // mostrar alerta de sesion caducada?
-                // eliminar profile sesion
-                // eliminar credentials
             }
 
         }

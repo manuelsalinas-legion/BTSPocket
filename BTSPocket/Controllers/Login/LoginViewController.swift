@@ -23,13 +23,16 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.loginVM = LoginViewModel()
         self.textEmail.delegate = self
+        self.textEmail.returnKeyType = .next
+        self.textEmail.keyboardType = .emailAddress
         self.textPassword.delegate = self
+        self.textPassword.returnKeyType = .done
         
         localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode"
         
         let emailExist = KeychainWrapper.standard.string(forKey: "authEmail")
-        let passwordExist = KeychainWrapper.standard.string(forKey: "authEmail")
-
+        let passwordExist = KeychainWrapper.standard.string(forKey: "authPassword")
+        
         if canUseLocalBiometricAutentication() {
             if emailExist == nil && passwordExist == nil {
                 self.buttonFaceIdTouchId.isHidden = true
@@ -50,7 +53,7 @@ class LoginViewController: UIViewController {
                     // preguntar si guardar credenciales en keychain
                     if self.canUseLocalBiometricAutentication() {
                         // si hay credenciales en el key chain
-                        if (KeychainWrapper.standard.string(forKey: "Credentials") == nil) {
+                        if KeychainWrapper.standard.string(forKey: "authEmail") == nil && KeychainWrapper.standard.string(forKey: "authPassword") == nil {
                             // show alert
                             let alert = UIAlertController(title: "Relate credentials", message: "Relate credentials with biometric autentication", preferredStyle: .alert)
                             // action no
@@ -59,17 +62,14 @@ class LoginViewController: UIViewController {
                             }))
                             // action yes
                             alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
-                                
                                 // autenticate with LA
                                 self.localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Reason") { (success, error) in
                                     if success {
                                         // save credentials in keychan reted with faceId
                                         KeychainWrapper.standard.set(email, forKey: "authEmail")
                                         KeychainWrapper.standard.set(pass, forKey: "authPassword")
-                                        self.showHome()
-                                    } else {
-                                        self.showHome()
                                     }
+                                    self.showHome()
                                 }
                             }))
                             self.present(alert, animated: true, completion: nil)
@@ -87,8 +87,10 @@ class LoginViewController: UIViewController {
     }
     
     func showHome() {
-        let sceneDelegateVariable = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegateVariable?.switchRoot(to: .home)
+        DispatchQueue.main.async {
+            let sceneDelegateVariable = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegateVariable?.switchRoot(to: .home)
+        }
     }
     
     // check if it have a local autentication
@@ -97,7 +99,8 @@ class LoginViewController: UIViewController {
             print("can use local auth")
             return true
         }
-        else {print("cannot use local auth")
+        else {
+            print("cannot use local auth")
             return false
         }
     }

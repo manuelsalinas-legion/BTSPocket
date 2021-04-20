@@ -26,6 +26,11 @@ struct LoginViewModel {
                     BTSApi.shared.profileSession = responseProfile.data
                     BTSApi.shared.credentials = Login(email: email, password: password)
                     
+                    // almacenando en realm
+                    if let profileSecion = responseProfile.data {
+                        RealmAPI.shared.write(profileSecion.persistenceObject())
+                    }
+                    
                     completion(nil)
                 } onError: { error in
                     print(error.localizedDescription)

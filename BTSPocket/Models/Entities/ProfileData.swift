@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct ProfileData: Codable {
     var id: Int?
@@ -22,6 +23,54 @@ struct ProfileData: Codable {
     var photo: String?
     var experiences: [Experience]?
     var skills: [Skill]?
-    // convertir how to create date from string
-//    var starts: Date { return Date(startDate) }
+}
+
+extension ProfileData: Persistable {
+    init(realmObject: ProfileDataRealm) {
+        self.id = realmObject.id
+        self.description = realmObject.descriptionInfo
+        self.firstName = realmObject.firstName
+        self.lastName = realmObject.lastName
+        self.position = realmObject.position
+        self.field = realmObject.field
+        self.location = realmObject.location
+        self.seniority = realmObject.seniority
+        self.region = realmObject.region
+        self.startDate = realmObject.startDate
+        self.email = realmObject.email
+        self.photo = realmObject.photo
+        
+        var experiences = [Experience]()
+        realmObject.experiences.forEach({ experiences.append(Experience(realmObject: $0)) })
+        self.experiences = experiences
+        
+        var skills = [Skill]()
+        realmObject.skills.forEach({ skills.append( Skill(realmObject: $0) ) })
+        self.skills = skills
+    }
+    func persistenceObject() -> ProfileDataRealm {
+        let object = ProfileDataRealm()
+        object.id = self.id ?? 0
+        object.descriptionInfo = self.description
+        object.firstName = self.firstName
+        object.lastName = self.lastName
+        object.position = self.position
+        object.field = self.field
+        object.location = self.location
+        object.seniority = self.seniority
+        object.region = self.region
+        object.startDate = self.startDate
+        object.email = self.email
+        object.photo = self.photo
+        
+        let experiences = List<ExperienceRealm>()
+        self.experiences?.forEach({ experiences.append($0.persistenceObject()) })
+        object.experiences = experiences
+        
+        let skills = List<SkillRealm>()
+        self.skills?.forEach({ skills.append( ($0.persistenceObject()) ) })
+        object.skills = skills
+        
+        return object
+    }
 }
