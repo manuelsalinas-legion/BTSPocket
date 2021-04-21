@@ -72,7 +72,7 @@
                                     <imageReference key="image" image="arrow.right" catalog="system" symbolScale="large" renderingMode="original"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1tW-ow-ta2"/>
+                                    <action selector="authenticate" destination="BYZ-38-t0r" eventType="touchUpInside" id="WJ8-FJ-amB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKk-zc-IUa">
@@ -83,6 +83,9 @@
                                 <state key="normal" title="TouchId/FaceID">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="showBiometrics" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tsr-PW-uNH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

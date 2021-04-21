@@ -8,7 +8,6 @@ import Foundation
 import UIKit
 
 struct LoginViewModel {
-    private let kSECRET_TOKEN = "SecretToken"
     
     func login(_ email: String, _ password: String, _ completion: @escaping((_ error: NSError?) -> Void)) {
         let authParams = ["email" : email, "password" : password]
@@ -20,8 +19,10 @@ struct LoginViewModel {
                 let headerAuth = ["Authorization": token]
                 BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
                     
-                    KeychainWrapper.standard.set(token, forKey: kSECRET_TOKEN)
-                    BTSApi.shared.profileSession = responseProfile.data
+                    KeychainWrapper.standard.set(token, forKey: Constants.Keychain.kSecretToken)
+                    KeychainWrapper.standard.set((responseProfile.data?.id)!, forKey: "id")
+                    
+                    BTSApi.shared.currentSession = responseProfile.data
                     BTSApi.shared.credentials = Login(email: email, password: password)
                     
                     // almacenando en realm
@@ -35,7 +36,6 @@ struct LoginViewModel {
                     completion(error)
                 }
             }
-            completion(nil)
         } onError: { error in
             print(error.localizedDescription)
             completion(error)
