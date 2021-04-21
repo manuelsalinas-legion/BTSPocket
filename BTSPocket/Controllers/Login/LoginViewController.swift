@@ -34,8 +34,6 @@ class LoginViewController: UIViewController {
         // UI
         self.textEmail.delegate = self
         self.textPassword.delegate = self
-
-        self.textEmail.keyboardType = .emailAddress
         self.textEmail.returnKeyType = .next
         self.textPassword.returnKeyType = .done
 
@@ -117,10 +115,22 @@ class LoginViewController: UIViewController {
                         return
                     }
                     
+                    // Fill Textfields
+                    DispatchQueue.main.async {
+                        self.textEmail.text = username
+                        self.textPassword.text = password
+                    }
+                    
                     // Request login
                     self.loginVM?.login(username, password, { [weak self] error in
                         if let error = error {
+                            // Show message
                             MessageManager.shared.showBar(title: "Error", subtitle: error.localizedDescription, type: .error, containsIcon: true, fromBottom: false)
+                            
+                            // Clean Textfields
+                            DispatchQueue.main.async {
+                                self?.textPassword.text = String()
+                            }
                         } else {
                             self?.showHome()
                         }
@@ -131,8 +141,13 @@ class LoginViewController: UIViewController {
                     guard let error = evaluateError else {
                         return
                     }
+                    
                     print(error)
-                
+                    
+                    // Clean Textfields
+                    DispatchQueue.main.async {
+                        self.textPassword.text = String()
+                    }
                 }
             }
         } else {
