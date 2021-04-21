@@ -14,32 +14,32 @@ public enum TypeRoot {
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private let kSECRET_TOKEN = "SecretToken"
-    private var profileVM: ProfileViewModel?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-//        KeychainWrapper.standard.removeAllKeys()
+
         //choose initial ViewController
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        if let result = RealmAPI.shared.select(className: ProfileDataRealm.self, predicate: nil) as? [ProfileDataRealm], let sessionResult = result.first {
-            // check if the credentials are in the keychain
-            if let tokenChain = KeychainWrapper.standard.string(forKey: kSECRET_TOKEN) {
-                self.profileVM = ProfileViewModel()
-                self.profileVM?.getProfile(tokenChain) { (error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        self.switchRoot(to: .login)
-                        return
-                    } else {
-                        self.switchRoot(to: .home)
-                    }
-                }
+        if let result = RealmAPI.shared.select(className: ProfileDataRealm.self, predicate: nil) as? [ProfileDataRealm],
+           let sessionResult = result.first {
+            // Persistent token in keychain?
+            if let tokenChain = KeychainWrapper.standard.string(forKey: Constants.Keychain.kSecretToken) {
+                
+                // Recover and set session data
+                BTSApi.shared.currentSession = ProfileData(realmObject: sessionResult)
+                BTSApi.shared.sessionToken = tokenChain
+                
+                // Go home
+                self.switchRoot(to: .home)
             } else {
+                // Remove data and show login
+                BTSApi.shared.deleteSession()
                 switchRoot(to: .login)
             }
         } else {
+            // Remove data and show login
+            BTSApi.shared.deleteSession()
             switchRoot(to: .login)
         }
         
@@ -73,17 +73,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+}
 
-    /// Choose root view controller betwen tabBarHome and Loguin
+// MARK: - ROOT SWITCHER
+extension SceneDelegate {
     func switchRoot(to: TypeRoot) {
         switch to {
         case .home:
-            let vcHome = Storyboard.getInstanceOf(HomeTabBarController.self)
-            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeTabBarController") as! HomeTabBarController
-            self.window?.rootViewController = homeVC
+            self.window?.rootViewController = Storyboard.getInstanceOf(HomeTabBarController.self)
         case .login:
-            let vcLogin = Storyboard.getInstanceOf(LoginViewController.self)
-            self.window?.rootViewController = vcLogin
+            self.window?.rootViewController = Storyboard.getInstanceOf(LoginViewController.self)
         }
     }
 }

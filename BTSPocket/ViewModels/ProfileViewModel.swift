@@ -14,7 +14,7 @@ struct ProfileViewModel {
             let headerAuth = ["Authorization": token]
             BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) { (responseProfile: ProfileResponse) in
                 print(responseProfile)
-                BTSApi.shared.profileSession = responseProfile.data
+                BTSApi.shared.currentSession = responseProfile.data
                 completition(nil)
             } onError: { error in
                 print(error.localizedDescription)

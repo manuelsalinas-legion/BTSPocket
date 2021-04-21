@@ -46,6 +46,7 @@
 		FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */; };
 		FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */; };
 		FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */; };
+		FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CB626263079760080B4B9 /* LAContext+extension.swift */; };
 		FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48DE2620B59B0030527D /* RealmAPI.swift */; };
 		FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E32620B6BE0030527D /* Storyboard.swift */; };
 		FFCC48E72620B7550030527D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E62620B7550030527D /* MessageManager.swift */; };
@@ -100,6 +101,7 @@
 		FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSPlatformEndpoints.swift; sourceTree = "<group>"; };
 		FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FF5CB626263079760080B4B9 /* LAContext+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LAContext+extension.swift"; sourceTree = "<group>"; };
 		FFCC48DE2620B59B0030527D /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		FFCC48E32620B6BE0030527D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		FFCC48E62620B7550030527D /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				2B798EA82625FA1300394FF7 /* UIImage+extension.swift */,
 				FFCC48FE2620BC4C0030527D /* NSMutableAttributedString+extensions.swift */,
 				FFCC49032620BE7A0030527D /* UIView+extensions.swift */,
+				FF5CB626263079760080B4B9 /* LAContext+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				2B798EA92625FA1300394FF7 /* UIImage+extension.swift in Sources */,
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
 				FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */,
+				FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */,
 				2B798E8F2625F76000394FF7 /* ProfileViewModel.swift in Sources */,
 				2B798E7C2625F6C100394FF7 /* LoginData.swift in Sources */,
 			);
@@ -708,13 +712,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D553RDKA55;
 				INFOPLIST_FILE = BTSPocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.crisbts.BTSPocket;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bts.BTSPocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -728,13 +733,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D553RDKA55;
 				INFOPLIST_FILE = BTSPocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.crisbts.BTSPocket;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bts.BTSPocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
