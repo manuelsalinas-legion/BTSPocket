@@ -8,19 +8,18 @@
 import Foundation
 
 struct ProfileViewModel {
-    func getProfile(_ token: String, _ completition: @escaping((_ error: NSError?) -> Void ) ) {
-        if let userId = KeychainWrapper.standard.integer(forKey: "id") {
-            let urlProfile = Constants.Endpoints.getUserProfile.replacingOccurrences(of: "{userId}", with: String(userId))
-            let headerAuth = ["Authorization": token]
-            BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) { (responseProfile: ProfileResponse) in
-                print(responseProfile)
-                BTSApi.shared.profileSession = responseProfile.data
-                completition(nil)
-            } onError: { error in
-                print(error.localizedDescription)
-                completition(error)
-            }
-
+    func getProfile(_ token: String, _ profileData: ProfileDataRealm, _ completition: @escaping((_ error: NSError?) -> Void ) ) {
+        let urlProfile = Constants.Endpoints.getUserProfile.replacingOccurrences(of: "{userId}", with: String(profileData.id))
+        let headerAuth = ["Authorization": token]
+        BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) { (responseProfile: ProfileResponse) in
+            // mandar a llamar al get profile
+            // llenar los datos del get profile con lo que esta en realm
+            
+            BTSApi.shared.profileSession = responseProfile.data
+            completition(nil)
+        } onError: { error in
+            print(error.localizedDescription)
+            completition(error)
         }
     }
 }

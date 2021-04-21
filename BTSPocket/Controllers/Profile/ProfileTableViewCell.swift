@@ -37,37 +37,21 @@ class ProfileTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
         }
     }
     
-    @objc func tapFunction(sender:UITapGestureRecognizer) {
-//        let mailURL = URL(string: "message://")!
-//        if UIApplication.shared.canOpenURL(mailURL) {
-//            UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
-//        }
-        let url = URL(string: "mailto:\(String(describing: self.labelEmail.text))")
-
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-        } else {
-           // Fallback on earlier versions
-            // dejar solo este, nunca sera menor a IOs 13
-            UIApplication.shared.openURL(url!)
+    @objc func tapFunction(sender: UITapGestureRecognizer) {
+        if let url = URL(string: "mailto:cristianp@bluetrailsoft.com") {
+            print("Entra")
+//            if UIApplication.shared.canOpenURL(url) {
+                print("Entraasd")
+                UIApplication.shared.openURL(url)
+//            }
         }
-    }
-    
-//    @objc func sendEmail() {
-//        if MFMailComposeViewController.canSendMail() {
-//            let mail = MFMailComposeViewController()
-//            mail.mailComposeDelegate = self
-//            mail.setToRecipients(["example@example.com"])
-//            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
 //
-//           present(mail, animated: true)
+//        if #available(iOS 10.0, *) {
+//            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
 //        } else {
-//           // show failure alert
+//           // Fallback on earlier versions
+//            // dejar solo este, nunca sera menor a IOs 13
+//            UIApplication.shared.openURL(url!)
 //        }
-//    }
-//
-//    // MARK: MFMailComposeViewControllerDelegate Conformance
-//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-//        controller.dismiss(animated: true)
-//    }
+    }
 }

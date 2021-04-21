@@ -21,8 +21,6 @@ struct LoginViewModel {
                 BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
                     
                     KeychainWrapper.standard.set(token, forKey: kSECRET_TOKEN)
-                    KeychainWrapper.standard.set((responseProfile.data?.id)!, forKey: "id")
-                    
                     BTSApi.shared.profileSession = responseProfile.data
                     BTSApi.shared.credentials = Login(email: email, password: password)
                     

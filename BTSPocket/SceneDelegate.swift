@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // check if the credentials are in the keychain
             if let tokenChain = KeychainWrapper.standard.string(forKey: kSECRET_TOKEN) {
                 self.profileVM = ProfileViewModel()
-                self.profileVM?.getProfile(tokenChain) { (error) in
+                self.profileVM?.getProfile(tokenChain, sessionResult) { (error) in
                     if let error = error {
                         print(error.localizedDescription)
                         self.switchRoot(to: .login)

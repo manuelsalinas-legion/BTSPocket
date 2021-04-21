@@ -46,8 +46,8 @@ class ProfileViewController: UIViewController {
             self.imageProfile.loadProfileImage(urlString: urlImage)
         }
     }
+    
     @IBAction func buttonLogout(_ sender: Any) {
-        //Here call to method of delete all data and send to loguin
         BTSApi.shared.deleteUserData()
     }
     
@@ -111,6 +111,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case ProfileSections.info.rawValue:
             let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
             customCell.loadProfile(BTSApi.shared.profileSession)
+            customCell.selectionStyle = .none
             return customCell
         //case skills
         case ProfileSections.skills.rawValue:
