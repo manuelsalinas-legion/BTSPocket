@@ -20,10 +20,7 @@ struct LoginViewModel {
                 BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
                     
                     KeychainWrapper.standard.set(token, forKey: Constants.Keychain.kSecretToken)
-                    KeychainWrapper.standard.set((responseProfile.data?.id)!, forKey: "id")
-                    
                     BTSApi.shared.currentSession = responseProfile.data
-                    BTSApi.shared.credentials = Login(email: email, password: password)
                     
                     // almacenando en realm
                     if let profileSecion = responseProfile.data {

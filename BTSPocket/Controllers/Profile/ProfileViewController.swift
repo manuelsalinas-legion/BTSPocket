@@ -113,12 +113,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         // case resume or description
         case ProfileSections.info.rawValue:
             let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
-<<<<<<< HEAD
-            customCell.loadProfile(BTSApi.shared.profileSession)
             customCell.selectionStyle = .none
-=======
             customCell.loadProfile(BTSApi.shared.currentSession)
->>>>>>> 8b86e341251b09ee56c67a30cc73ddf0a50cecf2
             return customCell
         //case skills
         case ProfileSections.skills.rawValue:
