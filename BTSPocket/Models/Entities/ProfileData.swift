@@ -23,6 +23,11 @@ struct ProfileData: Codable {
     var photo: String?
     var experiences: [Experience]?
     var skills: [Skill]?
+    
+    var fullName: String {
+        let full = (firstName ?? String()) + " " + (lastName ?? String())
+        return full.trim().isEmpty ? "Uknown" : full.capitalized
+    }
 }
 
 extension ProfileData: Persistable {

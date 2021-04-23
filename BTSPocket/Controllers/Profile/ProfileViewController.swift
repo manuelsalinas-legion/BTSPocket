@@ -25,24 +25,20 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // register table view cells for the table view
-        self.tableView.register(UINib(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "ProfileTableViewCell")
+        self.tableView.registerNib(ProfileTableViewCell.self)
+        self.tableView.registerNib(SkillsTableViewCell.self)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         self.tableView.separatorStyle = .none
         setLabelsAndImage()
+        self.tableView.layer.backgroundColor = CGColor(red: 20, green: 20, blue: 20, alpha: 0)
     }
     
     func setLabelsAndImage() {
-        if let firstName = BTSApi.shared.currentSession?.firstName?.capitalized,
-           let lastName = BTSApi.shared.currentSession?.lastName?.capitalized {
-            self.labelFullName.text = firstName + " " + lastName
-        }
-        if let field = BTSApi.shared.currentSession?.field,
-           let position = BTSApi.shared.currentSession?.position {
-            self.labelField.text = field
-            self.labelPosition.text = position
-        }
+        self.labelFullName.text = BTSApi.shared.currentSession?.fullName
+        self.labelField.text = BTSApi.shared.currentSession?.field
+        self.labelPosition.text = BTSApi.shared.currentSession?.position
         if let image = BTSApi.shared.currentSession?.photo {
-            let urlImage = "https://s3.amazonaws.com/cdn.platform.bluetrail.software/prod/" + image
+            let urlImage = Constants.urlBucketImages + image
             self.imageProfile.loadProfileImage(urlString: urlImage)
         }
     }
@@ -91,7 +87,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case ProfileSections.skills.rawValue:
-            return BTSApi.shared.currentSession?.skills?.count ?? 0
+            let countSkills = BTSApi.shared.currentSession?.skills?.count ?? 0
+            return Int(round(Double(countSkills / 3)))
         case ProfileSections.experience.rawValue:
             return BTSApi.shared.currentSession?.experiences?.count ?? 0
         default:
@@ -110,29 +107,42 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        // case resume or description
-        case ProfileSections.info.rawValue:
-            let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
-            customCell.selectionStyle = .none
-            customCell.loadProfile(BTSApi.shared.currentSession)
-            return customCell
-        //case skills
-        case ProfileSections.skills.rawValue:
-            let cell = createDefaultCell()
-            cell.textLabel?.text = BTSApi.shared.currentSession?.skills?[indexPath.row].skill
-            cell.textLabel?.font = UIFont(name: "Hiragino Sans", size: 13)
-            return cell
-        //case experiences
-        case ProfileSections.experience.rawValue:
-            let cell = createDefaultCell()
-            if let postionCompany = BTSApi.shared.currentSession?.experiences?[indexPath.row].position,
-               let companyExp = BTSApi.shared.currentSession?.experiences?[indexPath.row].company {
-                cell.textLabel?.text = postionCompany.capitalized + " In " + companyExp.capitalized
-            }
+            // case resume or description
+            case ProfileSections.info.rawValue:
+                let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
+                customCell.selectionStyle = .none
+                customCell.loadProfile(BTSApi.shared.currentSession)
+                return customCell
                 
-            return cell
-        default:
-            return UITableViewCell()
+            //case skills
+            case ProfileSections.skills.rawValue:
+                let customSkillsCell: SkillsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SkillsTableViewCell") as! SkillsTableViewCell
+                customSkillsCell.setSkillsInRow(indexPath.row)
+                return customSkillsCell
+                
+            //case experiences
+            case ProfileSections.experience.rawValue:
+                let cell = createDefaultCell()
+                if let postionCompany = BTSApi.shared.currentSession?.experiences?[indexPath.row].position,
+                   let companyExp = BTSApi.shared.currentSession?.experiences?[indexPath.row].company {
+                    cell.textLabel?.text = postionCompany.capitalized + " In " + companyExp.capitalized
+                }
+                    
+                return cell
+            default:
+                return UITableViewCell()
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+            case ProfileSections.skills.rawValue:
+                return CGFloat(23)
+            case ProfileSections.experience.rawValue:
+                return CGFloat(23)
+            default:
+                return UITableView.automaticDimension
         }
     }
     
@@ -140,13 +150,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         switch section {
         case ProfileSections.skills.rawValue:
             if BTSApi.shared.currentSession?.skills?.isEmpty == false {
-                return CGFloat(20)
+                return CGFloat(35)
             } else {
                 return 0
             }
         case ProfileSections.experience.rawValue:
             if BTSApi.shared.currentSession?.experiences?.isEmpty == false {
-                return CGFloat(20)
+                return CGFloat(35)
             } else {
                 return 0
             }
@@ -161,4 +171,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             headerView.textLabel?.font = UIFont.init(name: "Hiragino Sans", size: 18.0)
         }
     }
+    
+    
 }

@@ -9,6 +9,7 @@ import Foundation
 // MARK: - GLOBAL CONSTANTS
 struct Constants {
     static let kTimeout: TimeInterval = 60
+    static var urlBucketImages: String = "https://s3.amazonaws.com/cdn.platform.bluetrail.software/prod/"
     
     struct Keychain {
         static let kSecretToken = "kSecretToken"
