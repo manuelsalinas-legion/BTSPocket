@@ -15,25 +15,40 @@ private enum ProfileSections: Int {
 
 class ProfileViewController: UIViewController {
     
-    // MARK:- Outlets
+    // MARK:- Outlets & Variables
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var labelFullName: UILabel!
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var labelPosition: UILabel!
     @IBOutlet weak var labelField: UILabel!
     
+    private var profileVM: ProfileViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.profileVM = ProfileViewModel()
+        self.setUpProfile()
+        self.updateProfileData() 
+    }
+    
+    // MARK:- functions
+    func updateProfileData() {
+        self.profileVM?.getProfile({ [weak self] error in
+            if let error = error {
+                BTSApi.shared.deleteSession()
+                self?.showLogin()
+            }
+            self?.setUpProfile()
+        })
+    }
+    // MARK:- setUpt function
+    func setUpProfile() {
         // register table view cells for the table view
         self.tableView.registerNib(ProfileTableViewCell.self)
         self.tableView.registerNib(SkillsTableViewCell.self)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         self.tableView.separatorStyle = .none
-        setLabelsAndImage()
-        self.tableView.layer.backgroundColor = CGColor(red: 20, green: 20, blue: 20, alpha: 0)
-    }
-    
-    func setLabelsAndImage() {
+        // set text in labels text
         self.labelFullName.text = BTSApi.shared.currentSession?.fullName
         self.labelField.text = BTSApi.shared.currentSession?.field
         self.labelPosition.text = BTSApi.shared.currentSession?.position
@@ -43,6 +58,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // MARK:- Logout funtion
     @IBAction func buttonLogout(_ sender: Any) {
         //Here call to method of delete all data and send to loguin
         BTSApi.shared.deleteSession()
@@ -90,12 +106,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let countSkills = BTSApi.shared.currentSession?.skills?.count ?? 0
             return Int(round(Double(countSkills / 3)))
         case ProfileSections.experience.rawValue:
-            return BTSApi.shared.currentSession?.experiences?.count ?? 0
+            if BTSApi.shared.currentSession?.experiences?.count ?? 0 >= 1 {
+                return 2
+            } else {
+                return BTSApi.shared.currentSession?.experiences?.count ?? 0
+            }
         default:
             return 1
         }
     }
-    
+    // MARK:- default cell function for cellForRowAt
     ///Return a default dequeueReusableCell unselectible
     func createDefaultCell() -> UITableViewCell {
         let defaultCell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
@@ -118,6 +138,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             case ProfileSections.skills.rawValue:
                 let customSkillsCell: SkillsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SkillsTableViewCell") as! SkillsTableViewCell
                 customSkillsCell.setSkillsInRow(indexPath.row)
+                customSkillsCell.selectionStyle = .none
                 return customSkillsCell
                 
             //case experiences
@@ -125,8 +146,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                 let cell = createDefaultCell()
                 if let postionCompany = BTSApi.shared.currentSession?.experiences?[indexPath.row].position,
                    let companyExp = BTSApi.shared.currentSession?.experiences?[indexPath.row].company {
-                    cell.textLabel?.text = postionCompany.capitalized + " In " + companyExp.capitalized
+                    cell.textLabel?.text = postionCompany.capitalized + " At " + companyExp.capitalized
                 }
+                cell.textLabel?.font = UIFont(name: "Hiragino Maru Gothic ProN", size: 15.0)
+                cell.textLabel?.lineBreakMode = .byCharWrapping
+                cell.textLabel?.numberOfLines = 0
+                cell.textLabel?.textColor = UIColor.systemGray
                     
                 return cell
             default:
@@ -138,9 +163,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
             case ProfileSections.skills.rawValue:
-                return CGFloat(23)
+                return CGFloat(25)
             case ProfileSections.experience.rawValue:
-                return CGFloat(23)
+                return CGFloat(35)
             default:
                 return UITableView.automaticDimension
         }
@@ -168,9 +193,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
             headerView.contentView.backgroundColor = .white
-            headerView.textLabel?.font = UIFont.init(name: "Hiragino Sans", size: 18.0)
+            headerView.textLabel?.font = UIFont.init(name: "Hiragino Maru Gothic ProN", size: 18.0)
+            headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            headerView.textLabel?.textColor = UIColor(named: "Purple BTS")
         }
     }
-    
-    
 }

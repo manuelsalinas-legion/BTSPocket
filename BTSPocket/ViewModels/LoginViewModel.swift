@@ -19,12 +19,11 @@ struct LoginViewModel {
                 let headerAuth = ["Authorization": token]
                 BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
                     
-                    KeychainWrapper.standard.set(token, forKey: Constants.Keychain.kSecretToken)
-                    BTSApi.shared.currentSession = responseProfile.data
-                    
-                    // almacenando en realm
+                    // Save in realm
                     if let profileSecion = responseProfile.data {
                         RealmAPI.shared.write(profileSecion.persistenceObject())
+                        BTSApi.shared.currentSession = profileSecion
+                        KeychainWrapper.standard.set(token, forKey: Constants.Keychain.kSecretToken)
                     }
                     
                     completion(nil)

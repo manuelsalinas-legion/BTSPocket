@@ -19,23 +19,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="R9v-IL-18j">
-                        <rect key="frame" x="20" y="0.0" width="391" height="196"/>
+                        <rect key="frame" x="20" y="0.0" width="391" height="201"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHa-ru-9vs">
-                                <rect key="frame" x="0.0" y="0.0" width="391" height="98"/>
-                                <string key="text">Everything positive with the people. I like being, active, talckative and proactive in my day of day. I'm a Junior Fulstack developer but now i've been in a iOS menthories getting ready to sell in App store</string>
+                                <rect key="frame" x="0.0" y="0.0" width="391" height="120.5"/>
+                                <mutableString key="text">Everything positive with the people. I like being, active, talckative and proactive in my day of day. I'm a Junior Fulstack developer but now i've been in a iOS menthories getting ready to sell in App store. Happy at BTS since April 2019 I like learn new things</mutableString>
                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-ox-ljb">
-                                <rect key="frame" x="0.0" y="113" width="391" height="24.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-ox-ljb">
+                                <rect key="frame" x="0.0" y="135.5" width="391" height="20"/>
                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Email@bluetrailsoft.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei3-YG-5Vy">
-                                <rect key="frame" x="0.0" y="152.5" width="391" height="43.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Email@bluetrailsoft.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei3-YG-5Vy">
+                                <rect key="frame" x="0.0" y="170.5" width="391" height="30.5"/>
                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                 <color key="textColor" systemColor="linkColor"/>
                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="R9v-IL-18j" secondAttribute="bottom" constant="15" id="DD1-oF-2cy"/>
+                    <constraint firstAttribute="bottom" secondItem="R9v-IL-18j" secondAttribute="bottom" constant="10" id="DD1-oF-2cy"/>
                     <constraint firstAttribute="trailingMargin" secondItem="R9v-IL-18j" secondAttribute="trailing" id="RYx-y5-kwZ"/>
                     <constraint firstItem="R9v-IL-18j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="w17-2e-kuD"/>
                     <constraint firstItem="R9v-IL-18j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="zUb-dI-Poh"/>
