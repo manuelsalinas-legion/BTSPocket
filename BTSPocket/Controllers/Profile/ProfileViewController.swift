@@ -35,8 +35,14 @@ class ProfileViewController: UIViewController {
     func updateProfileData() {
         self.profileVM?.getProfile({ [weak self] error in
             if let error = error {
-                BTSApi.shared.deleteSession()
-                self?.showLogin()
+                if error.code == HttpStatusCode.unauthorized.rawValue {
+                    BTSApi.shared.deleteSession()
+                    self?.showLogin()
+                } else {
+                    let alert = UIAlertController(title: "Server error", message: "We are experimented server issues please try again", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "CERRAR", style: .cancel, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }
             }
             self?.setUpProfile()
         })
@@ -46,7 +52,6 @@ class ProfileViewController: UIViewController {
         // register table view cells for the table view
         self.tableView.registerNib(ProfileTableViewCell.self)
         self.tableView.registerNib(SkillsTableViewCell.self)
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         self.tableView.separatorStyle = .none
         // set text in labels text
         self.labelFullName.text = BTSApi.shared.currentSession?.fullName
@@ -62,8 +67,7 @@ class ProfileViewController: UIViewController {
     @IBAction func buttonLogout(_ sender: Any) {
         //Here call to method of delete all data and send to loguin
         BTSApi.shared.deleteSession()
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.switchRoot(to: .login)
+        self.showLogin()
     }
     
 }
@@ -106,7 +110,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let countSkills = BTSApi.shared.currentSession?.skills?.count ?? 0
             return Int(round(Double(countSkills / 3)))
         case ProfileSections.experience.rawValue:
-            if BTSApi.shared.currentSession?.experiences?.count ?? 0 >= 1 {
+            if BTSApi.shared.currentSession?.experiences?.count ?? 0 >= 2 {
                 return 2
             } else {
                 return BTSApi.shared.currentSession?.experiences?.count ?? 0
@@ -118,7 +122,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK:- default cell function for cellForRowAt
     ///Return a default dequeueReusableCell unselectible
     func createDefaultCell() -> UITableViewCell {
-        let defaultCell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
+        let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "DefaultCell")
         defaultCell.textLabel?.numberOfLines = 0
         defaultCell.setSelected(false, animated: false)
         defaultCell.isUserInteractionEnabled = false
