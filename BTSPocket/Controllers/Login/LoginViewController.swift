@@ -6,52 +6,189 @@
 //
 
 import UIKit
-import Alamofire
+import LocalAuthentication
+
 class LoginViewController: UIViewController {
-    //MARK:- Outlets
-    @IBOutlet weak var textEmail: UITextField!
-    @IBOutlet weak var textPassword: UITextField!
+    // MARK: Outlets & Variables
+    @IBOutlet weak private var textEmail: UITextField!
+    @IBOutlet weak private var textPassword: UITextField!
+    @IBOutlet weak var buttonFaceIdTouchId: UIButton!
     
-    #warning("Investigate how to put status bar in white instead of black")
-    
-    //MARK:- Variables
-    let loguinPath: String = "https://platform.bluetrail.software/api/users/login"
     private var loginVM: LoginViewModel?
+    private let localAuthenticationContext = LAContext()
+    private var authorizationError: NSError?
     
+    // MARK: LYFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginVM = LoginViewModel()
-        
-        #warning("Hey Cristian Look at me and analyze. Then Remove me")
-        // Requesting endpoint DUMMY sample
-        self.loginVM?.nameOfYourMethodWithArguments("Cristian", "yourPassword", { error in
-           
-            if let error = error  {
-                print("Handle your error in UI here")
-                print(error.localizedDescription)
-            } else {
-                print("Login successfull, Do something!")
-            }
-        })
+        self.setup()
     }
     
-    @IBAction func loguinButton(_ sender: Any) {
-        
-        if let email = textEmail.text, let pass = textPassword.text {
-            let credentials = Loguin(email: email, password: pass)
-            AF.request(loguinPath,
-                       method: .post,
-                       parameters: credentials,
-                       encoder: JSONParameterEncoder.default).responseJSON { response in
-                        
-                        print(response)
-                        
-//                        let homeVC: HomeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
-                        // show home view controller
-                       }
+    deinit {
+        print("Deinit: \(String(describing: LoginViewController.self))")
+    }
+    
+    // MARK: SETUP CONTROLLER
+    private func setup() {
+        // UI
+        self.textEmail.delegate = self
+        self.textPassword.delegate = self
+        self.textEmail.returnKeyType = .next
+        self.textPassword.returnKeyType = .done
+
+        // Biometrics
+        if self.canUseLocalBiometricAutentication() {
+            // Check credentials from keychain
+            guard let _ = KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthUsername),
+                  let _ = KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthPassword) else {
+                
+                self.buttonFaceIdTouchId.isHidden = true
+                return
+            }
+            self.buttonFaceIdTouchId.isHidden = false
+            self.buttonFaceIdTouchId.setTitle(LAContext().biometryType == LABiometryType.faceID ? "Face ID" : "Touch ID", for: .normal)
         } else {
-            print("Empty")
+            self.buttonFaceIdTouchId.isHidden = true
         }
+    }
+    
+    // MARK: ACTIONS
+    @IBAction private func authenticate() {
+        if let email = textEmail.text?.trim(), let pass = textPassword.text?.trim(), email.isEmail(), !email.isEmpty, !pass.isEmpty {
+            self.loginVM?.login(email, pass, { error in
+                if let error = error {
+                    print(error)
+                    showAlert(view: self, title: "Server Error", message: "Bad credentials")
+                } else {
+                    // preguntar si guardar credenciales en keychain
+                    if self.canUseLocalBiometricAutentication() {
+                        // si hay credenciales en el key chain
+                        if KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthUsername) == nil && KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthPassword) == nil {
+                            // show alert
+                            let alert = UIAlertController(title: "Relate credentials", message: "Relate credentials with biometric autentication", preferredStyle: .alert)
+                            // action no
+                            alert.addAction(UIAlertAction(title: "NO", style: .default, handler: { (action) in
+                                self.showHome()
+                            }))
+                            // action yes
+                            alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+                                // autenticate with LA
+                                self.localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Reason") { (success, error) in
+                                    if success {
+                                        // save credentials in keychan reted with faceId
+                                        KeychainWrapper.standard.set(email, forKey: Constants.Keychain.kAuthUsername)
+                                        KeychainWrapper.standard.set(pass, forKey: Constants.Keychain.kAuthPassword)
+                                    }
+                                    self.showHome()
+                                }
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            self.showHome()
+                        }
+                    } else {
+                        self.showHome()
+                    }
+                }
+            })
+        } else {
+            showAlert(view: self, title: "Error", message: "Invalid credentials")
+        }
+    }
+    
+    @IBAction private func showBiometrics() {
+        let localAuthenticationContext = LAContext()
+        localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode"
+
+        var authorizationError: NSError?
+        let reason = "Authentication required to access the secure data"
+
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authorizationError) {
+            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, evaluateError in
+                
+                if success {
+                    guard let username = KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthUsername),
+                          let password = KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthPassword) else {
+                        
+                        print("error: credentials weren't able to recover from keychain")
+                        return
+                    }
+                    
+                    // Fill Textfields
+                    DispatchQueue.main.async {
+                        self.textEmail.text = username
+                        self.textPassword.text = password
+                    }
+                    
+                    // Request login
+                    self.loginVM?.login(username, password, { [weak self] error in
+                        if let error = error {
+                            // Show message
+                            MessageManager.shared.showBar(title: "Error", subtitle: error.localizedDescription, type: .error, containsIcon: true, fromBottom: false)
+                            
+                            // Clean Textfields
+                            DispatchQueue.main.async {
+                                self?.textPassword.text = String()
+                            }
+                        } else {
+                            self?.showHome()
+                        }
+                    })
+                    
+                } else {
+                    // Failed to authenticate
+                    guard let error = evaluateError else {
+                        return
+                    }
+                    
+                    print(error)
+                    
+                    // Clean Textfields
+                    DispatchQueue.main.async {
+                        self.textPassword.text = String()
+                    }
+                }
+            }
+        } else {
+            
+            guard let error = authorizationError else {
+                return
+            }
+            print(error)
+        }
+    }
+    
+    // MARK: HELPERS
+    private func canUseLocalBiometricAutentication() -> Bool {
+        if localAuthenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &authorizationError) {
+            print("can use local auth")
+            return true
+        }
+        else {
+            print("cannot use local auth")
+            return false
+        }
+    }
+    
+    // MARK: GO HOME
+    private func showHome() {
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.switchRoot(to: .home)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.textEmail {
+            textField.resignFirstResponder()
+            self.textPassword.becomeFirstResponder()
+        } else if textField == self.textPassword {
+            textField.resignFirstResponder()
+            self.authenticate()
+        }
+        return false
     }
 }
 

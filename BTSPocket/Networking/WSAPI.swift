@@ -10,7 +10,7 @@ class WSAPI {
     class var requestHeaders: [String: String] {
         var headers = [String: String]()
         headers += [
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         ]
 
         return headers
