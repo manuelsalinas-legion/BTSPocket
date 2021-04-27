@@ -18,6 +18,16 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>inbox-gmail</string>
+		<string>http</string>
+		<string>https</string>
+		<string>googlegmail</string>
+		<string>ms-outlook</string>
+		<string>readdle-spark</string>
+		<string>ymail</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSFaceIDUsageDescription</key>

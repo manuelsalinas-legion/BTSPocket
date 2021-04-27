@@ -38,20 +38,10 @@ class ProfileTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     }
     
     @objc func tapFunction(sender: UITapGestureRecognizer) {
-        if let url = URL(string: "mailto:cristianp@bluetrailsoft.com") {
-            print("Entra")
-//            if UIApplication.shared.canOpenURL(url) {
-                print("Entraasd")
-                UIApplication.shared.openURL(url)
-//            }
+        if let url = URL(string: "mailto:\(self.labelEmail.text!)") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
-//
-//        if #available(iOS 10.0, *) {
-//            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-//        } else {
-//           // Fallback on earlier versions
-//            // dejar solo este, nunca sera menor a IOs 13
-//            UIApplication.shared.openURL(url!)
-//        }
     }
 }
