@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController {
         self.tableView.separatorStyle = .none
         // set text in labels text
         self.labelFullName.text = BTSApi.shared.currentSession?.fullName
-        self.labelField.text = BTSApi.shared.currentSession?.field
+        self.labelField.text = BTSApi.shared.currentSession?.field?.capitalized
         self.labelPosition.text = BTSApi.shared.currentSession?.position
         if let image = BTSApi.shared.currentSession?.photo {
             let urlImage = Constants.urlBucketImages + image
