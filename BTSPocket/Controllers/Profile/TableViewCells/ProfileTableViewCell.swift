@@ -36,7 +36,7 @@ class ProfileTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     @objc func tapFunction(sender: UITapGestureRecognizer) {
         if let url = URL(string: "mailto:\(self.labelEmail.text!)") {
             if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }

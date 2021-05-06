@@ -100,13 +100,7 @@ class ProfileViewController: UIViewController {
     
     // MARK:- setUpt function
     private func setUpProfile() {
-        var currentUser: ProfileData?
-        switch mode {
-        case .myProfile:
-            currentUser = BTSApi.shared.currentSession
-        case .teamMember:
-            currentUser = self.member
-        }
+        let currentUser: ProfileData? = typeUser()
         self.labelFullName.text = currentUser?.fullName
         self.labelField.text = currentUser?.field
         self.labelPosition.text = currentUser?.position
