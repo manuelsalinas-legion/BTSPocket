@@ -18,23 +18,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VKy-im-Bvu">
-                        <rect key="frame" x="16" y="0.0" width="288" height="44"/>
+                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="VKy-im-Bvu">
+                        <rect key="frame" x="16" y="0.0" width="288" height="29"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPq-eK-x5u">
-                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPq-eK-x5u">
+                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="29"/>
                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill 2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s79-cn-faM">
-                                <rect key="frame" x="102.5" y="0.0" width="83" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s79-cn-faM">
+                                <rect key="frame" x="104.5" y="0.0" width="79" height="29"/>
                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill 3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEq-ML-Tgz">
-                                <rect key="frame" x="205.5" y="0.0" width="82.5" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEq-ML-Tgz">
+                                <rect key="frame" x="208.5" y="0.0" width="79.5" height="29"/>
                                 <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="VKy-im-Bvu" secondAttribute="trailing" id="9v0-qk-FxS"/>
                     <constraint firstItem="VKy-im-Bvu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="RYY-aL-Wju"/>
-                    <constraint firstAttribute="bottom" secondItem="VKy-im-Bvu" secondAttribute="bottom" id="VzA-wD-1Fv"/>
+                    <constraint firstAttribute="bottom" secondItem="VKy-im-Bvu" secondAttribute="bottom" constant="15" id="VzA-wD-1Fv"/>
                     <constraint firstItem="VKy-im-Bvu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tjx-Ez-ycd"/>
                 </constraints>
             </tableViewCellContentView>
@@ -55,7 +55,7 @@
                 <outlet property="labelSkill2" destination="s79-cn-faM" id="Uuq-N1-88h"/>
                 <outlet property="labelSkill3" destination="bEq-ML-Tgz" id="Wgn-QH-gtW"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="79.6875"/>
+            <point key="canvasLocation" x="243" y="90"/>
         </tableViewCell>
     </objects>
     <resources>

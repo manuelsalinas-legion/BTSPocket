@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */; };
 		2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */; };
+		2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */; };
+		2B47ADE02638B1F500AA880F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADDE2638B1F500AA880F /* UserTableViewCell.swift */; };
+		2B47ADE12638B1F500AA880F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B47ADDF2638B1F500AA880F /* UserTableViewCell.xib */; };
+		2B47ADE72638E22400AA880F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE62638E22400AA880F /* User.swift */; };
+		2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE92638E27300AA880F /* PaginationResponse.swift */; };
+		2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */; };
+		2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF32638E69700AA880F /* AllUsersReponse.swift */; };
 		2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A32026334D8F00006589 /* UIViewController+extensions.swift */; };
 		2B798E742625F68800394FF7 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B798E722625F68700394FF7 /* ProfileTableViewCell.swift */; };
 		2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B798E732625F68800394FF7 /* ProfileTableViewCell.xib */; };
@@ -63,6 +70,13 @@
 /* Begin PBXFileReference section */
 		2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsTableViewCell.swift; sourceTree = "<group>"; };
 		2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillsTableViewCell.xib; sourceTree = "<group>"; };
+		2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewModel.swift; sourceTree = "<group>"; };
+		2B47ADDE2638B1F500AA880F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		2B47ADDF2638B1F500AA880F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		2B47ADE62638E22400AA880F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2B47ADE92638E27300AA880F /* PaginationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationResponse.swift; sourceTree = "<group>"; };
+		2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationAllUsers.swift; sourceTree = "<group>"; };
+		2B47ADF32638E69700AA880F /* AllUsersReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersReponse.swift; sourceTree = "<group>"; };
 		2B67A32026334D8F00006589 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2B798E722625F68700394FF7 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		2B798E732625F68800394FF7 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
@@ -263,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				2BF8934A260D21AF00061491 /* TeamViewController.swift */,
+				2B47ADDE2638B1F500AA880F /* UserTableViewCell.swift */,
+				2B47ADDF2638B1F500AA880F /* UserTableViewCell.xib */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -292,6 +308,8 @@
 				2B798E822625F6CD00394FF7 /* Experience.swift */,
 				2B798E7A2625F6C000394FF7 /* ProfileData.swift */,
 				2B798E792625F6BF00394FF7 /* Skill.swift */,
+				2B47ADE62638E22400AA880F /* User.swift */,
+				2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -346,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */,
+				2B47ADE92638E27300AA880F /* PaginationResponse.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -355,6 +374,7 @@
 			children = (
 				2B798E852625F6D900394FF7 /* LoginResponse.swift */,
 				2B798E862625F6D900394FF7 /* ProfileResponse.swift */,
+				2B47ADF32638E69700AA880F /* AllUsersReponse.swift */,
 			);
 			path = EndpointResponses;
 			sourceTree = "<group>";
@@ -393,6 +413,7 @@
 			children = (
 				2B798E8E2625F76000394FF7 /* ProfileViewModel.swift */,
 				FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */,
+				2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -486,6 +507,7 @@
 				2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */,
 				2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */,
 				2BF89300260C012600061491 /* Assets.xcassets in Resources */,
+				2B47ADE12638B1F500AA880F /* UserTableViewCell.xib in Resources */,
 				2BF892FE260C012300061491 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +564,7 @@
 				2B798E802625F6C100394FF7 /* Permissions.swift in Sources */,
 				2B798E872625F6DA00394FF7 /* LoginResponse.swift in Sources */,
 				FF0DDFE8260D4ACB003F2224 /* Dictionary+extensions.swift in Sources */,
+				2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */,
 				FFCC490E2620C0420030527D /* Persistable.swift in Sources */,
 				2B798E832625F6CD00394FF7 /* Experience.swift in Sources */,
 				2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */,
@@ -550,7 +573,9 @@
 				FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */,
 				2BF89320260CE20900061491 /* Login.swift in Sources */,
 				2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */,
+				2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */,
 				FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */,
+				2B47ADE72638E22400AA880F /* User.swift in Sources */,
 				2BC591ED2627443C00F9A6EA /* ExperienceRealm.swift in Sources */,
 				2BF8930F260C07B800061491 /* LoginViewController.swift in Sources */,
 				2B798E7E2625F6C100394FF7 /* Skill.swift in Sources */,
@@ -568,14 +593,17 @@
 				2B798E7F2625F6C100394FF7 /* ProfileData.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
 				FFCC48E72620B7550030527D /* MessageManager.swift in Sources */,
+				2B47ADE02638B1F500AA880F /* UserTableViewCell.swift in Sources */,
 				FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */,
 				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
 				FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */,
 				FFCC48FC2620BB480030527D /* UITableView+extensions.swift in Sources */,
+				2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */,
 				2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */,
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
 				2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */,
 				FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */,
+				2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
 				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,
 				2B798EA92625FA1300394FF7 /* UIImage+extension.swift in Sources */,

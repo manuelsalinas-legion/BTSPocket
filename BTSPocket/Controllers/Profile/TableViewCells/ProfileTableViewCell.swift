@@ -28,30 +28,16 @@ class ProfileTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     // MARK:- Functions
     /// Set backend Profile session data in profile section
     public func loadProfile(_ backendProfileData: ProfileData?) {
-        if let email = backendProfileData?.email,
-           let resume = backendProfileData?.description,
-           let location = backendProfileData?.location {
-            self.labelResume?.text = resume
-            self.labelEmail?.text = email
-            self.labelLocation?.text = location
-        }
+        self.labelResume?.text = backendProfileData?.description
+        self.labelEmail?.text = backendProfileData?.email
+        self.labelLocation?.text = backendProfileData?.location
     }
     
     @objc func tapFunction(sender: UITapGestureRecognizer) {
-        if let url = URL(string: "mailto:cristianp@bluetrailsoft.com") {
-            print("Entra")
-//            if UIApplication.shared.canOpenURL(url) {
-                print("Entraasd")
+        if let url = URL(string: "mailto:\(self.labelEmail.text!)") {
+            if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.openURL(url)
-//            }
+            }
         }
-//
-//        if #available(iOS 10.0, *) {
-//            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-//        } else {
-//           // Fallback on earlier versions
-//            // dejar solo este, nunca sera menor a IOs 13
-//            UIApplication.shared.openURL(url!)
-//        }
     }
 }

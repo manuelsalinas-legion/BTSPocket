@@ -13,6 +13,10 @@ private enum ProfileSections: Int {
     case experience = 2
 }
 
+enum screenType {
+    case myProfile, teamMember
+}
+
 class ProfileViewController: UIViewController {
     
     // MARK:- Outlets & Variables
@@ -21,18 +25,64 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var labelPosition: UILabel!
     @IBOutlet weak var labelField: UILabel!
+    @IBOutlet weak var buttonLogout: UIButton!
     
     private var profileVM: ProfileViewModel?
+    private var member: ProfileData? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    public var mode: screenType = .myProfile
+    public var memberId: Int?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpTable()
         self.profileVM = ProfileViewModel()
-        self.setUpProfile()
-        self.updateProfileData() 
+        
+        switch mode {
+        case .myProfile:
+            self.updateProfileData()
+        case .teamMember:
+            self.memberConfiguration()
+            self.getMemberProfile()
+        }
+         
     }
     
-    // MARK:- functions
-    func updateProfileData() {
+    // MARK:- memberConfiguration function
+    private func memberConfiguration() {
+        self.buttonLogout.isHidden = true
+    }
+    
+    // MARK:- getMemberProfile function
+    private func getMemberProfile() {
+        self.profileVM?.getMemberProfile(memberId, { result in
+            switch result {
+            case .success(let member):
+                self.member = member
+                self.setUpProfile()
+            case .failure(let error):
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
+                    BTSApi.shared.deleteSession()
+                    self.showLogin()
+                }
+            }
+        })
+    }
+    
+    // MARK:- setUpTable
+    private func setUpTable() {
+        // register table view cells for the table view
+        self.tableView.registerNib(ProfileTableViewCell.self)
+        self.tableView.registerNib(SkillsTableViewCell.self)
+        self.tableView.separatorStyle = .none
+    }
+    
+    // MARK:- updateProfile function
+    private func updateProfileData() {
         self.profileVM?.getProfile({ [weak self] error in
             if let error = error {
                 if error.code == HttpStatusCode.unauthorized.rawValue {
@@ -47,19 +97,33 @@ class ProfileViewController: UIViewController {
             self?.setUpProfile()
         })
     }
+    
     // MARK:- setUpt function
-    func setUpProfile() {
-        // register table view cells for the table view
-        self.tableView.registerNib(ProfileTableViewCell.self)
-        self.tableView.registerNib(SkillsTableViewCell.self)
-        self.tableView.separatorStyle = .none
-        // set text in labels text
-        self.labelFullName.text = BTSApi.shared.currentSession?.fullName
-        self.labelField.text = BTSApi.shared.currentSession?.field
-        self.labelPosition.text = BTSApi.shared.currentSession?.position
-        if let image = BTSApi.shared.currentSession?.photo {
+    private func setUpProfile() {
+        var currentUser: ProfileData?
+        switch mode {
+        case .myProfile:
+            currentUser = BTSApi.shared.currentSession
+        case .teamMember:
+            currentUser = self.member
+        }
+        self.labelFullName.text = currentUser?.fullName
+        self.labelField.text = currentUser?.field
+        self.labelPosition.text = currentUser?.position
+        if let image = currentUser?.photo {
             let urlImage = Constants.urlBucketImages + image
             self.imageProfile.loadProfileImage(urlString: urlImage)
+        }
+    }
+    
+    // MARK:- type of user function
+    ///Check the mode enum to return the current user session or a member data
+    private func typeUser() -> ProfileData? {
+        switch mode {
+        case .myProfile:
+            return BTSApi.shared.currentSession
+        case .teamMember:
+            return self.member
         }
     }
     
@@ -69,20 +133,20 @@ class ProfileViewController: UIViewController {
         BTSApi.shared.deleteSession()
         self.showLogin()
     }
-    
 }
 
 // MARK:- Table view data source
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if BTSApi.shared.currentSession?.skills?.isEmpty == false {
-            if BTSApi.shared.currentSession?.experiences?.isEmpty == false {
+        let currentUser: ProfileData? = self.typeUser()
+        if currentUser?.skills?.isEmpty == false {
+            if currentUser?.experiences?.isEmpty == false {
                 return 3
             } else {
                 return 2
             }
-        } else if BTSApi.shared.currentSession?.experiences?.isEmpty == false {
-            if BTSApi.shared.currentSession?.skills?.isEmpty == false {
+        } else if currentUser?.experiences?.isEmpty == false {
+            if currentUser?.skills?.isEmpty == false {
                 return 3
             } else {
                 return 2
@@ -105,15 +169,17 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     // Number of row in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let currentUser: ProfileData? = self.typeUser()
         switch section {
         case ProfileSections.skills.rawValue:
-            let countSkills = BTSApi.shared.currentSession?.skills?.count ?? 0
-            return Int(round(Double(countSkills / 3)))
+            let countSkills = currentUser?.skills?.count ?? 0
+            let divition = Double(countSkills) / 3
+            return Int(divition.rounded(.up))
         case ProfileSections.experience.rawValue:
-            if BTSApi.shared.currentSession?.experiences?.count ?? 0 >= 2 {
+            if currentUser?.experiences?.count ?? 0 >= 2 {
                 return 2
             } else {
-                return BTSApi.shared.currentSession?.experiences?.count ?? 0
+                return currentUser?.experiences?.count ?? 0
             }
         default:
             return 1
@@ -130,26 +196,28 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentUser: ProfileData? = self.typeUser()
+        
         switch indexPath.section {
             // case resume or description
             case ProfileSections.info.rawValue:
                 let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
                 customCell.selectionStyle = .none
-                customCell.loadProfile(BTSApi.shared.currentSession)
+                customCell.loadProfile(currentUser)
                 return customCell
                 
             //case skills
             case ProfileSections.skills.rawValue:
                 let customSkillsCell: SkillsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SkillsTableViewCell") as! SkillsTableViewCell
-                customSkillsCell.setSkillsInRow(indexPath.row)
+                customSkillsCell.setSkillsInRow(currentUser, indexPath.row)
                 customSkillsCell.selectionStyle = .none
                 return customSkillsCell
                 
             //case experiences
             case ProfileSections.experience.rawValue:
                 let cell = createDefaultCell()
-                if let postionCompany = BTSApi.shared.currentSession?.experiences?[indexPath.row].position,
-                   let companyExp = BTSApi.shared.currentSession?.experiences?[indexPath.row].company {
+                if let postionCompany = currentUser?.experiences?[indexPath.row].position,
+                   let companyExp = currentUser?.experiences?[indexPath.row].company {
                     cell.textLabel?.text = postionCompany.capitalized + " At " + companyExp.capitalized
                 }
                 cell.textLabel?.font = UIFont(name: "Hiragino Maru Gothic ProN", size: 15.0)
@@ -167,7 +235,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
             case ProfileSections.skills.rawValue:
-                return CGFloat(25)
+                return UITableView.automaticDimension
             case ProfileSections.experience.rawValue:
                 return CGFloat(35)
             default:
@@ -176,15 +244,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let currentUser: ProfileData? = self.typeUser()
         switch section {
         case ProfileSections.skills.rawValue:
-            if BTSApi.shared.currentSession?.skills?.isEmpty == false {
+            if currentUser?.skills?.isEmpty == false {
                 return CGFloat(35)
             } else {
                 return 0
             }
         case ProfileSections.experience.rawValue:
-            if BTSApi.shared.currentSession?.experiences?.isEmpty == false {
+            if currentUser?.experiences?.isEmpty == false {
                 return CGFloat(35)
             } else {
                 return 0

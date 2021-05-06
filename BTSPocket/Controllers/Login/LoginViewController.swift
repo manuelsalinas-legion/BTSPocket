@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
         self.textPassword.delegate = self
         self.textEmail.returnKeyType = .next
         self.textPassword.returnKeyType = .done
+        
 
         // Biometrics
         if self.canUseLocalBiometricAutentication() {
