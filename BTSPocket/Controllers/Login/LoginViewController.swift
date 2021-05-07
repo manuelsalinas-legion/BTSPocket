@@ -31,13 +31,6 @@ class LoginViewController: UIViewController {
     
     // MARK: SETUP CONTROLLER
     private func setup() {
-        // UI
-        self.textEmail.delegate = self
-        self.textPassword.delegate = self
-        self.textEmail.returnKeyType = .next
-        self.textPassword.returnKeyType = .done
-        
-
         // Biometrics
         if self.canUseLocalBiometricAutentication() {
             // Check credentials from keychain

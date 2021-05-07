@@ -13,7 +13,7 @@ private enum ProfileSections: Int {
     case experience = 2
 }
 
-enum screenType {
+enum ProfileScreenType {
     case myProfile, teamMember
 }
 
@@ -22,25 +22,24 @@ class ProfileViewController: UIViewController {
     // MARK:- Outlets & Variables
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var labelFullName: UILabel!
-    @IBOutlet weak var imageProfile: UIImageView!
+    @IBOutlet weak var imageViewProfile: UIImageView!
     @IBOutlet weak var labelPosition: UILabel!
     @IBOutlet weak var labelField: UILabel!
     @IBOutlet weak var buttonLogout: UIButton!
+    @IBOutlet weak var buttonBack: UIButton!
     
-    private var profileVM: ProfileViewModel?
+    private var profileVM: ProfileViewModel = ProfileViewModel()
     private var member: ProfileData? {
         didSet {
-            self.tableView.reloadData()
+            DispatchQueue.main.async { self.tableView.reloadData() }
         }
     }
-    public var mode: screenType = .myProfile
-    public var memberId: Int?
-    
+    var mode: ProfileScreenType = .myProfile
+    var memberId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTable()
-        self.profileVM = ProfileViewModel()
         
         switch mode {
         case .myProfile:
@@ -49,17 +48,18 @@ class ProfileViewController: UIViewController {
             self.memberConfiguration()
             self.getMemberProfile()
         }
-         
     }
     
     // MARK:- memberConfiguration function
+    // hidde the logout button and add back button
     private func memberConfiguration() {
         self.buttonLogout.isHidden = true
+        self.buttonBack.isHidden = false
     }
     
     // MARK:- getMemberProfile function
     private func getMemberProfile() {
-        self.profileVM?.getMemberProfile(memberId, { result in
+        self.profileVM.getMemberProfile(memberId, { result in
             switch result {
             case .success(let member):
                 self.member = member
@@ -68,6 +68,8 @@ class ProfileViewController: UIViewController {
                 if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     BTSApi.shared.deleteSession()
                     self.showLogin()
+                } else {
+                    self.showGenericErrorAlert()
                 }
             }
         })
@@ -83,15 +85,13 @@ class ProfileViewController: UIViewController {
     
     // MARK:- updateProfile function
     private func updateProfileData() {
-        self.profileVM?.getProfile({ [weak self] error in
+        self.profileVM.getProfile({ [weak self] error in
             if let error = error {
                 if error.code == HttpStatusCode.unauthorized.rawValue {
                     BTSApi.shared.deleteSession()
                     self?.showLogin()
                 } else {
-                    let alert = UIAlertController(title: "Server error", message: "We are experimented server issues please try again", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "CERRAR", style: .cancel, handler: nil))
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.showGenericErrorAlert()
                 }
             }
             self?.setUpProfile()
@@ -106,7 +106,7 @@ class ProfileViewController: UIViewController {
         self.labelPosition.text = currentUser?.position
         if let image = currentUser?.photo {
             let urlImage = Constants.urlBucketImages + image
-            self.imageProfile.loadProfileImage(urlString: urlImage)
+            self.imageViewProfile.loadProfileImage(urlString: urlImage)
         }
     }
     
@@ -126,6 +126,11 @@ class ProfileViewController: UIViewController {
         //Here call to method of delete all data and send to loguin
         BTSApi.shared.deleteSession()
         self.showLogin()
+    }
+    
+    // MARK:- Back button action
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

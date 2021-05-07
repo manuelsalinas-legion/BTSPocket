@@ -37,9 +37,10 @@
                                             <constraint firstAttribute="height" constant="40" id="D1W-vX-pLU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                         <connections>
                                             <action selector="textEmail:" destination="O48-fK-cjb" eventType="editingDidEnd" id="ehR-xe-YKk"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="BII-vf-HhA"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhe-21-qfM">
@@ -49,7 +50,10 @@
                                             <constraint firstAttribute="height" constant="40" id="SEA-yl-Woq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="Nmu-kW-ZtU"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -77,7 +81,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
@@ -154,7 +158,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0LJ-dp-wNV">
-                                <rect key="frame" x="0.0" y="341.5" width="414" height="471.5"/>
+                                <rect key="frame" x="0.0" y="311.5" width="414" height="501.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="qlj-5a-c27" id="rRU-0m-hKa"/>
@@ -162,22 +166,22 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-Q3-CqF">
-                                <rect key="frame" x="20" y="240" width="374" height="96.5"/>
+                                <rect key="frame" x="20" y="240" width="374" height="66.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cristian Humberto Plascencia Angulo" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1P-Xc-JUY">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1P-Xc-JUY">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30.5"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Position" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajT-nY-npX">
-                                        <rect key="frame" x="0.0" y="63.5" width="374" height="15"/>
+                                        <rect key="frame" x="0.0" y="33.5" width="374" height="15"/>
                                         <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                         <color key="textColor" red="0.092761971060000004" green="0.1208789572" blue="0.3676219583" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRE-yG-Chd">
-                                        <rect key="frame" x="0.0" y="81.5" width="374" height="15"/>
+                                        <rect key="frame" x="0.0" y="51.5" width="374" height="15"/>
                                         <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
@@ -210,17 +214,45 @@
                                     <action selector="buttonLogout:" destination="qlj-5a-c27" eventType="touchUpInside" id="3VE-0z-lXn"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zZ-JY-ujM">
+                                <rect key="frame" x="20" y="44" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.6533498195622931" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="OGe-90-J2M"/>
+                                    <constraint firstAttribute="width" constant="40" id="awa-ZY-Y9D"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="medium"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" weight="black">
+                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="23"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="authenticate" destination="BYZ-38-t0r" eventType="touchUpInside" id="jie-n9-7x8"/>
+                                    <action selector="backButton:" destination="qlj-5a-c27" eventType="touchUpInside" id="rHl-Et-fse"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dyg-aT-iQj"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0LJ-dp-wNV" firstAttribute="leading" secondItem="dyg-aT-iQj" secondAttribute="leading" id="1gf-fc-gIo"/>
+                            <constraint firstItem="5zZ-JY-ujM" firstAttribute="top" secondItem="dyg-aT-iQj" secondAttribute="top" id="96c-eM-Zrn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PoD-Q3-CqF" secondAttribute="trailing" id="98M-9k-IKi"/>
                             <constraint firstItem="0LJ-dp-wNV" firstAttribute="top" secondItem="PoD-Q3-CqF" secondAttribute="bottom" constant="5" id="Dwq-EJ-bNJ"/>
                             <constraint firstItem="PoD-Q3-CqF" firstAttribute="top" secondItem="XNs-1b-N3y" secondAttribute="bottom" constant="10" id="Pt6-qb-u8J"/>
                             <constraint firstItem="0LJ-dp-wNV" firstAttribute="trailing" secondItem="dyg-aT-iQj" secondAttribute="trailing" id="dIk-gt-Kdw"/>
                             <constraint firstItem="dyg-aT-iQj" firstAttribute="trailing" secondItem="2KP-xp-XmU" secondAttribute="trailing" constant="20" id="gMs-xH-onB"/>
                             <constraint firstItem="2KP-xp-XmU" firstAttribute="top" secondItem="dyg-aT-iQj" secondAttribute="top" id="hwC-7m-pRR"/>
+                            <constraint firstItem="5zZ-JY-ujM" firstAttribute="leading" secondItem="dyg-aT-iQj" secondAttribute="leading" constant="20" id="lx6-GO-hSu"/>
                             <constraint firstItem="PoD-Q3-CqF" firstAttribute="leading" secondItem="oTs-VF-EYW" secondAttribute="leadingMargin" id="ook-6h-TUg"/>
                             <constraint firstItem="XNs-1b-N3y" firstAttribute="top" secondItem="oTs-VF-EYW" secondAttribute="top" id="vGX-uA-Dc2"/>
                             <constraint firstItem="0LJ-dp-wNV" firstAttribute="bottom" secondItem="dyg-aT-iQj" secondAttribute="bottom" id="vNQ-7f-akn"/>
@@ -230,8 +262,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="ud2-YG-C88"/>
                     <connections>
+                        <outlet property="buttonBack" destination="5zZ-JY-ujM" id="Bxc-X1-DcP"/>
                         <outlet property="buttonLogout" destination="2KP-xp-XmU" id="6rq-If-Q4i"/>
-                        <outlet property="imageProfile" destination="XNs-1b-N3y" id="VKp-ES-Jxg"/>
+                        <outlet property="imageViewProfile" destination="XNs-1b-N3y" id="VKp-ES-Jxg"/>
                         <outlet property="labelField" destination="HRE-yG-Chd" id="LZw-LV-qK8"/>
                         <outlet property="labelFullName" destination="e1P-Xc-JUY" id="8YS-hf-7qM"/>
                         <outlet property="labelPosition" destination="ajT-nY-npX" id="gbu-4n-MNO"/>
@@ -313,6 +346,7 @@
         <!--Team-->
         <scene sceneID="xx0-Qc-M7X">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k8A-vg-bMs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hhx-kM-F1V" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE"/>
                     <toolbarItems/>
@@ -325,12 +359,12 @@
                         <segue destination="Yez-D9-iu2" kind="relationship" relationship="rootViewController" id="DTE-wC-Jrb"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k8A-vg-bMs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="418.84057971014494" y="839.73214285714278"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="arrowshape.turn.up.left.2.fill" catalog="system" width="128" height="86"/>
         <image name="logoBTS" width="120" height="120"/>

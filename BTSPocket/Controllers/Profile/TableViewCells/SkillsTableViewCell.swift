@@ -29,20 +29,20 @@ class SkillsTableViewCell: UITableViewCell {
         let second = (startingPosition * 3) + 1
         let third = (startingPosition * 3) + 2
         if let skillOne = currentUser?.skills?[first].skill {
-            self.labelSkill.text = skillOne
+            self.labelSkill?.text = skillOne
         }
         if currentUser?.skills?.indices.contains(second) == true,
             let skillTwo = currentUser?.skills?[second].skill {
-            self.labelSkill2.text = skillTwo
+            self.labelSkill2?.text = skillTwo
         } else {
-            self.labelSkill2.removeFromSuperview()
-            self.labelSkill.textAlignment = .center
+            self.labelSkill2?.removeFromSuperview()
+            self.labelSkill?.textAlignment = .center
         }
         if currentUser?.skills?.indices.contains(third) == true,
             let skillThree = currentUser?.skills?[third].skill {
-            self.labelSkill3.text = skillThree
+            self.labelSkill3?.text = skillThree
         } else {
-            self.labelSkill3.removeFromSuperview()
+            self.labelSkill3?.removeFromSuperview()
         }
     }
 }

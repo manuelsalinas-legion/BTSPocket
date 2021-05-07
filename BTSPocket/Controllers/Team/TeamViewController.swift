@@ -13,15 +13,14 @@ class TeamViewController: UIViewController {
     @IBOutlet weak var tableViewTeam: UITableView!
     
     public var page: Int = 0
-    private var pages: Int = 1
-    private var teamsVM: TeamViewModel?
+    private var pages: Int?
+    private var teamsVM: TeamViewModel = TeamViewModel()
     private var allUsers: [User]? {
         didSet { self.tableViewTeam.reloadData() }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.teamsVM = TeamViewModel()
         self.setUpTable()
         self.setUpUsers()
     }
@@ -34,20 +33,22 @@ class TeamViewController: UIViewController {
     
     // MARK:- setUpUsers function
     func setUpUsers() {
-        self.teamsVM?.getTeamMembers(self.page, { result in
+        self.teamsVM.getTeamMembers(self.page, { result in
             switch result {
             case .success(let paginationUsers):
                 self.allUsers = paginationUsers.items
                 self.pages = paginationUsers.pages ?? 1
+                self.page = paginationUsers.currentPage ?? 0
             case .failure(let error):
                 if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                     BTSApi.shared.deleteSession()
                     self.showLogin()
+                } else {
+                    self.showGenericErrorAlert()
                 }
             }
         })
     }
-    
 }
 // MARK:- UITable delegate and DataSource
 extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
@@ -66,12 +67,14 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
+    // Add next page into all users list
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = (self.allUsers?.count ?? 1) - 2
+        let nextPage = self.page + 1
         if indexPath.row == lastElement,
-           self.page <= self.pages {
+           nextPage <= self.pages ?? 0 {
             // call pagination users
-            self.teamsVM?.getTeamMembers(self.page, { result in
+            self.teamsVM.getTeamMembers(nextPage, { result in
                 switch result {
                     case .success(let usersPage):
                         self.allUsers? += usersPage.items ?? []
@@ -81,9 +84,10 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
                         if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                             BTSApi.shared.deleteSession()
                             self.showLogin()
-                        }
-                        if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
+                        } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
                             MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
+                        } else {
+                            self.showGenericErrorAlert()
                         }
                 }
             })
@@ -94,6 +98,7 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         let vcProfile = Storyboard.getInstanceOf(ProfileViewController.self)
         vcProfile.mode = .teamMember
         vcProfile.memberId = self.allUsers?[indexPath.row].id
-        self.navigationController?.pushViewController(vcProfile, animated: true)
+        vcProfile.modalPresentationStyle = .fullScreen
+        self.present(vcProfile, animated: true, completion: nil)
     }
 }
