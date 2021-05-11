@@ -11,8 +11,9 @@ class TeamViewController: UIViewController {
     
     // MARK:- Outlets and Variables
     @IBOutlet weak var tableViewTeam: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    public var page: Int = 0
+    var page: Int = 0
     private var pages: Int?
     private var teamsVM: TeamViewModel = TeamViewModel()
     private var allUsers: [User]? {
@@ -33,7 +34,7 @@ class TeamViewController: UIViewController {
     
     // MARK:- setUpUsers function
     func setUpUsers() {
-        self.teamsVM.getTeamMembers(self.page, { result in
+        self.teamsVM.getTeamMembers(self.page, searchBar.text, { result in
             switch result {
             case .success(let paginationUsers):
                 self.allUsers = paginationUsers.items
@@ -44,7 +45,7 @@ class TeamViewController: UIViewController {
                     BTSApi.shared.deleteSession()
                     self.showLogin()
                 } else {
-                    self.showGenericErrorAlert()
+                    self.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
             }
         })
@@ -64,22 +65,24 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return tableView.rowHeight
     }
     
     // Add next page into all users list
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = (self.allUsers?.count ?? 1) - 2
         let nextPage = self.page + 1
+        // Obviamente no se que esta pasando aqui pero tiene que entrar aqui despues de la paginacion y tiene que mostrar
+        // la siguiente pagina de alguna manera, o solamente que este algo mal...
         if indexPath.row == lastElement,
            nextPage <= self.pages ?? 0 {
             // call pagination users
-            self.teamsVM.getTeamMembers(nextPage, { result in
+            self.teamsVM.getTeamMembers(nextPage, searchBar.text, { result in
                 switch result {
                     case .success(let usersPage):
                         self.allUsers? += usersPage.items ?? []
                         self.tableViewTeam.reloadData()
-                        self.page = self.page + 1
+                        self.page = nextPage
                     case .failure(let error):
                         if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                             BTSApi.shared.deleteSession()
@@ -87,7 +90,7 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
                         } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
                             MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
                         } else {
-                            self.showGenericErrorAlert()
+                            self.showGenericErrorAlert("Error", "Generic Error", "OK")
                         }
                 }
             })
@@ -100,5 +103,38 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         vcProfile.memberId = self.allUsers?[indexPath.row].id
         vcProfile.modalPresentationStyle = .fullScreen
         self.present(vcProfile, animated: true, completion: nil)
+    }
+}
+
+// MARK:- Search bar config
+extension TeamViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.trim() != "" {
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
+            perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 1.0)
+        } else {
+            self.page = 1
+            self.allUsers = []
+            self.setUpUsers()
+        }
+    }
+    
+    @objc func reload(_ searchBar: UISearchBar) {
+        self.teamsVM.getTeamMembers(1, searchBar.text, { result in
+            switch result {
+                case .success(let usersPage):
+                    self.allUsers? = usersPage.items ?? []
+                    self.tableViewTeam.reloadData()
+                case .failure(let error):
+                    if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                        BTSApi.shared.deleteSession()
+                        self.showLogin()
+                    } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
+                        MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
+                    } else {
+                        self.showGenericErrorAlert("Error", "Generic Error", "OK")
+                    }
+            }
+        })
     }
 }

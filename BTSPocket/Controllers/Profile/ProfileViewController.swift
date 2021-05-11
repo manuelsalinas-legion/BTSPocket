@@ -34,6 +34,9 @@ class ProfileViewController: UIViewController {
             DispatchQueue.main.async { self.tableView.reloadData() }
         }
     }
+    private var currentUser: ProfileData? {
+        self.typeUser()
+    }
     var mode: ProfileScreenType = .myProfile
     var memberId: Int?
     
@@ -69,7 +72,7 @@ class ProfileViewController: UIViewController {
                     BTSApi.shared.deleteSession()
                     self.showLogin()
                 } else {
-                    self.showGenericErrorAlert()
+                    self.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
             }
         })
@@ -91,7 +94,7 @@ class ProfileViewController: UIViewController {
                     BTSApi.shared.deleteSession()
                     self?.showLogin()
                 } else {
-                    self?.showGenericErrorAlert()
+                    self?.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
             }
             self?.setUpProfile()
@@ -100,11 +103,10 @@ class ProfileViewController: UIViewController {
     
     // MARK:- setUpt function
     private func setUpProfile() {
-        let currentUser: ProfileData? = typeUser()
-        self.labelFullName.text = currentUser?.fullName
-        self.labelField.text = currentUser?.field
-        self.labelPosition.text = currentUser?.position
-        if let image = currentUser?.photo {
+        self.labelFullName.text = self.currentUser?.fullName
+        self.labelField.text = self.currentUser?.field
+        self.labelPosition.text = self.currentUser?.position
+        if let image = self.currentUser?.photo {
             let urlImage = Constants.urlBucketImages + image
             self.imageViewProfile.loadProfileImage(urlString: urlImage)
         }
@@ -137,15 +139,14 @@ class ProfileViewController: UIViewController {
 // MARK:- Table view data source
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        let currentUser: ProfileData? = self.typeUser()
-        if currentUser?.skills?.isEmpty == false {
-            if currentUser?.experiences?.isEmpty == false {
+        if self.currentUser?.skills?.isEmpty == false {
+            if self.currentUser?.experiences?.isEmpty == false {
                 return 3
             } else {
                 return 2
             }
-        } else if currentUser?.experiences?.isEmpty == false {
-            if currentUser?.skills?.isEmpty == false {
+        } else if self.currentUser?.experiences?.isEmpty == false {
+            if self.currentUser?.skills?.isEmpty == false {
                 return 3
             } else {
                 return 2
@@ -168,17 +169,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     // Number of row in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let currentUser: ProfileData? = self.typeUser()
         switch section {
         case ProfileSections.skills.rawValue:
-            let countSkills = currentUser?.skills?.count ?? 0
+            let countSkills = self.currentUser?.skills?.count ?? 0
             let divition = Double(countSkills) / 3
             return Int(divition.rounded(.up))
         case ProfileSections.experience.rawValue:
-            if currentUser?.experiences?.count ?? 0 >= 2 {
+            if self.currentUser?.experiences?.count ?? 0 >= 2 {
                 return 2
             } else {
-                return currentUser?.experiences?.count ?? 0
+                return self.currentUser?.experiences?.count ?? 0
             }
         default:
             return 1
@@ -195,33 +195,31 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentUser: ProfileData? = self.typeUser()
-        
         switch indexPath.section {
             // case resume or description
             case ProfileSections.info.rawValue:
                 let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
                 customCell.selectionStyle = .none
-                customCell.loadProfile(currentUser)
+                customCell.loadProfile(self.currentUser)
                 return customCell
                 
             //case skills
             case ProfileSections.skills.rawValue:
                 let customSkillsCell: SkillsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SkillsTableViewCell") as! SkillsTableViewCell
-                customSkillsCell.setSkillsInRow(currentUser, indexPath.row)
+                customSkillsCell.setSkillsInRow(self.currentUser, indexPath.row)
                 customSkillsCell.selectionStyle = .none
                 return customSkillsCell
                 
             //case experiences
             case ProfileSections.experience.rawValue:
                 let cell = createDefaultCell()
-                if let postionCompany = currentUser?.experiences?[indexPath.row].position,
-                   let companyExp = currentUser?.experiences?[indexPath.row].company {
+                if let postionCompany = self.currentUser?.experiences?[indexPath.row].position,
+                   let companyExp = self.currentUser?.experiences?[indexPath.row].company {
                     cell.textLabel?.text = postionCompany.capitalized + " At " + companyExp.capitalized
                 }
                 cell.textLabel?.font = UIFont(name: "Hiragino Maru Gothic ProN", size: 15.0)
                 cell.textLabel?.lineBreakMode = .byCharWrapping
-                cell.textLabel?.numberOfLines = 0
+                cell.textLabel?.numberOfLines = 3
                 cell.textLabel?.textColor = UIColor.systemGray
                     
                 return cell
@@ -232,27 +230,19 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-            case ProfileSections.skills.rawValue:
-                return UITableView.automaticDimension
-            case ProfileSections.experience.rawValue:
-                return CGFloat(35)
-            default:
-                return UITableView.automaticDimension
-        }
+        return tableView.rowHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let currentUser: ProfileData? = self.typeUser()
         switch section {
         case ProfileSections.skills.rawValue:
-            if currentUser?.skills?.isEmpty == false {
+            if self.currentUser?.skills?.isEmpty == false {
                 return CGFloat(35)
             } else {
                 return 0
             }
         case ProfileSections.experience.rawValue:
-            if currentUser?.experiences?.isEmpty == false {
+            if self.currentUser?.experiences?.isEmpty == false {
                 return CGFloat(35)
             } else {
                 return 0

@@ -28,7 +28,7 @@ extension UIImageView {
         guard let requestURL = url else { fatalError("URl not valid") }
         var request: URLRequest = URLRequest(url: requestURL)
         request.httpMethod = "GET"
-        request.setValue(Constants.Endpoints.serverAddress, forHTTPHeaderField: "Referer")
+        request.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
         let task = URLSession.shared.dataTask(with: request) { (DataResponse, URLResponse, Error) in
             if let dataR = DataResponse {
                 DispatchQueue.main.async {

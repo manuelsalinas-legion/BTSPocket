@@ -140,7 +140,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="qlj-5a-c27" kind="relationship" relationship="viewControllers" id="mZO-Hr-32A"/>
-                        <segue destination="hhx-kM-F1V" kind="relationship" relationship="viewControllers" id="Erd-yj-sBE"/>
+                        <segue destination="Yez-D9-iu2" kind="relationship" relationship="viewControllers" id="zRz-o5-APL"/>
                         <segue destination="Swg-RM-mAp" kind="relationship" relationship="viewControllers" id="v8N-GD-fxW"/>
                         <segue destination="lOb-ad-JoF" kind="relationship" relationship="viewControllers" id="Qqw-CM-KUU"/>
                     </connections>
@@ -273,9 +273,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXB-fJ-jDl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262.31884057971018" y="839.73214285714278"/>
+            <point key="canvasLocation" x="-296" y="840"/>
         </scene>
-        <!--Team View Controller-->
+        <!--Team-->
         <scene sceneID="iWL-pJ-SS3">
             <objects>
                 <viewController id="Yez-D9-iu2" customClass="TeamViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
@@ -284,32 +284,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xjw-r3-rQk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Yez-D9-iu2" id="AX3-j5-TZz"/>
                                     <outlet property="delegate" destination="Yez-D9-iu2" id="nbA-Lk-bxz"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Efm-0x-oJ1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Yez-D9-iu2" id="R3h-XO-5L9"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xAO-fw-wyZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="bottom" secondItem="xAO-fw-wyZ" secondAttribute="bottom" id="1x8-Hz-a4K"/>
+                            <constraint firstItem="Xjw-r3-rQk" firstAttribute="top" secondItem="Efm-0x-oJ1" secondAttribute="bottom" id="3bE-Fu-EJS"/>
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="trailing" secondItem="xAO-fw-wyZ" secondAttribute="trailing" id="ILW-hV-iew"/>
-                            <constraint firstItem="Xjw-r3-rQk" firstAttribute="top" secondItem="xAO-fw-wyZ" secondAttribute="top" id="gyE-7a-t5r"/>
+                            <constraint firstItem="Efm-0x-oJ1" firstAttribute="top" secondItem="xAO-fw-wyZ" secondAttribute="top" id="N6c-vz-9fw"/>
+                            <constraint firstItem="Efm-0x-oJ1" firstAttribute="leading" secondItem="xAO-fw-wyZ" secondAttribute="leading" id="RPJ-IS-qN0"/>
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="leading" secondItem="xAO-fw-wyZ" secondAttribute="leading" id="sqJ-EC-CrZ"/>
+                            <constraint firstItem="Efm-0x-oJ1" firstAttribute="trailing" secondItem="xAO-fw-wyZ" secondAttribute="trailing" id="vrO-cX-NRJ"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Team" id="GxR-RL-aQp"/>
                     <navigationItem key="navigationItem" id="ZDH-1x-fuP"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="searchBar" destination="Efm-0x-oJ1" id="48c-vA-zFe"/>
                         <outlet property="tableViewTeam" destination="Xjw-r3-rQk" id="IXa-FY-96q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zRh-rB-W9j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="1556"/>
+            <point key="canvasLocation" x="469.56521739130437" y="847.76785714285711"/>
         </scene>
         <!--Projects-->
         <scene sceneID="drj-UK-b1i">
@@ -325,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6a7-uX-YaB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1196" y="840"/>
+            <point key="canvasLocation" x="1177" y="840"/>
         </scene>
         <!--Timesheet-->
         <scene sceneID="jRc-9X-2cP">
@@ -342,25 +353,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clj-MY-Hth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957" y="840"/>
-        </scene>
-        <!--Team-->
-        <scene sceneID="xx0-Qc-M7X">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k8A-vg-bMs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hhx-kM-F1V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zgP-US-ebq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Yez-D9-iu2" kind="relationship" relationship="rootViewController" id="DTE-wC-Jrb"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="418.84057971014494" y="839.73214285714278"/>
         </scene>
     </scenes>
     <resources>

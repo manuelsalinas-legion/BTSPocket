@@ -188,9 +188,10 @@ extension MessageManager
 }
 
 extension UIViewController {
-    func showGenericErrorAlert() {
-        let alert = UIAlertController(title: "Error", message: "Generic Error", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    // MARK:- Generic 1 button alert controller function
+    func showGenericErrorAlert(_ title: String, _ message: String, _ buttonTitle: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

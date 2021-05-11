@@ -10,6 +10,7 @@ import Foundation
 struct Constants {
     static let kTimeout: TimeInterval = 60
     static var urlBucketImages: String = "https://s3.amazonaws.com/cdn.platform.bluetrail.software/prod/"
+    static let serverAddress = "https://platform.bluetrail.software/"
     
     struct Keychain {
         static let kSecretToken = "kSecretToken"
@@ -20,9 +21,8 @@ struct Constants {
     struct Endpoints {
         static let postAuthentication = "https://platform.bluetrail.software/api/users/login"
         static let getUserProfile = "https://platform.bluetrail.software/api/users/{userId}/profile"
-        static let serverAddress = "https://platform.bluetrail.software/"
         static let logoutUser = "https://platform.bluetrail.software/api/users/logout"
-        static let allUsers = "https://platform.bluetrail.software/api/users"
+        static let getAllUsers = "https://platform.bluetrail.software/api/users"
     }
 }
 
