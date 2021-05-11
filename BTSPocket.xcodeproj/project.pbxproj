@@ -56,6 +56,8 @@
 		FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */; };
 		FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */; };
 		FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */; };
+		FF534C5A264AC6360085758A /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C59264AC6360085758A /* UIColor+extensions.swift */; };
+		FF534C5C264AC9060085758A /* UITextField+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C5B264AC9060085758A /* UITextField+extensions.swift */; };
 		FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CB626263079760080B4B9 /* LAContext+extension.swift */; };
 		FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48DE2620B59B0030527D /* RealmAPI.swift */; };
 		FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E32620B6BE0030527D /* Storyboard.swift */; };
@@ -65,6 +67,7 @@
 		FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */; };
 		FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC49032620BE7A0030527D /* UIView+extensions.swift */; };
 		FFCC490E2620C0420030527D /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC490D2620C0420030527D /* Persistable.swift */; };
+		FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +124,8 @@
 		FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSPlatformEndpoints.swift; sourceTree = "<group>"; };
 		FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FF534C59264AC6360085758A /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
+		FF534C5B264AC9060085758A /* UITextField+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extensions.swift"; sourceTree = "<group>"; };
 		FF5CB626263079760080B4B9 /* LAContext+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LAContext+extension.swift"; sourceTree = "<group>"; };
 		FFCC48DE2620B59B0030527D /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		FFCC48E32620B6BE0030527D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+extensions.swift"; sourceTree = "<group>"; };
 		FFCC49032620BE7A0030527D /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		FFCC490D2620C0420030527D /* Persistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +362,9 @@
 				FFCC49032620BE7A0030527D /* UIView+extensions.swift */,
 				FF5CB626263079760080B4B9 /* LAContext+extension.swift */,
 				2B67A32026334D8F00006589 /* UIViewController+extensions.swift */,
+				FF534C59264AC6360085758A /* UIColor+extensions.swift */,
+				FF534C5B264AC9060085758A /* UITextField+extensions.swift */,
+				FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -564,6 +573,8 @@
 				2B798E802625F6C100394FF7 /* Permissions.swift in Sources */,
 				2B798E872625F6DA00394FF7 /* LoginResponse.swift in Sources */,
 				FF0DDFE8260D4ACB003F2224 /* Dictionary+extensions.swift in Sources */,
+				FF534C5A264AC6360085758A /* UIColor+extensions.swift in Sources */,
+				FF534C5C264AC9060085758A /* UITextField+extensions.swift in Sources */,
 				2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */,
 				FFCC490E2620C0420030527D /* Persistable.swift in Sources */,
 				2B798E832625F6CD00394FF7 /* Experience.swift in Sources */,
@@ -610,6 +621,7 @@
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
 				FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */,
 				FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */,
+				FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */,
 				2B798E8F2625F76000394FF7 /* ProfileViewModel.swift in Sources */,
 				2B798E7C2625F6C100394FF7 /* LoginData.swift in Sources */,
 			);
