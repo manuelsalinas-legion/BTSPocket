@@ -188,8 +188,10 @@ class LoginViewController: UIViewController {
     
     // MARK: GO HOME
     private func showHome() {
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.switchRoot(to: .home)
+        DispatchQueue.main.async {
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.switchRoot(to: .home)
+        }
     }
 }
 
