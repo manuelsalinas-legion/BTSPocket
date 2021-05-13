@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 private enum ProfileSections: Int {
     case info = 0
@@ -40,6 +41,7 @@ class ProfileViewController: UIViewController {
     var mode: ProfileScreenType = .myProfile
     var memberId: Int?
     
+    // MARK:- life cicle func
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTable()
@@ -53,11 +55,22 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     // MARK:- memberConfiguration function
     // hidde the logout button and add back button
     private func memberConfiguration() {
         self.buttonLogout.isHidden = true
         self.buttonBack.isHidden = false
+        self.buttonBack.round()
+        
     }
     
     // MARK:- getMemberProfile function
@@ -101,14 +114,21 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    // MARK:- setUpt function
+    // MARK:- setUptProfile function
     private func setUpProfile() {
         self.labelFullName.text = self.currentUser?.fullName
         self.labelField.text = self.currentUser?.field
         self.labelPosition.text = self.currentUser?.position
+        // obtaining photo
         if let image = self.currentUser?.photo {
-            let urlImage = Constants.urlBucketImages + image
-            self.imageViewProfile.loadProfileImage(urlString: urlImage)
+            let url = URL(string: Constants.urlBucketImages + image)
+            // adding header in request
+            let modifier = AnyModifier { request in
+                var r = request
+                r.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
+                return r
+            }
+            self.imageViewProfile.kf.setImage(with: url, placeholder: UIImage(named: "placeholderUser"), options: [.requestModifier(modifier)])
         }
     }
     
@@ -125,14 +145,14 @@ class ProfileViewController: UIViewController {
     
     // MARK:- Logout funtion
     @IBAction func buttonLogout(_ sender: Any) {
-        //Here call to method of delete all data and send to loguin
+        //Here call to method of delete all data, and send to loguin
         BTSApi.shared.deleteSession()
         self.showLogin()
     }
     
     // MARK:- Back button action
     @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -156,6 +176,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    // set header title
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case ProfileSections.skills.rawValue:

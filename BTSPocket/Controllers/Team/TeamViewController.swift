@@ -11,35 +11,51 @@ class TeamViewController: UIViewController {
     
     // MARK:- Outlets and Variables
     @IBOutlet weak var tableViewTeam: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBar: UISearchBar!
     
-    var page: Int = 0
-    private var pages: Int?
+    var currentPage: Int = 0
+    private var totalPages: Int?
     private var teamsVM: TeamViewModel = TeamViewModel()
     private var allUsers: [User]? {
         didSet { self.tableViewTeam.reloadData() }
     }
+    lazy var searchBar = UISearchBar(frame: CGRect.zero)
+    var refreshControl = UIRefreshControl()
     
+    // MARK:- life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTable()
         self.setUpUsers()
+        self.setUpSearchBar()
     }
     
-    // MARK:- setUpTable
-    func setUpTable() {
-        self.page = 1
+    // MARK:- setUpSearch bar function
+    private func setUpSearchBar() {
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        
+        // refresh control
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        tableViewTeam.addSubview(refreshControl)
+    }
+    
+    // MARK:- setUpTable function
+    private func setUpTable() {
         tableViewTeam.registerNib(UserTableViewCell.self)
     }
     
     // MARK:- setUpUsers function
-    func setUpUsers() {
-        self.teamsVM.getTeamMembers(self.page, searchBar.text, { result in
+    private func setUpUsers() {
+        self.currentPage = 1
+        self.teamsVM.getTeamMembers(self.currentPage, searchBar.text, { result in
             switch result {
             case .success(let paginationUsers):
                 self.allUsers = paginationUsers.items
-                self.pages = paginationUsers.pages ?? 1
-                self.page = paginationUsers.currentPage ?? 0
+                self.totalPages = paginationUsers.pages ?? 1
+                self.currentPage = paginationUsers.currentPage ?? 0
             case .failure(let error):
                 if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                     BTSApi.shared.deleteSession()
@@ -71,18 +87,17 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     // Add next page into all users list
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = (self.allUsers?.count ?? 1) - 2
-        let nextPage = self.page + 1
-        // Obviamente no se que esta pasando aqui pero tiene que entrar aqui despues de la paginacion y tiene que mostrar
-        // la siguiente pagina de alguna manera, o solamente que este algo mal...
+        let nextPage = self.currentPage + 1
+        
         if indexPath.row == lastElement,
-           nextPage <= self.pages ?? 0 {
+           nextPage <= self.totalPages ?? 0 {
             // call pagination users
             self.teamsVM.getTeamMembers(nextPage, searchBar.text, { result in
                 switch result {
                     case .success(let usersPage):
                         self.allUsers? += usersPage.items ?? []
                         self.tableViewTeam.reloadData()
-                        self.page = nextPage
+                        self.currentPage = nextPage
                     case .failure(let error):
                         if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                             BTSApi.shared.deleteSession()
@@ -101,25 +116,27 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         let vcProfile = Storyboard.getInstanceOf(ProfileViewController.self)
         vcProfile.mode = .teamMember
         vcProfile.memberId = self.allUsers?[indexPath.row].id
-        vcProfile.modalPresentationStyle = .fullScreen
-        self.present(vcProfile, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vcProfile, animated: true)
     }
 }
 
 // MARK:- Search bar config
 extension TeamViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.trim() != "" {
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
-            perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 1.0)
+        // if search bar isn't empty
+        if searchBar.text?.trim().isEmpty == false {
+            // canceling request typing before 1 second
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
+            perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
         } else {
-            self.page = 1
+            // reload pages
+            
             self.allUsers = []
             self.setUpUsers()
         }
     }
     
-    @objc func reload(_ searchBar: UISearchBar) {
+    @objc func reload() {
         self.teamsVM.getTeamMembers(1, searchBar.text, { result in
             switch result {
                 case .success(let usersPage):
@@ -136,5 +153,6 @@ extension TeamViewController: UISearchBarDelegate {
                     }
             }
         })
+        self.refreshControl.endRefreshing()
     }
 }

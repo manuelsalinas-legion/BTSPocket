@@ -30,13 +30,20 @@ class UserTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    // MARK:- set user information function
     public func setUserInfo(_ user: User?) {
         self.labelFullName.text = user?.fullName
         self.labelPosition.text = user?.seniorityPosition?.capitalized
+        // obtaining photo
         if let photoPath = user?.photo {
-            let url = Constants.urlBucketImages + photoPath
-            self.imageViewUser.loadProfileImage(urlString: url)
-//            imageViewUser.kf.setImage(with: url)
+            let url = URL(string: Constants.urlBucketImages + photoPath)
+            // adding header in request.
+            let modifier = AnyModifier { request in
+                var r = request
+                r.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
+                return r
+            }
+            self.imageViewUser.kf.setImage(with: url, placeholder: UIImage(named: "placeholderUser"), options: [.requestModifier(modifier)])
         }
     }
 }

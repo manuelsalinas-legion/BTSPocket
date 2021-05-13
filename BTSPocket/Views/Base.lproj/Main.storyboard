@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -154,7 +154,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="qlj-5a-c27" kind="relationship" relationship="viewControllers" id="mZO-Hr-32A"/>
-                        <segue destination="Yez-D9-iu2" kind="relationship" relationship="viewControllers" id="zRz-o5-APL"/>
+                        <segue destination="hhx-kM-F1V" kind="relationship" relationship="viewControllers" id="qqg-eG-Cyj"/>
                         <segue destination="Swg-RM-mAp" kind="relationship" relationship="viewControllers" id="v8N-GD-fxW"/>
                         <segue destination="lOb-ad-JoF" kind="relationship" relationship="viewControllers" id="Qqw-CM-KUU"/>
                     </connections>
@@ -243,12 +243,6 @@
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="23"/>
                                     </preferredSymbolConfiguration>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="authenticate" destination="BYZ-38-t0r" eventType="touchUpInside" id="jie-n9-7x8"/>
                                     <action selector="backButton:" destination="qlj-5a-c27" eventType="touchUpInside" id="rHl-Et-fse"/>
@@ -298,43 +292,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xjw-r3-rQk">
-                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Yez-D9-iu2" id="AX3-j5-TZz"/>
                                     <outlet property="delegate" destination="Yez-D9-iu2" id="nbA-Lk-bxz"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Efm-0x-oJ1">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Yez-D9-iu2" id="R3h-XO-5L9"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xAO-fw-wyZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Xjw-r3-rQk" firstAttribute="top" secondItem="xAO-fw-wyZ" secondAttribute="top" id="0Ms-IZ-8pd"/>
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="bottom" secondItem="xAO-fw-wyZ" secondAttribute="bottom" id="1x8-Hz-a4K"/>
-                            <constraint firstItem="Xjw-r3-rQk" firstAttribute="top" secondItem="Efm-0x-oJ1" secondAttribute="bottom" id="3bE-Fu-EJS"/>
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="trailing" secondItem="xAO-fw-wyZ" secondAttribute="trailing" id="ILW-hV-iew"/>
-                            <constraint firstItem="Efm-0x-oJ1" firstAttribute="top" secondItem="xAO-fw-wyZ" secondAttribute="top" id="N6c-vz-9fw"/>
-                            <constraint firstItem="Efm-0x-oJ1" firstAttribute="leading" secondItem="xAO-fw-wyZ" secondAttribute="leading" id="RPJ-IS-qN0"/>
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="leading" secondItem="xAO-fw-wyZ" secondAttribute="leading" id="sqJ-EC-CrZ"/>
-                            <constraint firstItem="Efm-0x-oJ1" firstAttribute="trailing" secondItem="xAO-fw-wyZ" secondAttribute="trailing" id="vrO-cX-NRJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Team" id="GxR-RL-aQp"/>
                     <navigationItem key="navigationItem" id="ZDH-1x-fuP"/>
                     <connections>
-                        <outlet property="searchBar" destination="Efm-0x-oJ1" id="48c-vA-zFe"/>
                         <outlet property="tableViewTeam" destination="Xjw-r3-rQk" id="IXa-FY-96q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zRh-rB-W9j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="469.56521739130437" y="847.76785714285711"/>
+            <point key="canvasLocation" x="419" y="1571"/>
         </scene>
         <!--Projects-->
         <scene sceneID="drj-UK-b1i">

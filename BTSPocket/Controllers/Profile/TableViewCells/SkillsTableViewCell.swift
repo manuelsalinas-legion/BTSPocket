@@ -36,7 +36,6 @@ class SkillsTableViewCell: UITableViewCell {
             self.labelSkill2?.text = skillTwo
         } else {
             self.labelSkill2?.removeFromSuperview()
-            self.labelSkill?.textAlignment = .center
         }
         if currentUser?.skills?.indices.contains(third) == true,
             let skillThree = currentUser?.skills?[third].skill {

@@ -15,9 +15,9 @@ struct LoginViewModel {
             
             if let userId = responseLogin.data?.id, let token = responseLogin.data?.token {
                 let urlProfile = Constants.Endpoints.getUserProfile.replacingOccurrences(of: "{userId}", with: String(userId))
-                
-                let headerAuth = ["Authorization": token]
-                BTSApi.shared.platformEP.getMethod(urlProfile, headerAuth) {(responseProfile: ProfileResponse) in
+                BTSApi.shared.sessionToken = token
+//                let headerAuth = ["Authorization": token]
+                BTSApi.shared.platformEP.getMethod(urlProfile) {(responseProfile: ProfileResponse) in
                     
                     // Save in realm
                     if let profileSecion = responseProfile.data {
