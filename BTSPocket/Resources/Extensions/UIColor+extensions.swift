@@ -342,4 +342,8 @@ extension UIColor
     {
         return UIColor(red: 0.517647, green: 0.505882, blue: 0.478431, alpha: 1)
     }
+    
+    class func semiblackColor() -> UIColor {
+        return UIColor(red: 0.000000, green: 0.000000, blue: 0.000000, alpha: 0.3)
+    }
 }

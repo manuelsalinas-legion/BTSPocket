@@ -43,7 +43,15 @@ class UserTableViewCell: UITableViewCell {
                 mutableRequest.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
                 return mutableRequest
             }
-            self.imageViewUser.kf.setImage(with: url, placeholder: UIImage(named: "placeholderUser"), options: [.requestModifier(modifier)])
+            self.imageViewUser.kf.indicatorType = .activity
+            self.imageViewUser.kf.setImage(with: url,
+                                           placeholder: UIImage(named: "placeholderUser"),
+                                           options: [
+                                            .requestModifier(modifier),
+                                            .processor(DownsamplingImageProcessor(size: self.imageViewUser.frame.size)),
+                                            .scaleFactor(UIScreen.main.scale),
+                                            .cacheOriginalImage
+                                           ])
         }
     }
 }

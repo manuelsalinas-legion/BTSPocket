@@ -113,6 +113,8 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let vcProfile = Storyboard.getInstanceOf(ProfileViewController.self)
         vcProfile.mode = .teamMember
         vcProfile.memberId = self.allUsers?[indexPath.row].id

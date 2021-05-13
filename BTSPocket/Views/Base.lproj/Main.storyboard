@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.ttf">
+            <string>Montserrat-Light</string>
+        </array>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -172,31 +186,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0LJ-dp-wNV">
-                                <rect key="frame" x="0.0" y="311.5" width="414" height="501.5"/>
+                                <rect key="frame" x="0.0" y="327" width="414" height="486"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="qlj-5a-c27" id="rRU-0m-hKa"/>
                                     <outlet property="delegate" destination="qlj-5a-c27" id="P7z-yj-50o"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-Q3-CqF">
-                                <rect key="frame" x="20" y="240" width="374" height="66.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-Q3-CqF">
+                                <rect key="frame" x="20" y="240" width="374" height="77"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1P-Xc-JUY">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30.5"/>
-                                        <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . . " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1P-Xc-JUY">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="mWS-4U-d0n"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Position" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajT-nY-npX">
-                                        <rect key="frame" x="0.0" y="33.5" width="374" height="15"/>
-                                        <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
-                                        <color key="textColor" red="0.092761971060000004" green="0.1208789572" blue="0.3676219583" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . . " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajT-nY-npX">
+                                        <rect key="frame" x="0.0" y="37" width="374" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ujs-xY-39U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                        <color key="textColor" systemColor="systemIndigoColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRE-yG-Chd">
-                                        <rect key="frame" x="0.0" y="51.5" width="374" height="15"/>
-                                        <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . . " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRE-yG-Chd">
+                                        <rect key="frame" x="0.0" y="57" width="374" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="aHF-tj-Are"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -210,35 +233,32 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KP-xp-XmU">
-                                <rect key="frame" x="304" y="44" width="90" height="30"/>
-                                <color key="backgroundColor" red="0.092761971060000004" green="0.1208789572" blue="0.3676219583" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="359" y="44" width="35" height="35"/>
+                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="HFI-ul-FPf"/>
-                                    <constraint firstAttribute="height" constant="30" id="jj6-E3-ESQ"/>
+                                    <constraint firstAttribute="width" constant="35" id="HFI-ul-FPf"/>
+                                    <constraint firstAttribute="height" constant="35" id="jj6-E3-ESQ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Logout" image="arrowshape.turn.up.left.2.fill" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
+                                <state key="normal">
+                                    <imageReference key="image" image="arrow.up.forward.app" catalog="system" symbolScale="large" renderingMode="template"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonLogout:" destination="qlj-5a-c27" eventType="touchUpInside" id="3VE-0z-lXn"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zZ-JY-ujM">
-                                <rect key="frame" x="20" y="44" width="40" height="40"/>
+                                <rect key="frame" x="20" y="44" width="35" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.6533498195622931" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="OGe-90-J2M"/>
-                                    <constraint firstAttribute="width" constant="40" id="awa-ZY-Y9D"/>
+                                    <constraint firstAttribute="height" constant="35" id="OGe-90-J2M"/>
+                                    <constraint firstAttribute="width" constant="35" id="awa-ZY-Y9D"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="medium"/>
+                                    <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="small" renderingMode="template"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" weight="black">
                                         <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="23"/>
                                     </preferredSymbolConfiguration>
@@ -255,7 +275,7 @@
                             <constraint firstItem="0LJ-dp-wNV" firstAttribute="leading" secondItem="dyg-aT-iQj" secondAttribute="leading" id="1gf-fc-gIo"/>
                             <constraint firstItem="5zZ-JY-ujM" firstAttribute="top" secondItem="dyg-aT-iQj" secondAttribute="top" id="96c-eM-Zrn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PoD-Q3-CqF" secondAttribute="trailing" id="98M-9k-IKi"/>
-                            <constraint firstItem="0LJ-dp-wNV" firstAttribute="top" secondItem="PoD-Q3-CqF" secondAttribute="bottom" constant="5" id="Dwq-EJ-bNJ"/>
+                            <constraint firstItem="0LJ-dp-wNV" firstAttribute="top" secondItem="PoD-Q3-CqF" secondAttribute="bottom" constant="10" id="Dwq-EJ-bNJ"/>
                             <constraint firstItem="PoD-Q3-CqF" firstAttribute="top" secondItem="XNs-1b-N3y" secondAttribute="bottom" constant="10" id="Pt6-qb-u8J"/>
                             <constraint firstItem="0LJ-dp-wNV" firstAttribute="trailing" secondItem="dyg-aT-iQj" secondAttribute="trailing" id="dIk-gt-Kdw"/>
                             <constraint firstItem="dyg-aT-iQj" firstAttribute="trailing" secondItem="2KP-xp-XmU" secondAttribute="trailing" constant="20" id="gMs-xH-onB"/>
@@ -374,13 +394,19 @@
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
-        <image name="arrowshape.turn.up.left.2.fill" catalog="system" width="128" height="86"/>
+        <image name="arrow.up.forward.app" catalog="system" width="128" height="114"/>
         <image name="logoBTS" width="120" height="120"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -69,6 +69,7 @@ class ProfileViewController: UIViewController {
     private func memberConfiguration() {
         self.buttonLogout.isHidden = true
         self.buttonBack.isHidden = false
+        self.buttonBack.backgroundColor = UIColor.semiblackColor()
         self.buttonBack.round()
         
     }
@@ -116,10 +117,17 @@ class ProfileViewController: UIViewController {
     
     // MARK:- setUptProfile function
     private func setUpProfile() {
+        // UI
+        self.labelFullName.adjustsFontSizeToFitWidth = true
+        self.buttonLogout.round()
+        self.buttonLogout.backgroundColor = UIColor.semiblackColor()
+
+        // Titles
         self.labelFullName.text = self.currentUser?.fullName
         self.labelField.text = self.currentUser?.field
         self.labelPosition.text = self.currentUser?.position
-        // obtaining photo
+        
+        // Profile Picture
         if let image = self.currentUser?.photo {
             let url = URL(string: Constants.urlBucketImages + image)
             // adding header in request
@@ -128,7 +136,15 @@ class ProfileViewController: UIViewController {
                 mutableRequest.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
                 return mutableRequest
             }
-            self.imageViewProfile.kf.setImage(with: url, placeholder: UIImage(named: "placeholderUser"), options: [.requestModifier(modifier)])
+            self.imageViewProfile.kf.indicatorType = .activity
+            self.imageViewProfile.kf.setImage(with: url,
+                                              placeholder: UIImage(named: "placeholderUser"),
+                                              options: [
+                                                .requestModifier(modifier),
+                                                .processor(DownsamplingImageProcessor(size: self.imageViewProfile.frame.size)),
+                                                .scaleFactor(UIScreen.main.scale),
+                                                .cacheOriginalImage
+                                              ])
         }
     }
     
