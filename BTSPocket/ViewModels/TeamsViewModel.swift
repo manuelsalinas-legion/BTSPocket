@@ -13,7 +13,7 @@ struct TeamViewModel {
         if let userId = BTSApi.shared.currentSession?.id {
             var url = Constants.Endpoints.getAllUsers + "?page=\(numberOfPage)&status=active&skipId=\(userId)"
             if let inputToSearch = inputSearch,
-               inputSearch != ""{
+               inputSearch?.isEmpty == false {
                 url.append("&search=\(inputToSearch)")
             }
             BTSApi.shared.platformEP.getMethod(url) { (response: AllUsersReponse) in

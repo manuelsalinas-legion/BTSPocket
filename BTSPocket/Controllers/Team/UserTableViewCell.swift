@@ -11,9 +11,9 @@ import Kingfisher
 class UserTableViewCell: UITableViewCell {
 
     // MARK:- Outlets and Variables
-    @IBOutlet weak var imageViewUser: UIImageView!
-    @IBOutlet weak var labelFullName: UILabel!
-    @IBOutlet weak var labelPosition: UILabel!
+    @IBOutlet weak private var imageViewUser: UIImageView!
+    @IBOutlet weak private var labelFullName: UILabel!
+    @IBOutlet weak private var labelPosition: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,9 +39,9 @@ class UserTableViewCell: UITableViewCell {
             let url = URL(string: Constants.urlBucketImages + photoPath)
             // adding header in request.
             let modifier = AnyModifier { request in
-                var r = request
-                r.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
-                return r
+                var mutableRequest = request
+                mutableRequest.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
+                return mutableRequest
             }
             self.imageViewUser.kf.setImage(with: url, placeholder: UIImage(named: "placeholderUser"), options: [.requestModifier(modifier)])
         }

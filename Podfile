@@ -17,7 +17,7 @@ target 'BTSPocket' do
   pod 'SwiftMessages'
   
 # - - - Image cache 'Kingfisher'
-  pod 'Kingfisher', '~> 6.0'
+  pod 'Kingfisher'
 end
 
 post_install do |installer|

@@ -10,17 +10,17 @@ import UIKit
 class TeamViewController: UIViewController {
     
     // MARK:- Outlets and Variables
-    @IBOutlet weak var tableViewTeam: UITableView!
+    @IBOutlet weak private var tableViewTeam: UITableView!
 //    @IBOutlet weak var searchBar: UISearchBar!
     
-    var currentPage: Int = 0
+    private var currentPage: Int = 0
     private var totalPages: Int?
     private var teamsVM: TeamViewModel = TeamViewModel()
     private var allUsers: [User]? {
         didSet { self.tableViewTeam.reloadData() }
     }
-    lazy var searchBar = UISearchBar(frame: CGRect.zero)
-    var refreshControl = UIRefreshControl()
+    private lazy var searchBar = UISearchBar(frame: CGRect.zero)
+    private var refreshControl = UIRefreshControl()
     
     // MARK:- life cicle
     override func viewDidLoad() {
@@ -50,18 +50,18 @@ class TeamViewController: UIViewController {
     // MARK:- setUpUsers function
     private func setUpUsers() {
         self.currentPage = 1
-        self.teamsVM.getTeamMembers(self.currentPage, searchBar.text, { result in
+        self.teamsVM.getTeamMembers(self.currentPage, searchBar.text, { [weak self] result in
             switch result {
             case .success(let paginationUsers):
-                self.allUsers = paginationUsers.items
-                self.totalPages = paginationUsers.pages ?? 1
-                self.currentPage = paginationUsers.currentPage ?? 0
+                self?.allUsers = paginationUsers.items
+                self?.totalPages = paginationUsers.pages ?? 1
+                self?.currentPage = paginationUsers.currentPage ?? 0
             case .failure(let error):
                 if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                     BTSApi.shared.deleteSession()
-                    self.showLogin()
+                    self?.showLogin()
                 } else {
-                    self.showGenericErrorAlert("Error", "Generic Error", "OK")
+                    self?.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
             }
         })
@@ -92,20 +92,20 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == lastElement,
            nextPage <= self.totalPages ?? 0 {
             // call pagination users
-            self.teamsVM.getTeamMembers(nextPage, searchBar.text, { result in
+            self.teamsVM.getTeamMembers(nextPage, searchBar.text, { [weak self] result in
                 switch result {
                     case .success(let usersPage):
-                        self.allUsers? += usersPage.items ?? []
-                        self.tableViewTeam.reloadData()
-                        self.currentPage = nextPage
+                        self?.allUsers? += usersPage.items ?? []
+                        self?.tableViewTeam.reloadData()
+                        self?.currentPage = nextPage
                     case .failure(let error):
                         if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                             BTSApi.shared.deleteSession()
-                            self.showLogin()
+                            self?.showLogin()
                         } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
                             MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
                         } else {
-                            self.showGenericErrorAlert("Error", "Generic Error", "OK")
+                            self?.showGenericErrorAlert("Error", "Generic Error", "OK")
                         }
                 }
             })
@@ -130,26 +130,25 @@ extension TeamViewController: UISearchBarDelegate {
             perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
         } else {
             // reload pages
-            
             self.allUsers = []
             self.setUpUsers()
         }
     }
     
     @objc func reload() {
-        self.teamsVM.getTeamMembers(1, searchBar.text, { result in
+        self.teamsVM.getTeamMembers(1, searchBar.text, { [weak self] result in
             switch result {
                 case .success(let usersPage):
-                    self.allUsers? = usersPage.items ?? []
-                    self.tableViewTeam.reloadData()
+                    self?.allUsers? = usersPage.items ?? []
+                    self?.tableViewTeam.reloadData()
                 case .failure(let error):
                     if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                         BTSApi.shared.deleteSession()
-                        self.showLogin()
+                        self?.showLogin()
                     } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
                         MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
                     } else {
-                        self.showGenericErrorAlert("Error", "Generic Error", "OK")
+                        self?.showGenericErrorAlert("Error", "Generic Error", "OK")
                     }
             }
         })

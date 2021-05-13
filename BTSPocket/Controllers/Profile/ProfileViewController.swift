@@ -124,9 +124,9 @@ class ProfileViewController: UIViewController {
             let url = URL(string: Constants.urlBucketImages + image)
             // adding header in request
             let modifier = AnyModifier { request in
-                var r = request
-                r.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
-                return r
+                var mutableRequest = request
+                mutableRequest.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
+                return mutableRequest
             }
             self.imageViewProfile.kf.setImage(with: url, placeholder: UIImage(named: "placeholderUser"), options: [.requestModifier(modifier)])
         }
