@@ -11,7 +11,7 @@ struct TeamViewModel {
     //Fuction that comes the data of the team in BTS
     func getTeamMembers(_ numberOfPage: Int, _ inputSearch: String?, _ completition: @escaping( (Result<PaginationAllUsers, Error>) -> Void )) {
         if let userId = BTSApi.shared.currentSession?.id {
-            var url = Constants.Endpoints.getAllUsers + "?page=\(numberOfPage)&status=active&skipId=\(userId)"
+            var url = Constants.serverAddress + Constants.Endpoints.getAllUsers + "?page=\(numberOfPage)&status=active&skipId=\(userId)"
             if let inputToSearch = inputSearch,
                inputSearch?.isEmpty == false {
                 url.append("&search=\(inputToSearch)")

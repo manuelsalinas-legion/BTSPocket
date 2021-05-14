@@ -19,10 +19,10 @@ struct Constants {
     }
     
     struct Endpoints {
-        static let postAuthentication = "https://platform.bluetrail.software/api/users/login"
-        static let getUserProfile = "https://platform.bluetrail.software/api/users/{userId}/profile"
-        static let logoutUser = "https://platform.bluetrail.software/api/users/logout"
-        static let getAllUsers = "https://platform.bluetrail.software/api/users"
+        static let postAuthentication = "api/users/login"
+        static let getUserProfile = "api/users/{userId}/profile"
+        static let logoutUser = "api/users/logout"
+        static let getAllUsers = "api/users"
     }
 }
 
