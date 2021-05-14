@@ -28,7 +28,7 @@ class ProfileTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     // MARK:- Functions
     /// Set backend Profile session data in profile section
     func loadProfile(_ profile: ProfileData?) {
-        self.labelResume?.text = profile?.description
+        self.labelResume?.attributedText = profile?.description?.toParagraph(lineSpacing: 2, aligned: .justified)
         self.labelEmail?.text = profile?.email
         self.labelLocation?.text = profile?.location
     }

@@ -66,45 +66,69 @@ class LoginViewController: UIViewController {
     
     // MARK: ACTIONS
     @IBAction private func authenticate() {
-        if let email = textfieldEmail.text?.trim(), let pass = textfieldPassword.text?.trim(), email.isEmail(), !email.isEmpty, !pass.isEmpty {
-            self.loginVM.login(email, pass, { error in
-                if let error = error {
-                    print(error)
-                    showAlert(view: self, title: "Server Error", message: "Bad credentials")
-                } else {
+        // Dismiss keyboard
+        self.view.endEditing(true)
+        
+        // Validations
+        guard let email = self.textfieldEmail.text?.trim(), !email.isEmpty, email.isEmail() else {
+            MessageManager.shared.showBar(title: "Warning", subtitle: "Invalid email", type: .warning, containsIcon: true, fromBottom: false)
+            return
+        }
+        
+        guard let pass = self.textfieldPassword.text?.trim(), !pass.isEmpty else {
+            MessageManager.shared.showBar(title: "Warning", subtitle: "Empty password", type: .warning, containsIcon: true, fromBottom: false)
+            return
+        }
+
+        // Indicator
+        self.buttonLogin.isEnabled = false
+        MessageManager.shared.showLoadingHUD()
+        
+        // Authenticating...
+        self.loginVM.login(email, pass) { [weak self] error in
+            
+            // Indicator
+            self?.buttonLogin.isEnabled = true
+            MessageManager.shared.hideHUD()
+            
+            if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    MessageManager.shared.showBar(title: "Error", subtitle: "Invalid credentials", type: .error, containsIcon: true, fromBottom: false)
+                }
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
                     // preguntar si guardar credenciales en keychain
-                    if self.canUseLocalBiometricAutentication() {
+                    if self?.canUseLocalBiometricAutentication() == true {
                         // si hay credenciales en el key chain
                         if KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthUsername) == nil && KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthPassword) == nil {
                             // show alert
                             let alert = UIAlertController(title: "Relate credentials", message: "Relate credentials with biometric autentication", preferredStyle: .alert)
                             // action no
-                            alert.addAction(UIAlertAction(title: "NO", style: .default, handler: { (action) in
-                                self.showHome()
+                            alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                                self?.showHome()
                             }))
                             // action yes
-                            alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+                            alert.addAction(UIAlertAction(title: "Agree", style: .default, handler: { (_) in
                                 // autenticate with LA
-                                self.localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Reason") { (success, error) in
+                                self?.localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Reason") { (success, error) in
                                     if success {
                                         // save credentials in keychan reted with faceId
                                         KeychainWrapper.standard.set(email, forKey: Constants.Keychain.kAuthUsername)
                                         KeychainWrapper.standard.set(pass, forKey: Constants.Keychain.kAuthPassword)
                                     }
-                                    self.showHome()
+                                    self?.showHome()
                                 }
                             }))
-                            self.present(alert, animated: true, completion: nil)
+                            self?.present(alert, animated: true, completion: nil)
                         } else {
-                            self.showHome()
+                            self?.showHome()
                         }
                     } else {
-                        self.showHome()
+                        self?.showHome()
                     }
                 }
-            })
-        } else {
-            showAlert(view: self, title: "Error", message: "Invalid credentials")
+            }
         }
     }
     

@@ -161,18 +161,24 @@ class ProfileViewController: UIViewController {
     
     // MARK:- Logout funtion
     @IBAction func buttonLogout(_ sender: Any) {
-        //Here call to method of delete all data, and send to loguin
-        BTSApi.shared.deleteSession()
-        self.showLogin()
+        
+        let alert = UIAlertController(title: "Logout", message: "Would you like to close your account session?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes, Logout", style: .default, handler: { [weak self  ] _ in
+            BTSApi.shared.deleteSession()
+            self?.showLogin()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK:- Back button action
+    // MARK: Back button action
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-// MARK:- Table view data source
+// MARK: - TABLE VIEW (UITableViewDataSource & UITableViewDelegate)
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         if self.currentUser?.skills?.isEmpty == false {
@@ -192,15 +198,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    // set header title
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case ProfileSections.skills.rawValue:
-            return "Skills"
+            return self.createHeader(title: "Skills")
         case ProfileSections.experience.rawValue:
-            return "Experience"
+            return self.createHeader(title: "Experience")
         default:
-            return ""
+            return nil
         }
     }
     
@@ -221,28 +226,19 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             return 1
         }
     }
-    // MARK:- default cell function for cellForRowAt
-    ///Return a default dequeueReusableCell unselectible
-    func createDefaultCell() -> UITableViewCell {
-        let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "DefaultCell")
-        defaultCell.textLabel?.numberOfLines = 0
-        defaultCell.setSelected(false, animated: false)
-        defaultCell.isUserInteractionEnabled = false
-        return defaultCell
-    }
-    
+       
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
             // case resume or description
             case ProfileSections.info.rawValue:
-                let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
+                let customCell: ProfileTableViewCell = tableView.dequeueReusableCell(withClass: ProfileTableViewCell.self)
                 customCell.selectionStyle = .none
                 customCell.loadProfile(self.currentUser)
                 return customCell
                 
             //case skills
             case ProfileSections.skills.rawValue:
-                let customSkillsCell: SkillsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SkillsTableViewCell") as! SkillsTableViewCell
+                let customSkillsCell: SkillsTableViewCell = tableView.dequeueReusableCell(withClass: SkillsTableViewCell.self)
                 customSkillsCell.setSkillsInRow(self.currentUser, indexPath.row)
                 customSkillsCell.selectionStyle = .none
                 return customSkillsCell
@@ -296,5 +292,21 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
             headerView.textLabel?.textColor = UIColor(named: "Purple BTS")
         }
+    }
+    
+    // MARK: HELPERS
+    private func createHeader(title: String) -> UILabel {
+        let lblSectionTitle = UILabel()
+        lblSectionTitle.text = "     " + title
+        lblSectionTitle.font = UIFont(name: "Montserrat-SemiBold", size: 18)
+        return lblSectionTitle
+    }
+
+    func createDefaultCell() -> UITableViewCell {
+        let defaultCell = UITableViewCell(style: .default, reuseIdentifier: "DefaultCell")
+        defaultCell.textLabel?.numberOfLines = 0
+        defaultCell.setSelected(false, animated: false)
+        defaultCell.isUserInteractionEnabled = false
+        return defaultCell
     }
 }
