@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
     // MARK:- life cicle func
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpTable()
+        self.setup()
         
         switch mode {
         case .myProfile:
@@ -55,14 +55,25 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.isNavigationBarHidden = false
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        self.navigationController?.isNavigationBarHidden = true
+//    }
     
     // MARK:- memberConfiguration function
     // hidde the logout button and add back button
@@ -93,7 +104,12 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK:- setUpTable
-    private func setUpTable() {
+    private func setup() {
+        // UI
+        self.labelFullName.adjustsFontSizeToFitWidth = true
+        self.buttonLogout.round()
+        self.buttonLogout.backgroundColor = UIColor.semiblackColor()
+        
         // register table view cells for the table view
         self.tableView.registerNib(ProfileTableViewCell.self)
         self.tableView.registerNib(SkillsTableViewCell.self)
@@ -117,11 +133,6 @@ class ProfileViewController: UIViewController {
     
     // MARK:- setUptProfile function
     private func setUpProfile() {
-        // UI
-        self.labelFullName.adjustsFontSizeToFitWidth = true
-        self.buttonLogout.round()
-        self.buttonLogout.backgroundColor = UIColor.semiblackColor()
-
         // Titles
         self.labelFullName.text = self.currentUser?.fullName
         self.labelField.text = self.currentUser?.field

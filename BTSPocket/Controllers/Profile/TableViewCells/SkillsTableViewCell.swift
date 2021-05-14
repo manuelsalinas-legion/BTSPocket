@@ -45,7 +45,8 @@ class SkillsTableViewCell: UITableViewCell {
             self.labelSkill2.cornerRadius(5)
 
         } else {
-            self.labelSkill2?.isHidden = true
+            self.labelSkill2.backgroundColor = .clear
+            self.labelSkill2.textColor = .clear
         }
         if currentUser?.skills?.indices.contains(third) == true,
             let skillThree = currentUser?.skills?[third].skill {
@@ -54,7 +55,8 @@ class SkillsTableViewCell: UITableViewCell {
             self.labelSkill3.cornerRadius(5)
 
         } else {
-            self.labelSkill3?.isHidden = true
+            self.labelSkill3.backgroundColor = .clear
+            self.labelSkill3.textColor = .clear
         }
     }
 }

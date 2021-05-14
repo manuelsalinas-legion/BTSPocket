@@ -18,6 +18,7 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.addStyleImage()
+        self.enableSelectedColor()
     }
     
     func addStyleImage() {

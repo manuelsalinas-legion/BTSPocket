@@ -19,7 +19,7 @@ class TeamViewController: UIViewController {
     private var allUsers: [User]? {
         didSet { self.tableViewTeam.reloadData() }
     }
-    private lazy var searchBar = UISearchBar(frame: CGRect.zero)
+    private var searchbarController = UISearchController()
     private var refreshControl = UIRefreshControl()
     
     // MARK:- life cicle
@@ -30,27 +30,40 @@ class TeamViewController: UIViewController {
         self.setUpSearchBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Team"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     // MARK:- setUpSearch bar function
     private func setUpSearchBar() {
-        searchBar.sizeToFit()
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
+        self.searchbarController.searchBar.placeholder = "Search Team Member"
+        self.searchbarController.obscuresBackgroundDuringPresentation = false
+        self.searchbarController.searchBar.sizeToFit()
+        self.searchbarController.searchBar.delegate = self
+        self.navigationItem.searchController = searchbarController
         
         // refresh control
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        tableViewTeam.addSubview(refreshControl)
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        self.tableViewTeam.addSubview(refreshControl)
     }
     
     // MARK:- setUpTable function
     private func setUpTable() {
-        tableViewTeam.registerNib(UserTableViewCell.self)
+        self.tableViewTeam.registerNib(UserTableViewCell.self)
     }
     
     // MARK:- setUpUsers function
     private func setUpUsers() {
         self.currentPage = 1
-        self.teamsVM.getTeamMembers(self.currentPage, searchBar.text, { [weak self] result in
+        self.teamsVM.getTeamMembers(self.currentPage, searchbarController.searchBar.text, { [weak self] result in
             switch result {
             case .success(let paginationUsers):
                 self?.allUsers = paginationUsers.items
@@ -92,7 +105,7 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == lastElement,
            nextPage <= self.totalPages ?? 0 {
             // call pagination users
-            self.teamsVM.getTeamMembers(nextPage, searchBar.text, { [weak self] result in
+            self.teamsVM.getTeamMembers(nextPage, searchbarController.searchBar.text, { [weak self] result in
                 switch result {
                     case .success(let usersPage):
                         self?.allUsers? += usersPage.items ?? []
@@ -113,16 +126,18 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.endEditing(true)
         tableView.deselectRow(at: indexPath, animated: true)
         
         let vcProfile = Storyboard.getInstanceOf(ProfileViewController.self)
         vcProfile.mode = .teamMember
         vcProfile.memberId = self.allUsers?[indexPath.row].id
+
         self.navigationController?.pushViewController(vcProfile, animated: true)
     }
 }
 
-// MARK:- Search bar config
+// MARK:- SEARCH BAR (UISearchBarDelegate)
 extension TeamViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // if search bar isn't empty
@@ -137,8 +152,13 @@ extension TeamViewController: UISearchBarDelegate {
         }
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // reload pages
+        #warning("Cristian reset table here")
+    }
+    
     @objc func reload() {
-        self.teamsVM.getTeamMembers(1, searchBar.text, { [weak self] result in
+        self.teamsVM.getTeamMembers(1, searchbarController.searchBar.text, { [weak self] result in
             switch result {
                 case .success(let usersPage):
                     self?.allUsers? = usersPage.items ?? []
