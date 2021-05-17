@@ -9,8 +9,16 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+    func logout() {
+        BTSApi.shared.deleteSession()
+        self.showLogin()
+    }
+    
     func showLogin() {
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-        sceneDelegate?.switchRoot(to: .login)
+        DispatchQueue.main.async {
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.switchRoot(to: .login)
+        }
     }
 }

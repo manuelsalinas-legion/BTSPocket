@@ -186,3 +186,12 @@ extension MessageManager
         return UIColor(red: 1.000000, green: 0.968627, blue: 0.643137, alpha: 1 )
     }
 }
+
+extension UIViewController {
+    // MARK:- Generic 1 button alert controller function
+    func showGenericErrorAlert(_ title: String, _ message: String, _ buttonTitle: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}

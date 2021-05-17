@@ -27,14 +27,10 @@ class ProfileTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate
     
     // MARK:- Functions
     /// Set backend Profile session data in profile section
-    public func loadProfile(_ backendProfileData: ProfileData?) {
-        if let email = backendProfileData?.email,
-           let resume = backendProfileData?.description,
-           let location = backendProfileData?.location {
-            self.labelResume?.text = resume
-            self.labelEmail?.text = email
-            self.labelLocation?.text = location
-        }
+    func loadProfile(_ profile: ProfileData?) {
+        self.labelResume?.attributedText = profile?.description?.toParagraph(lineSpacing: 2, aligned: .justified)
+        self.labelEmail?.text = profile?.email
+        self.labelLocation?.text = profile?.location
     }
     
     @objc func tapFunction(sender: UITapGestureRecognizer) {

@@ -5,9 +5,9 @@ import UIKit
 
 extension NSAttributedString {
     class func getAttributedSecondaryTitle(_ title: String?, subtitle: String?, fontSize: CGFloat) -> NSAttributedString {
-        let titleAttrs = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize),
+        let titleAttrs = [NSAttributedString.Key.font : UIFont(name: "Montserrat-SemiBold", size: fontSize),
                           NSAttributedString.Key.foregroundColor: UIColor.black]
-        let subtitleAttrs = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize - 2),
+        let subtitleAttrs = [NSAttributedString.Key.font :  UIFont(name: "Montserrat-Regular", size: fontSize - 2),
                              NSAttributedString.Key.foregroundColor: UIColor.gray]
         
         let resultingString = NSMutableAttributedString()

@@ -2,6 +2,6 @@
 *.DS_Store
 
 # Xcode
-Pods/
-BTSPocket.xcuserdata/
-BTSPocket.xcworkspace/xcuserdata/
+Pods/*
+BTSPocket.xcuserdata/*
+BTSPocket.xcworkspace/xcuserdata/*

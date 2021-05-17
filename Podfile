@@ -15,6 +15,9 @@ target 'BTSPocket' do
 # - - - Messages Indicators - - -
   pod 'PKHUD'
   pod 'SwiftMessages'
+  
+# - - - Image cache 'Kingfisher'
+  pod 'Kingfisher'
 end
 
 post_install do |installer|

@@ -5,7 +5,7 @@
 //  Created by Manuel Salinas on 3/25/21.
 //
 
-import Foundation
+import UIKit
 
 extension String {
     var localized: String {
@@ -22,5 +22,24 @@ extension String {
         let filtered = components.filter({ $0.isEmpty == false })
 
         return filtered.joined(separator: " ")
+    }
+    
+    //Paragraph
+    func toParagraph(lineSpacing: CGFloat = 10, aligned: NSTextAlignment = .center) -> NSMutableAttributedString? {
+        let attributedString = NSMutableAttributedString(string: self)
+
+        // *** Create instance of `NSMutableParagraphStyle`
+        let paragraphStyle = NSMutableParagraphStyle()
+
+        // *** set LineSpacing property in points ***
+        paragraphStyle.lineSpacing = lineSpacing
+        paragraphStyle.alignment = aligned
+
+        // *** Apply attribute to string ***
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                      value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+
+        // *** Set Attributed String to your label ***
+        return attributedString
     }
 }

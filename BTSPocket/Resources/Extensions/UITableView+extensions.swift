@@ -45,9 +45,9 @@ extension UITableView {
     ///
     /// - Parameter name: UITableViewCell type
     /// - Returns: UITableViewCell object with associated class name (optional value)
-    public func dequeueReusableCell<T: UITableViewCell>(withClass name: T.Type) -> T?
+    public func dequeueReusableCell<T: UITableViewCell>(withClass name: T.Type) -> T
     {
-        return dequeueReusableCell(withIdentifier: String(describing: name)) as? T
+        return dequeueReusableCell(withIdentifier: String(describing: name)) as! T
     }
     
     /// Register UITableViewCell using class name

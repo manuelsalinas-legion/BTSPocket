@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19FE51F0012778B4BBC3B7C4 /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437730309A3DB897BF6F3594 /* Pods_BTSPocket.framework */; };
 		2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */; };
 		2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */; };
+		2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */; };
+		2B47ADE72638E22400AA880F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE62638E22400AA880F /* User.swift */; };
+		2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE92638E27300AA880F /* PaginationResponse.swift */; };
+		2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */; };
+		2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF32638E69700AA880F /* AllUsersReponse.swift */; };
 		2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A32026334D8F00006589 /* UIViewController+extensions.swift */; };
 		2B798E742625F68800394FF7 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B798E722625F68700394FF7 /* ProfileTableViewCell.swift */; };
 		2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B798E732625F68800394FF7 /* ProfileTableViewCell.xib */; };
@@ -37,7 +43,25 @@
 		2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934A260D21AF00061491 /* TeamViewController.swift */; };
 		2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934F260D225400061491 /* ProjectsViewController.swift */; };
 		2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89354260D227B00061491 /* TimesheetViewController.swift */; };
-		52CDC67B0D4747552E9DFE4A /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEF539694CEFFCFC19E1101F /* Pods_BTSPocket.framework */; };
+		FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E866264DC4DE004687E7 /* Montserrat-LightItalic.ttf */; };
+		FF01E87A264DC4DE004687E7 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E867264DC4DE004687E7 /* Montserrat-Medium.ttf */; };
+		FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E868264DC4DE004687E7 /* Montserrat-BoldItalic.ttf */; };
+		FF01E87C264DC4DE004687E7 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E869264DC4DE004687E7 /* Montserrat-Light.ttf */; };
+		FF01E87D264DC4DE004687E7 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E86A264DC4DE004687E7 /* Montserrat-ThinItalic.ttf */; };
+		FF01E87E264DC4DE004687E7 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E86B264DC4DE004687E7 /* Montserrat-ExtraLight.ttf */; };
+		FF01E87F264DC4DE004687E7 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E86C264DC4DE004687E7 /* Montserrat-Thin.ttf */; };
+		FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E86D264DC4DE004687E7 /* Montserrat-Bold.ttf */; };
+		FF01E881264DC4DE004687E7 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E86E264DC4DE004687E7 /* Montserrat-MediumItalic.ttf */; };
+		FF01E882264DC4DE004687E7 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E86F264DC4DE004687E7 /* Montserrat-BlackItalic.ttf */; };
+		FF01E883264DC4DE004687E7 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E870264DC4DE004687E7 /* Montserrat-SemiBold.ttf */; };
+		FF01E884264DC4DE004687E7 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E871264DC4DE004687E7 /* Montserrat-ExtraLightItalic.ttf */; };
+		FF01E885264DC4DE004687E7 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E872264DC4DE004687E7 /* Montserrat-ExtraBold.ttf */; };
+		FF01E886264DC4DE004687E7 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FF01E873264DC4DE004687E7 /* OFL.txt */; };
+		FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E874264DC4DE004687E7 /* Montserrat-Black.ttf */; };
+		FF01E888264DC4DE004687E7 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E875264DC4DE004687E7 /* Montserrat-Regular.ttf */; };
+		FF01E889264DC4DE004687E7 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E876264DC4DE004687E7 /* Montserrat-Italic.ttf */; };
+		FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E877264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf */; };
+		FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */; };
 		FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */; };
 		FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */; };
 		FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */; };
@@ -49,7 +73,12 @@
 		FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */; };
 		FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */; };
 		FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */; };
+		FF534C5A264AC6360085758A /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C59264AC6360085758A /* UIColor+extensions.swift */; };
+		FF534C5C264AC9060085758A /* UITextField+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C5B264AC9060085758A /* UITextField+extensions.swift */; };
 		FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CB626263079760080B4B9 /* LAContext+extension.swift */; };
+		FFB89BAB2652B6C000D67DC2 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB89BA92652B6C000D67DC2 /* UserTableViewCell.swift */; };
+		FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB89BAA2652B6C000D67DC2 /* UserTableViewCell.xib */; };
+		FFB89BAE2652BDF200D67DC2 /* BTSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB89BAD2652BDF200D67DC2 /* BTSNavigationController.swift */; };
 		FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48DE2620B59B0030527D /* RealmAPI.swift */; };
 		FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E32620B6BE0030527D /* Storyboard.swift */; };
 		FFCC48E72620B7550030527D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E62620B7550030527D /* MessageManager.swift */; };
@@ -58,11 +87,17 @@
 		FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */; };
 		FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC49032620BE7A0030527D /* UIView+extensions.swift */; };
 		FFCC490E2620C0420030527D /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC490D2620C0420030527D /* Persistable.swift */; };
+		FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsTableViewCell.swift; sourceTree = "<group>"; };
 		2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillsTableViewCell.xib; sourceTree = "<group>"; };
+		2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewModel.swift; sourceTree = "<group>"; };
+		2B47ADE62638E22400AA880F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2B47ADE92638E27300AA880F /* PaginationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationResponse.swift; sourceTree = "<group>"; };
+		2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationAllUsers.swift; sourceTree = "<group>"; };
+		2B47ADF32638E69700AA880F /* AllUsersReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersReponse.swift; sourceTree = "<group>"; };
 		2B67A32026334D8F00006589 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2B798E722625F68700394FF7 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		2B798E732625F68800394FF7 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
@@ -93,9 +128,28 @@
 		2BF8934A260D21AF00061491 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		2BF8934F260D225400061491 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		2BF89354260D227B00061491 /* TimesheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetViewController.swift; sourceTree = "<group>"; };
-		690AB5B620387AB9FDB36952 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
-		781AC56C0B2C5131AF8A6CD5 /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
-		FEF539694CEFFCFC19E1101F /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		437730309A3DB897BF6F3594 /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		564EA659F6833BAABE1829D6 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
+		BF25BEADE97BBAD938413DEB /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
+		FF01E866264DC4DE004687E7 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		FF01E867264DC4DE004687E7 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		FF01E868264DC4DE004687E7 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		FF01E869264DC4DE004687E7 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		FF01E86A264DC4DE004687E7 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		FF01E86B264DC4DE004687E7 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		FF01E86C264DC4DE004687E7 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		FF01E86D264DC4DE004687E7 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		FF01E86E264DC4DE004687E7 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		FF01E86F264DC4DE004687E7 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		FF01E870264DC4DE004687E7 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		FF01E871264DC4DE004687E7 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		FF01E872264DC4DE004687E7 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		FF01E873264DC4DE004687E7 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		FF01E874264DC4DE004687E7 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		FF01E875264DC4DE004687E7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		FF01E876264DC4DE004687E7 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		FF01E877264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendResponse.swift; sourceTree = "<group>"; };
 		FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
@@ -107,7 +161,12 @@
 		FF0DDFEA260D4BFF003F2224 /* String+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extensions.swift"; sourceTree = "<group>"; };
 		FF0DDFEE260D4D6C003F2224 /* BTSPlatformEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSPlatformEndpoints.swift; sourceTree = "<group>"; };
 		FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FF534C59264AC6360085758A /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
+		FF534C5B264AC9060085758A /* UITextField+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extensions.swift"; sourceTree = "<group>"; };
 		FF5CB626263079760080B4B9 /* LAContext+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LAContext+extension.swift"; sourceTree = "<group>"; };
+		FFB89BA92652B6C000D67DC2 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		FFB89BAA2652B6C000D67DC2 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		FFB89BAD2652BDF200D67DC2 /* BTSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSNavigationController.swift; sourceTree = "<group>"; };
 		FFCC48DE2620B59B0030527D /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		FFCC48E32620B6BE0030527D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		FFCC48E62620B7550030527D /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
@@ -116,6 +175,7 @@
 		FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+extensions.swift"; sourceTree = "<group>"; };
 		FFCC49032620BE7A0030527D /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		FFCC490D2620C0420030527D /* Persistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,13 +183,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52CDC67B0D4747552E9DFE4A /* Pods_BTSPocket.framework in Frameworks */,
+				19FE51F0012778B4BBC3B7C4 /* Pods_BTSPocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04316A44BB53D59FDEAAF4CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				437730309A3DB897BF6F3594 /* Pods_BTSPocket.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2B1BB9F52631F3780060231F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +241,7 @@
 				2BF892F5260C012300061491 /* BTSPocket */,
 				2BF892F4260C012300061491 /* Products */,
 				6315D35E6D5D6AA08DBCFB3D /* Pods */,
-				3E23EA7D2F0D2D5EAA9E44E5 /* Frameworks */,
+				04316A44BB53D59FDEAAF4CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,6 +330,7 @@
 		2BF89348260D218B00061491 /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				FFB89BA82652B6C000D67DC2 /* TableViewCells */,
 				2BF8934A260D21AF00061491 /* TeamViewController.swift */,
 			);
 			path = Team;
@@ -292,30 +361,59 @@
 				2B798E822625F6CD00394FF7 /* Experience.swift */,
 				2B798E7A2625F6C000394FF7 /* ProfileData.swift */,
 				2B798E792625F6BF00394FF7 /* Skill.swift */,
+				2B47ADE62638E22400AA880F /* User.swift */,
+				2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */,
 			);
 			path = Entities;
-			sourceTree = "<group>";
-		};
-		3E23EA7D2F0D2D5EAA9E44E5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FEF539694CEFFCFC19E1101F /* Pods_BTSPocket.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6315D35E6D5D6AA08DBCFB3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				781AC56C0B2C5131AF8A6CD5 /* Pods-BTSPocket.debug.xcconfig */,
-				690AB5B620387AB9FDB36952 /* Pods-BTSPocket.release.xcconfig */,
+				BF25BEADE97BBAD938413DEB /* Pods-BTSPocket.debug.xcconfig */,
+				564EA659F6833BAABE1829D6 /* Pods-BTSPocket.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF01E864264DC4DE004687E7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FF01E865264DC4DE004687E7 /* Montserrat */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FF01E865264DC4DE004687E7 /* Montserrat */ = {
+			isa = PBXGroup;
+			children = (
+				FF01E873264DC4DE004687E7 /* OFL.txt */,
+				FF01E866264DC4DE004687E7 /* Montserrat-LightItalic.ttf */,
+				FF01E867264DC4DE004687E7 /* Montserrat-Medium.ttf */,
+				FF01E868264DC4DE004687E7 /* Montserrat-BoldItalic.ttf */,
+				FF01E869264DC4DE004687E7 /* Montserrat-Light.ttf */,
+				FF01E86A264DC4DE004687E7 /* Montserrat-ThinItalic.ttf */,
+				FF01E86B264DC4DE004687E7 /* Montserrat-ExtraLight.ttf */,
+				FF01E86C264DC4DE004687E7 /* Montserrat-Thin.ttf */,
+				FF01E86D264DC4DE004687E7 /* Montserrat-Bold.ttf */,
+				FF01E86E264DC4DE004687E7 /* Montserrat-MediumItalic.ttf */,
+				FF01E86F264DC4DE004687E7 /* Montserrat-BlackItalic.ttf */,
+				FF01E870264DC4DE004687E7 /* Montserrat-SemiBold.ttf */,
+				FF01E871264DC4DE004687E7 /* Montserrat-ExtraLightItalic.ttf */,
+				FF01E872264DC4DE004687E7 /* Montserrat-ExtraBold.ttf */,
+				FF01E874264DC4DE004687E7 /* Montserrat-Black.ttf */,
+				FF01E875264DC4DE004687E7 /* Montserrat-Regular.ttf */,
+				FF01E876264DC4DE004687E7 /* Montserrat-Italic.ttf */,
+				FF01E877264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf */,
+				FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */,
+			);
+			path = Montserrat;
 			sourceTree = "<group>";
 		};
 		FF0DDFC4260D3F8F003F2224 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FF01E864264DC4DE004687E7 /* Fonts */,
 				2B798EA32625F9ED00394FF7 /* Components */,
 				FF0DDFCE260D40D3003F2224 /* Managers */,
 				FF0DDFC5260D3F8F003F2224 /* Extensions */,
@@ -338,6 +436,9 @@
 				FFCC49032620BE7A0030527D /* UIView+extensions.swift */,
 				FF5CB626263079760080B4B9 /* LAContext+extension.swift */,
 				2B67A32026334D8F00006589 /* UIViewController+extensions.swift */,
+				FF534C59264AC6360085758A /* UIColor+extensions.swift */,
+				FF534C5B264AC9060085758A /* UITextField+extensions.swift */,
+				FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */,
+				2B47ADE92638E27300AA880F /* PaginationResponse.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -355,6 +457,7 @@
 			children = (
 				2B798E852625F6D900394FF7 /* LoginResponse.swift */,
 				2B798E862625F6D900394FF7 /* ProfileResponse.swift */,
+				2B47ADF32638E69700AA880F /* AllUsersReponse.swift */,
 			);
 			path = EndpointResponses;
 			sourceTree = "<group>";
@@ -393,8 +496,18 @@
 			children = (
 				2B798E8E2625F76000394FF7 /* ProfileViewModel.swift */,
 				FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */,
+				2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FFB89BA82652B6C000D67DC2 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				FFB89BA92652B6C000D67DC2 /* UserTableViewCell.swift */,
+				FFB89BAA2652B6C000D67DC2 /* UserTableViewCell.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		FFCC48DD2620B58A0030527D /* Persistence */ = {
@@ -411,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				FFCC48E32620B6BE0030527D /* Storyboard.swift */,
+				FFB89BAD2652BDF200D67DC2 /* BTSNavigationController.swift */,
 			);
 			path = Subclasses;
 			sourceTree = "<group>";
@@ -430,11 +544,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BF89307260C012700061491 /* Build configuration list for PBXNativeTarget "BTSPocket" */;
 			buildPhases = (
-				4B51E014378F2F4907341CEC /* [CP] Check Pods Manifest.lock */,
+				B9A126FF0F94D4E451B3615A /* [CP] Check Pods Manifest.lock */,
 				2BF892EF260C012300061491 /* Sources */,
 				2BF892F0260C012300061491 /* Frameworks */,
 				2BF892F1260C012300061491 /* Resources */,
-				3A887A776F7C42ED8095C457 /* [CP] Embed Pods Frameworks */,
+				7C3DFCF90D32237F29B40D84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -482,18 +596,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF01E87C264DC4DE004687E7 /* Montserrat-Light.ttf in Resources */,
+				FF01E87F264DC4DE004687E7 /* Montserrat-Thin.ttf in Resources */,
+				FF01E87E264DC4DE004687E7 /* Montserrat-ExtraLight.ttf in Resources */,
+				FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */,
 				2BF89303260C012700061491 /* LaunchScreen.storyboard in Resources */,
+				FF01E882264DC4DE004687E7 /* Montserrat-BlackItalic.ttf in Resources */,
+				FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */,
+				FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */,
+				FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */,
+				FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */,
 				2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */,
+				FF01E87D264DC4DE004687E7 /* Montserrat-ThinItalic.ttf in Resources */,
+				FF01E886264DC4DE004687E7 /* OFL.txt in Resources */,
+				FF01E888264DC4DE004687E7 /* Montserrat-Regular.ttf in Resources */,
 				2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */,
+				FF01E881264DC4DE004687E7 /* Montserrat-MediumItalic.ttf in Resources */,
 				2BF89300260C012600061491 /* Assets.xcassets in Resources */,
+				FF01E889264DC4DE004687E7 /* Montserrat-Italic.ttf in Resources */,
+				FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				FF01E883264DC4DE004687E7 /* Montserrat-SemiBold.ttf in Resources */,
+				FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				FF01E87A264DC4DE004687E7 /* Montserrat-Medium.ttf in Resources */,
 				2BF892FE260C012300061491 /* Main.storyboard in Resources */,
+				FF01E885264DC4DE004687E7 /* Montserrat-ExtraBold.ttf in Resources */,
+				FF01E884264DC4DE004687E7 /* Montserrat-ExtraLightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3A887A776F7C42ED8095C457 /* [CP] Embed Pods Frameworks */ = {
+		7C3DFCF90D32237F29B40D84 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -510,7 +644,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4B51E014378F2F4907341CEC /* [CP] Check Pods Manifest.lock */ = {
+		B9A126FF0F94D4E451B3615A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -542,6 +676,9 @@
 				2B798E802625F6C100394FF7 /* Permissions.swift in Sources */,
 				2B798E872625F6DA00394FF7 /* LoginResponse.swift in Sources */,
 				FF0DDFE8260D4ACB003F2224 /* Dictionary+extensions.swift in Sources */,
+				FF534C5A264AC6360085758A /* UIColor+extensions.swift in Sources */,
+				FF534C5C264AC9060085758A /* UITextField+extensions.swift in Sources */,
+				2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */,
 				FFCC490E2620C0420030527D /* Persistable.swift in Sources */,
 				2B798E832625F6CD00394FF7 /* Experience.swift in Sources */,
 				2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */,
@@ -550,18 +687,22 @@
 				FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */,
 				2BF89320260CE20900061491 /* Login.swift in Sources */,
 				2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */,
+				2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */,
 				FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */,
+				2B47ADE72638E22400AA880F /* User.swift in Sources */,
 				2BC591ED2627443C00F9A6EA /* ExperienceRealm.swift in Sources */,
 				2BF8930F260C07B800061491 /* LoginViewController.swift in Sources */,
 				2B798E7E2625F6C100394FF7 /* Skill.swift in Sources */,
 				2BF892F7260C012300061491 /* AppDelegate.swift in Sources */,
 				2B798E882625F6DA00394FF7 /* ProfileResponse.swift in Sources */,
+				FFB89BAE2652BDF200D67DC2 /* BTSNavigationController.swift in Sources */,
 				FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */,
 				2B798EAD262601B500394FF7 /* ProfileDataRealm.swift in Sources */,
 				FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */,
 				2BF89346260D217C00061491 /* ProfileViewController.swift in Sources */,
 				2B798EA62625F9ED00394FF7 /* Alert.swift in Sources */,
 				FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */,
+				FFB89BAB2652B6C000D67DC2 /* UserTableViewCell.swift in Sources */,
 				FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */,
 				FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */,
 				2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */,
@@ -572,16 +713,19 @@
 				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
 				FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */,
 				FFCC48FC2620BB480030527D /* UITableView+extensions.swift in Sources */,
+				2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */,
 				2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */,
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
 				2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */,
 				FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */,
+				2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
 				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,
 				2B798EA92625FA1300394FF7 /* UIImage+extension.swift in Sources */,
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
 				FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */,
 				FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */,
+				FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */,
 				2B798E8F2625F76000394FF7 /* ProfileViewModel.swift in Sources */,
 				2B798E7C2625F6C100394FF7 /* LoginData.swift in Sources */,
 			);
@@ -727,12 +871,12 @@
 		};
 		2BF89308260C012700061491 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 781AC56C0B2C5131AF8A6CD5 /* Pods-BTSPocket.debug.xcconfig */;
+			baseConfigurationReference = BF25BEADE97BBAD938413DEB /* Pods-BTSPocket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P46WHJJNMQ;
+				DEVELOPMENT_TEAM = JLWHA6949H;
 				INFOPLIST_FILE = BTSPocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -748,12 +892,12 @@
 		};
 		2BF89309260C012700061491 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 690AB5B620387AB9FDB36952 /* Pods-BTSPocket.release.xcconfig */;
+			baseConfigurationReference = 564EA659F6833BAABE1829D6 /* Pods-BTSPocket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P46WHJJNMQ;
+				DEVELOPMENT_TEAM = JLWHA6949H;
 				INFOPLIST_FILE = BTSPocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

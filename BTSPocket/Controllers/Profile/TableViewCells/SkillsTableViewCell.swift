@@ -24,12 +24,39 @@ class SkillsTableViewCell: UITableViewCell {
     }
     
     ///Set up stack of labels
-    func setSkillsInRow(_ startingPosition: Int) {
+    func setSkillsInRow(_ currentUser: ProfileData?, _ startingPosition: Int) {
+        
+        self.labelSkill.adjustsFontSizeToFitWidth = true
+        self.labelSkill2.adjustsFontSizeToFitWidth = true
+        self.labelSkill3.adjustsFontSizeToFitWidth = true
+        
         let first = (startingPosition * 3)
         let second = (startingPosition * 3) + 1
         let third = (startingPosition * 3) + 2
-        self.labelSkill.text = BTSApi.shared.currentSession?.skills?[first].skill
-        self.labelSkill2.text = BTSApi.shared.currentSession?.skills?[second].skill
-        self.labelSkill3.text = BTSApi.shared.currentSession?.skills?[third].skill
+        if let skillOne = currentUser?.skills?[first].skill {
+            self.labelSkill.text = skillOne
+            self.labelSkill.backgroundColor = .indigo()
+            self.labelSkill.cornerRadius(5)
+        }
+        if currentUser?.skills?.indices.contains(second) == true,
+            let skillTwo = currentUser?.skills?[second].skill {
+            self.labelSkill2.text = skillTwo
+            self.labelSkill2.backgroundColor = .indigo()
+            self.labelSkill2.cornerRadius(5)
+
+        } else {
+            self.labelSkill2.backgroundColor = .clear
+            self.labelSkill2.textColor = .clear
+        }
+        if currentUser?.skills?.indices.contains(third) == true,
+            let skillThree = currentUser?.skills?[third].skill {
+            self.labelSkill3.text = skillThree
+            self.labelSkill3.backgroundColor = .indigo()
+            self.labelSkill3.cornerRadius(5)
+
+        } else {
+            self.labelSkill3.backgroundColor = .clear
+            self.labelSkill3.textColor = .clear
+        }
     }
 }
