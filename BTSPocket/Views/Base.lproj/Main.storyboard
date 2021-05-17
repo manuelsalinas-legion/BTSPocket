@@ -378,7 +378,7 @@
         <!--Team-->
         <scene sceneID="xx0-Qc-M7X">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hhx-kM-F1V" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hhx-kM-F1V" customClass="BTSNavigationController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zgP-US-ebq">

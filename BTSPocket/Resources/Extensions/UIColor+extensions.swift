@@ -350,4 +350,8 @@ extension UIColor
     class func indigo() -> UIColor {
         return UIColor(red: 0.347140, green: 0.341983, blue: 0.811807, alpha: 1)
     }
+    
+    class func btsBlue() -> UIColor {
+        return UIColor(red: 0.080886, green: 0.153307, blue: 0.392179, alpha: 1)
+    }
 }

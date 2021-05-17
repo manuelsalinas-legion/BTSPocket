@@ -11,8 +11,6 @@
 		2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */; };
 		2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */; };
 		2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */; };
-		2B47ADE02638B1F500AA880F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADDE2638B1F500AA880F /* UserTableViewCell.swift */; };
-		2B47ADE12638B1F500AA880F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B47ADDF2638B1F500AA880F /* UserTableViewCell.xib */; };
 		2B47ADE72638E22400AA880F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE62638E22400AA880F /* User.swift */; };
 		2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE92638E27300AA880F /* PaginationResponse.swift */; };
 		2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */; };
@@ -78,6 +76,9 @@
 		FF534C5A264AC6360085758A /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C59264AC6360085758A /* UIColor+extensions.swift */; };
 		FF534C5C264AC9060085758A /* UITextField+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF534C5B264AC9060085758A /* UITextField+extensions.swift */; };
 		FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5CB626263079760080B4B9 /* LAContext+extension.swift */; };
+		FFB89BAB2652B6C000D67DC2 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB89BA92652B6C000D67DC2 /* UserTableViewCell.swift */; };
+		FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB89BAA2652B6C000D67DC2 /* UserTableViewCell.xib */; };
+		FFB89BAE2652BDF200D67DC2 /* BTSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB89BAD2652BDF200D67DC2 /* BTSNavigationController.swift */; };
 		FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48DE2620B59B0030527D /* RealmAPI.swift */; };
 		FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E32620B6BE0030527D /* Storyboard.swift */; };
 		FFCC48E72620B7550030527D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48E62620B7550030527D /* MessageManager.swift */; };
@@ -93,8 +94,6 @@
 		2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsTableViewCell.swift; sourceTree = "<group>"; };
 		2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillsTableViewCell.xib; sourceTree = "<group>"; };
 		2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewModel.swift; sourceTree = "<group>"; };
-		2B47ADDE2638B1F500AA880F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		2B47ADDF2638B1F500AA880F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		2B47ADE62638E22400AA880F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2B47ADE92638E27300AA880F /* PaginationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationResponse.swift; sourceTree = "<group>"; };
 		2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationAllUsers.swift; sourceTree = "<group>"; };
@@ -165,6 +164,9 @@
 		FF534C59264AC6360085758A /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		FF534C5B264AC9060085758A /* UITextField+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extensions.swift"; sourceTree = "<group>"; };
 		FF5CB626263079760080B4B9 /* LAContext+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LAContext+extension.swift"; sourceTree = "<group>"; };
+		FFB89BA92652B6C000D67DC2 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		FFB89BAA2652B6C000D67DC2 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		FFB89BAD2652BDF200D67DC2 /* BTSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSNavigationController.swift; sourceTree = "<group>"; };
 		FFCC48DE2620B59B0030527D /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		FFCC48E32620B6BE0030527D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		FFCC48E62620B7550030527D /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
@@ -328,9 +330,8 @@
 		2BF89348260D218B00061491 /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				FFB89BA82652B6C000D67DC2 /* TableViewCells */,
 				2BF8934A260D21AF00061491 /* TeamViewController.swift */,
-				2B47ADDE2638B1F500AA880F /* UserTableViewCell.swift */,
-				2B47ADDF2638B1F500AA880F /* UserTableViewCell.xib */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -500,6 +501,15 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		FFB89BA82652B6C000D67DC2 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				FFB89BA92652B6C000D67DC2 /* UserTableViewCell.swift */,
+				FFB89BAA2652B6C000D67DC2 /* UserTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		FFCC48DD2620B58A0030527D /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				FFCC48E32620B6BE0030527D /* Storyboard.swift */,
+				FFB89BAD2652BDF200D67DC2 /* BTSNavigationController.swift */,
 			);
 			path = Subclasses;
 			sourceTree = "<group>";
@@ -594,6 +605,7 @@
 				FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */,
 				FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */,
 				FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */,
+				FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */,
 				2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */,
 				FF01E87D264DC4DE004687E7 /* Montserrat-ThinItalic.ttf in Resources */,
 				FF01E886264DC4DE004687E7 /* OFL.txt in Resources */,
@@ -605,7 +617,6 @@
 				FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				FF01E883264DC4DE004687E7 /* Montserrat-SemiBold.ttf in Resources */,
 				FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */,
-				2B47ADE12638B1F500AA880F /* UserTableViewCell.xib in Resources */,
 				FF01E87A264DC4DE004687E7 /* Montserrat-Medium.ttf in Resources */,
 				2BF892FE260C012300061491 /* Main.storyboard in Resources */,
 				FF01E885264DC4DE004687E7 /* Montserrat-ExtraBold.ttf in Resources */,
@@ -684,19 +695,20 @@
 				2B798E7E2625F6C100394FF7 /* Skill.swift in Sources */,
 				2BF892F7260C012300061491 /* AppDelegate.swift in Sources */,
 				2B798E882625F6DA00394FF7 /* ProfileResponse.swift in Sources */,
+				FFB89BAE2652BDF200D67DC2 /* BTSNavigationController.swift in Sources */,
 				FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */,
 				2B798EAD262601B500394FF7 /* ProfileDataRealm.swift in Sources */,
 				FF0DDFF4260D50AB003F2224 /* LoginViewModel.swift in Sources */,
 				2BF89346260D217C00061491 /* ProfileViewController.swift in Sources */,
 				2B798EA62625F9ED00394FF7 /* Alert.swift in Sources */,
 				FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */,
+				FFB89BAB2652B6C000D67DC2 /* UserTableViewCell.swift in Sources */,
 				FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */,
 				FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */,
 				2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */,
 				2B798E7F2625F6C100394FF7 /* ProfileData.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
 				FFCC48E72620B7550030527D /* MessageManager.swift in Sources */,
-				2B47ADE02638B1F500AA880F /* UserTableViewCell.swift in Sources */,
 				FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */,
 				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
 				FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */,

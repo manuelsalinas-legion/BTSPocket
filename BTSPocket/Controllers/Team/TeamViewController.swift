@@ -22,57 +22,58 @@ class TeamViewController: UIViewController {
     private var searchbarController = UISearchController()
     private var refreshControl = UIRefreshControl()
     
-    // MARK:- life cicle
+    // MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpTable()
-        self.setUpUsers()
-        self.setUpSearchBar()
+        self.setupUI()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.title = "Team"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-    }
-    
-    // MARK:- setUpSearch bar function
-    private func setUpSearchBar() {
+        
+    // MARK: SETUP
+    private func setupUI() {
+        // Title
+        self.title = "Team".localized
+
+        // Search controller
+        self.searchbarController.searchBar.backgroundColor = .btsBlue()
+        self.searchbarController.searchBar.tintColor = .white
+        self.searchbarController.searchBar.barStyle = .black
+        self.searchbarController.searchBar.searchTextField.tintColor = .white
         self.searchbarController.searchBar.placeholder = "Search Team Member"
         self.searchbarController.obscuresBackgroundDuringPresentation = false
         self.searchbarController.searchBar.sizeToFit()
         self.searchbarController.searchBar.delegate = self
-        self.navigationItem.searchController = searchbarController
+        
+        self.navigationItem.searchController = self.searchbarController
+        
+        // Table
+        self.tableViewTeam.registerNib(UserTableViewCell.self)
+        self.tableViewTeam.hideEmtpyCells()
         
         // refresh control
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        self.tableViewTeam.addSubview(refreshControl)
+        self.tableViewTeam.addSubview(self.refreshControl)
+        
+        // Load info
+        self.getTeamMembers()
     }
     
-    // MARK:- setUpTable function
-    private func setUpTable() {
-        self.tableViewTeam.registerNib(UserTableViewCell.self)
-    }
-    
-    // MARK:- setUpUsers function
-    private func setUpUsers() {
+    // MARK: WEB SERVICE
+    private func getTeamMembers() {
         self.currentPage = 1
         self.teamsVM.getTeamMembers(self.currentPage, searchbarController.searchBar.text, { [weak self] result in
             switch result {
             case .success(let paginationUsers):
+              
                 self?.allUsers = paginationUsers.items
                 self?.totalPages = paginationUsers.pages ?? 1
                 self?.currentPage = paginationUsers.currentPage ?? 0
+           
             case .failure(let error):
+               // Expired session
                 if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
-                    BTSApi.shared.deleteSession()
-                    self?.showLogin()
+                    // Logout
+                    self?.logout()
                 } else {
                     self?.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
@@ -112,9 +113,10 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
                         self?.tableViewTeam.reloadData()
                         self?.currentPage = nextPage
                     case .failure(let error):
+                        // Expired session
                         if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
-                            BTSApi.shared.deleteSession()
-                            self?.showLogin()
+                            // Logout
+                            self?.logout()
                         } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
                             MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
                         } else {
@@ -147,26 +149,39 @@ extension TeamViewController: UISearchBarDelegate {
             perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
         } else {
             // reload pages
-            self.allUsers = []
-            self.setUpUsers()
+            self.allUsers?.removeAll()
+            self.getTeamMembers()
         }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        // reload pages
+        // TODO: reload pages
         #warning("Cristian reset table here")
     }
     
     @objc func reload() {
-        self.teamsVM.getTeamMembers(1, searchbarController.searchBar.text, { [weak self] result in
+        self.teamsVM.getTeamMembers(1, self.searchbarController.searchBar.text, { [weak self] result in
             switch result {
                 case .success(let usersPage):
+                   
                     self?.allUsers? = usersPage.items ?? []
+                    
+                    // Empty state
+                    if self?.allUsers?.isEmpty == true {
+                        self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
+                    } else {
+                        self?.tableViewTeam.dismissBackgroundMessage()
+                    }
+                    
                     self?.tableViewTeam.reloadData()
+                    
+                    
                 case .failure(let error):
+                    
+                    // Expired session?
                     if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
-                        BTSApi.shared.deleteSession()
-                        self?.showLogin()
+                        // Logout
+                        self?.logout()
                     } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
                         MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
                     } else {
