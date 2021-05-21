@@ -7,17 +7,25 @@
 
 import UIKit
 
+enum ReloadType {
+    case firstPage
+    case refresh(Int, String)
+    case nextPage(Int, String)
+}
+
 class TeamViewController: UIViewController {
     
     // MARK:- Outlets and Variables
     @IBOutlet weak private var tableViewTeam: UITableView!
 //    @IBOutlet weak var searchBar: UISearchBar!
     
-    private var currentPage: Int = 0
-    private var totalPages: Int?
+    private var currentPage: Int = 1
+    private var totalPages: Int = 1
     private var teamsVM: TeamViewModel = TeamViewModel()
     private var allUsers: [User]? {
-        didSet { self.tableViewTeam.reloadData() }
+        didSet {
+            DispatchQueue.main.async { self.tableViewTeam.reloadData() }
+        }
     }
     private var searchbarController = UISearchController()
     private var refreshControl = UIRefreshControl()
@@ -55,30 +63,54 @@ class TeamViewController: UIViewController {
         self.tableViewTeam.addSubview(self.refreshControl)
         
         // Load info
-        self.getTeamMembers()
+        self.getTeamMembers(.firstPage)
     }
     
-    // MARK: WEB SERVICE
-    private func getTeamMembers() {
-        self.currentPage = 1
-        self.teamsVM.getTeamMembers(self.currentPage, searchbarController.searchBar.text, { [weak self] result in
+    // MARK:- WEB SERVICE
+    private func getTeamMembers(_ reloadType: ReloadType) {
+        let typeOfRequest: RequestType
+        switch reloadType {
+        case .firstPage:
+            typeOfRequest = .justPage(1)
+        case .nextPage(let page, let text):
+            typeOfRequest = .pageAndFilter(page, text)
+        case .refresh(let page, let text):
+            typeOfRequest = .pageAndFilter(page, text)
+        }
+        
+        self.teamsVM.getTeamMembers(typeOfRequest) { [weak self] result in
             switch result {
-            case .success(let paginationUsers):
-              
-                self?.allUsers = paginationUsers.items
-                self?.totalPages = paginationUsers.pages ?? 1
-                self?.currentPage = paginationUsers.currentPage ?? 0
-           
+            case .success(let paginationUser):
+                
+                switch reloadType {
+                case .firstPage:
+                    self?.allUsers = paginationUser.items
+                case .nextPage(_, _):
+                    self?.allUsers? += paginationUser.items ?? []
+                case .refresh(_, _):
+                    self?.allUsers = paginationUser.items
+                }
+                // Empty state
+                if self?.allUsers?.isEmpty == true {
+                    self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
+                } else {
+                    self?.tableViewTeam.dismissBackgroundMessage()
+                }
+                
+                self?.totalPages = paginationUser.pages ?? 1
+                self?.currentPage = paginationUser.currentPage ?? 1
+                self?.tableViewTeam.reloadData()
+                
             case .failure(let error):
-               // Expired session
                 if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
                     // Logout
                     self?.logout()
                 } else {
-                    self?.showGenericErrorAlert("Error", "Generic Error", "OK")
+                    self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
+                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
                 }
             }
-        })
+        }
     }
 }
 // MARK:- UITable delegate and DataSource
@@ -104,26 +136,8 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         let nextPage = self.currentPage + 1
         
         if indexPath.row == lastElement,
-           nextPage <= self.totalPages ?? 0 {
-            // call pagination users
-            self.teamsVM.getTeamMembers(nextPage, searchbarController.searchBar.text, { [weak self] result in
-                switch result {
-                    case .success(let usersPage):
-                        self?.allUsers? += usersPage.items ?? []
-                        self?.tableViewTeam.reloadData()
-                        self?.currentPage = nextPage
-                    case .failure(let error):
-                        // Expired session
-                        if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
-                            // Logout
-                            self?.logout()
-                        } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
-                            MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
-                        } else {
-                            self?.showGenericErrorAlert("Error", "Generic Error", "OK")
-                        }
-                }
-            })
+           nextPage <= self.totalPages {
+            self.getTeamMembers(.nextPage(nextPage, self.searchbarController.searchBar.text?.trim() ?? ""))
         }
     }
     
@@ -147,48 +161,15 @@ extension TeamViewController: UISearchBarDelegate {
             // canceling request typing before 1 second
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
             perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
-        } else {
-            // reload pages
-            self.allUsers?.removeAll()
-            self.getTeamMembers()
         }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        // TODO: reload pages
-        #warning("Cristian reset table here")
+        self.getTeamMembers(.firstPage)
     }
     
     @objc func reload() {
-        self.teamsVM.getTeamMembers(1, self.searchbarController.searchBar.text, { [weak self] result in
-            switch result {
-                case .success(let usersPage):
-                   
-                    self?.allUsers? = usersPage.items ?? []
-                    
-                    // Empty state
-                    if self?.allUsers?.isEmpty == true {
-                        self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
-                    } else {
-                        self?.tableViewTeam.dismissBackgroundMessage()
-                    }
-                    
-                    self?.tableViewTeam.reloadData()
-                    
-                    
-                case .failure(let error):
-                    
-                    // Expired session?
-                    if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
-                        // Logout
-                        self?.logout()
-                    } else if error.asAFError?.responseCode == HttpStatusCode.timeout.rawValue {
-                        MessageManager.shared.showBar(title: "Connectig failed", subtitle: "Can't load more members", type: .warning, containsIcon: false, fromBottom: true)
-                    } else {
-                        self?.showGenericErrorAlert("Error", "Generic Error", "OK")
-                    }
-            }
-        })
+        self.getTeamMembers(.refresh(1, self.searchbarController.searchBar.text?.trim() ?? ""))
         self.refreshControl.endRefreshing()
     }
 }
