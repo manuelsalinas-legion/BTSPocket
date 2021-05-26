@@ -30,7 +30,18 @@ struct ProjectsViewModel {
             } onError: { (error) in
                 completition(.failure(error))
             }
-
         }
+    }
+    
+    func getProjectDetails(_ projectId: Int?, _ completition: @escaping( (Result<ProjectDetails, Error>) -> Void )) {
+        let url = Constants.serverAddress + Constants.Endpoints.getProjectDetails + "\(projectId ?? 0)"
+        BTSApi.shared.platformEP.getMethod(url) { (response: ProjectDetailsResponse) in
+            if let projectDetails = response.data {
+                completition(.success(projectDetails))
+            }
+        } onError: { (error) in
+            completition(.failure(error))
+        }
+
     }
 }

@@ -38,7 +38,7 @@ class ProjectsViewController: UIViewController {
         self.searchController.searchBar.tintColor = .white
         self.searchController.searchBar.barStyle = .black
         self.searchController.searchBar.searchTextField.tintColor = .white
-        self.searchController.searchBar.placeholder = "Search Projects"
+        self.searchController.searchBar.placeholder = "Search Projects".localized
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.searchBar.sizeToFit()
         self.searchController.searchBar.delegate = self
@@ -50,7 +50,7 @@ class ProjectsViewController: UIViewController {
         self.tableViewProjects.registerNib(ProjectTableViewCell.self)
         
         // Refresh control
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
         self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
         self.tableViewProjects.addSubview(refreshControl)
         
@@ -82,7 +82,7 @@ class ProjectsViewController: UIViewController {
                 
                 // Empty state
                 if self?.projectsByUser?.isEmpty == true {
-                    self?.tableViewProjects.displayBackgroundMessage(message: "No team members found".localized)
+                    self?.tableViewProjects.displayBackgroundMessage(message: "No projects found".localized)
                 } else {
                     self?.tableViewProjects.dismissBackgroundMessage()
                 }
@@ -96,8 +96,8 @@ class ProjectsViewController: UIViewController {
                     // Logout
                     self?.logout()
                 } else {
-                    self?.tableViewProjects.displayBackgroundMessage(message: "No team members found".localized)
-                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
+                    self?.tableViewProjects.displayBackgroundMessage(message: "No projects found".localized)
+                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get projects".localized, type: .info, containsIcon: true, fromBottom: false)
                 }
             }
         }
@@ -130,15 +130,35 @@ extension ProjectsViewController: UITableViewDelegate, UITableViewDataSource {
         self.view.endEditing(true)
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // show list of people in the project
+        let vcTeam = Storyboard.getInstanceOf(TeamViewController.self)
+        vcTeam.mode = .projectUsers
+        vcTeam.project = projectsByUser?[indexPath.row]
+        vcTeam.navigationItem.searchController = nil
+        self.navigationController?.pushViewController(vcTeam, animated: true)
     }
 }
 
 extension ProjectsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.trim().isEmpty == false {
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
-            perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
+        if let text = searchBar.text {
+            if !text.isEmpty {
+                if text.count >= 3 {
+                    NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
+                    perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
+                }
+            } else {
+                self.getProjectsByUser(.firstPage)
+            }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text?.trim() {
+            if !text.isEmpty {
+                if text.count < 3 {
+                    MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
+                }
+            }
         }
     }
     

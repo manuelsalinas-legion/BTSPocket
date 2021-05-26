@@ -94,8 +94,7 @@ class ProfileViewController: UIViewController {
                 self.setupProfile()
             case .failure(let error):
                 if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
-                    BTSApi.shared.deleteSession()
-                    self.showLogin()
+                    self.logout()
                 } else {
                     self.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
@@ -124,8 +123,7 @@ class ProfileViewController: UIViewController {
             if let error = error {
                 // Expired session?
                 if error.code == HttpStatusCode.unauthorized.rawValue {
-                    BTSApi.shared.deleteSession()
-                    self?.showLogin()
+                    self?.logout()
                 } else {
                     print(error.localizedDescription)
                     MessageManager.shared.showBar(title: "Error", subtitle: "Profile update failed.  Please, try again.", type: .error, containsIcon: true, fromBottom: false)
@@ -183,8 +181,7 @@ class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes, Logout", style: .default, handler: { [weak self  ] _ in
             // Logout
-            BTSApi.shared.deleteSession()
-            self?.showLogin()
+            self?.logout()
         }))
         
         self.present(alert, animated: true, completion: nil)

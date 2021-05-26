@@ -23,11 +23,16 @@ class LoginViewController: UIViewController {
     private var loginVM: LoginViewModel = LoginViewModel()
     private let localAuthenticationContext = LAContext()
     private var authorizationError: NSError?
+    var expiredToken: Bool = false
     
     // MARK: LYFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        
+        if expiredToken {
+            MessageManager.shared.showBar(title: "Expired session", subtitle: "Your session has expired", type: .info, containsIcon: true, fromBottom: false)
+        }
     }
     
     deinit {

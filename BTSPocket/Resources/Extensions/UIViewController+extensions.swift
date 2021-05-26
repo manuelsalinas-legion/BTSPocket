@@ -18,7 +18,7 @@ extension UIViewController {
     func showLogin() {
         DispatchQueue.main.async {
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            sceneDelegate?.switchRoot(to: .login)
+            sceneDelegate?.switchRoot(to: .login(true))
         }
     }
 }

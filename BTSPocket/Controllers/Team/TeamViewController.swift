@@ -13,34 +13,55 @@ enum ReloadType {
     case nextPage(Int, String)
 }
 
+enum TeamListStyle {
+    case allUsers, projectUsers
+}
+
 class TeamViewController: UIViewController {
     
     // MARK:- Outlets and Variables
     @IBOutlet weak private var tableViewTeam: UITableView!
-//    @IBOutlet weak var searchBar: UISearchBar!
     
+    private var searchbarController = UISearchController()
+    private var refreshControl = UIRefreshControl()
     private var currentPage: Int = 1
     private var totalPages: Int = 1
     private var teamsVM: TeamViewModel = TeamViewModel()
+    private var projectVM: ProjectsViewModel = ProjectsViewModel()
     private var allUsers: [User]? {
         didSet {
             DispatchQueue.main.async { self.tableViewTeam.reloadData() }
         }
     }
-    private var searchbarController = UISearchController()
-    private var refreshControl = UIRefreshControl()
+    private var projectUsers: [UserInProject]? {
+        didSet {
+            DispatchQueue.main.async { self.tableViewTeam.reloadData() }
+        }
+    }
+    var mode: TeamListStyle = .allUsers
+    var project: Project?
     
     // MARK: LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        
+        switch mode {
+        case .allUsers:
+            // Title
+            self.title = "Team".localized
+            // Load all users info
+            self.getTeamMembers(.firstPage)
+        case .projectUsers:
+            // Title
+            self.title = (project?.name ?? "") + "Team".localized
+            // Load users in project infor
+            self.getProfileTeamMembers()
+        }
     }
         
     // MARK: SETUP
     private func setupUI() {
-        // Title
-        self.title = "Team".localized
-
         // Search controller
         self.searchbarController.searchBar.backgroundColor = .btsBlue()
         self.searchbarController.searchBar.tintColor = .white
@@ -51,7 +72,12 @@ class TeamViewController: UIViewController {
         self.searchbarController.searchBar.sizeToFit()
         self.searchbarController.searchBar.delegate = self
         
-        self.navigationItem.searchController = self.searchbarController
+        switch mode {
+        case .allUsers:
+            self.navigationItem.searchController = self.searchbarController
+        case .projectUsers:
+            self.navigationItem.searchController = nil
+        }
         
         // Table
         self.tableViewTeam.registerNib(UserTableViewCell.self)
@@ -61,9 +87,25 @@ class TeamViewController: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
         self.tableViewTeam.addSubview(self.refreshControl)
-        
-        // Load info
-        self.getTeamMembers(.firstPage)
+    }
+    
+    // MARK:- WEB SERVICE TO GET USER PROJECTS
+    private func getProfileTeamMembers() {
+        self.projectVM.getProjectDetails(project?.id) { [weak self] (result) in
+            switch result {
+            case .success(let projectDetails):
+                self?.projectUsers = projectDetails.activeUsers
+                self?.tableViewTeam.reloadData()
+            case .failure(let error):
+                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                    // Logout
+                    self?.logout()
+                } else {
+                    self?.tableViewTeam.displayBackgroundMessage(message: "No project members found".localized)
+                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
+                }
+            }
+        }
     }
     
     // MARK:- WEB SERVICE
@@ -116,13 +158,25 @@ class TeamViewController: UIViewController {
 // MARK:- UITable delegate and DataSource
 extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allUsers?.count ?? 0
+        switch mode {
+        case .allUsers:
+            return self.allUsers?.count ?? 0
+        case .projectUsers:
+            return self.projectUsers?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: UserTableViewCell.self)
-        let user = self.allUsers?[indexPath.row]
-        cell.setUserInfo(user)
+        // hacer ternacio a base de mode y eviar a la celda el tipo de usuario que necesita
+        switch mode {
+        case .allUsers:
+            let user = self.allUsers?[indexPath.row]
+            cell.setUserInfo(.user(user))
+        case .projectUsers:
+            let user = self.projectUsers?[indexPath.row]
+            cell.setUserInfo(.projectUser(user))
+        }
         return cell
     }
     
@@ -147,7 +201,12 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
         
         let vcProfile = Storyboard.getInstanceOf(ProfileViewController.self)
         vcProfile.mode = .teamMember
-        vcProfile.memberId = self.allUsers?[indexPath.row].id
+        switch mode {
+        case .allUsers:
+            vcProfile.memberId = self.allUsers?[indexPath.row].id
+        case .projectUsers:
+            vcProfile.memberId = self.projectUsers?[indexPath.row].id
+        }
 
         self.navigationController?.pushViewController(vcProfile, animated: true)
     }
@@ -157,17 +216,40 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
 extension TeamViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // if search bar isn't empty
-        if searchBar.text?.trim().isEmpty == false {
-            // canceling request typing before 1 second
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
-            perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
+        if let text = searchBar.text?.trim() {
+            if !text.isEmpty {
+                if text.count >= 3 {
+                    NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
+                    perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
+                }
+            } else {
+                self.getTeamMembers(.firstPage)
+            }
         }
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.getTeamMembers(.firstPage)
+    // search button clicked
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text?.trim() {
+            if !text.isEmpty {
+                if text.count < 3 {
+                    MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
+                }
+            }
+        }
     }
     
+    // cancel button clicked
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        switch mode {
+        case .allUsers:
+            self.getTeamMembers(.firstPage)
+        case .projectUsers:
+            self.getProfileTeamMembers()
+        }
+    }
+    
+    // reload page of users
     @objc func reload() {
         self.getTeamMembers(.refresh(1, self.searchbarController.searchBar.text?.trim() ?? ""))
         self.refreshControl.endRefreshing()

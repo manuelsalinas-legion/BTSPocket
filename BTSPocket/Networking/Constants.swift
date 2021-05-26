@@ -27,6 +27,7 @@ struct Constants {
         
         //Projects
         static let getProjects = "api/projects"
+        static let getProjectDetails = "api/projects/"
     }
 }
 

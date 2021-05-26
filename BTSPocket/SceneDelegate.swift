@@ -8,7 +8,8 @@
 import UIKit
 
 public enum TypeRoot {
-    case login, home
+    case login(Bool)
+    case home
 }
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -35,12 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } else {
                 // Remove data and show login
                 BTSApi.shared.deleteSession()
-                switchRoot(to: .login)
+                switchRoot(to: .login(true))
             }
         } else {
             // Remove data and show login
             BTSApi.shared.deleteSession()
-            switchRoot(to: .login)
+            switchRoot(to: .login(false))
         }
         
         self.window?.makeKeyAndVisible()
@@ -81,8 +82,14 @@ extension SceneDelegate {
         switch to {
         case .home:
             self.window?.rootViewController = Storyboard.getInstanceOf(HomeTabBarController.self)
-        case .login:
-            self.window?.rootViewController = Storyboard.getInstanceOf(LoginViewController.self)
+        case .login(let logout):
+            if logout {
+                let vcLogin = Storyboard.getInstanceOf(LoginViewController.self)
+                vcLogin.expiredToken = true
+                self.window?.rootViewController = vcLogin
+            } else {
+                self.window?.rootViewController = Storyboard.getInstanceOf(LoginViewController.self)
+            }
         }
     }
 }
