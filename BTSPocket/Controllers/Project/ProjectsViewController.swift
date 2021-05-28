@@ -10,7 +10,7 @@ import UIKit
 class ProjectsViewController: UIViewController {
     
     // MARK:- Outlets and Variables
-    @IBOutlet weak var tableViewProjects: UITableView!
+    @IBOutlet weak private var tableViewProjects: UITableView!
     
     private var currentPage: Int = 1
     private var totalPages: Int = 1

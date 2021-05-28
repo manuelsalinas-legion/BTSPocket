@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         self.setup()
         
         if expiredToken {
-            MessageManager.shared.showBar(title: "Expired session", subtitle: "Your session has expired", type: .info, containsIcon: true, fromBottom: false)
+            MessageManager.shared.showBar(title: "Expired session", subtitle: "Your session has expired. Please, login again", type: .info, containsIcon: true, fromBottom: false)
         }
     }
     

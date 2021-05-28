@@ -11,9 +11,9 @@ import Kingfisher
 class ProjectTableViewCell: UITableViewCell {
 
     // MARK: Outlets and variables
-    @IBOutlet weak var imageViewProject: UIImageView!
-    @IBOutlet weak var labelNameProject: UILabel!
-    @IBOutlet weak var labelCountUsers: UILabel!
+    @IBOutlet weak private var imageViewProject: UIImageView!
+    @IBOutlet weak private var labelNameProject: UILabel!
+    @IBOutlet weak private var labelCountUsers: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +33,11 @@ class ProjectTableViewCell: UITableViewCell {
         } else {
             countUsersMessage = "\(countUsers) users and you"
         }
+        let attributedMessage = NSMutableAttributedString(string: countUsersMessage!)
+        attributedMessage.setColor(countUsersMessage!, color: .btsBlue())
+        
         self.labelNameProject.text = project?.name
-        self.labelCountUsers.text = countUsersMessage
+        self.labelCountUsers.attributedText = attributedMessage
         if let photoPath = project?.image {
             let url = URL(string: Constants.urlBucketImages + photoPath)
             // adding header in request.

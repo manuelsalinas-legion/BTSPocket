@@ -168,14 +168,11 @@ extension TeamViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: UserTableViewCell.self)
-        // hacer ternacio a base de mode y eviar a la celda el tipo de usuario que necesita
-        switch mode {
-        case .allUsers:
-            let user = self.allUsers?[indexPath.row]
-            cell.setUserInfo(.user(user))
-        case .projectUsers:
-            let user = self.projectUsers?[indexPath.row]
-            cell.setUserInfo(.projectUser(user))
+        let user: Any = (mode == TeamListStyle.allUsers) ? self.allUsers?[indexPath.row] : self.projectUsers?[indexPath.row]
+        if let teamUser = user as? User {
+            cell.setUserInfo(.user(teamUser))
+        } else if let userInProject = user as? UserInProject {
+            cell.setUserInfo(.projectUser(userInProject))
         }
         return cell
     }

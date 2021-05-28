@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonLogout: UIButton!
     @IBOutlet weak var buttonBack: UIButton!
     
+    private var refreshControl = UIRefreshControl()
     private var profileVM: ProfileViewModel = ProfileViewModel()
     private var profile: ProfileData? {
         didSet {
@@ -82,7 +83,6 @@ class ProfileViewController: UIViewController {
         self.buttonBack.isHidden = false
         self.buttonBack.backgroundColor = UIColor.semiblackColor()
         self.buttonBack.round()
-        
     }
     
     // MARK:- getMemberProfile function
@@ -113,11 +113,25 @@ class ProfileViewController: UIViewController {
         self.tableView.registerNib(ProfileTableViewCell.self)
         self.tableView.registerNib(SkillsTableViewCell.self)
         self.tableView.separatorStyle = .none
+        
+        // refresh controller
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(self.reloadProfile), for: .valueChanged)
+        self.tableView.addSubview(self.refreshControl)
+    }
+    
+    @objc private func reloadProfile() {
+        switch mode {
+        case .myProfile:
+            self.getProfile()
+        case .teamMember:
+            self.getMemberProfile()
+        }
+        self.refreshControl.endRefreshing()
     }
     
     // MARK: WEB SERVICE
     private func getProfile() {
-                
         self.profileVM.getProfile { [weak self] error in
             
             if let error = error {
