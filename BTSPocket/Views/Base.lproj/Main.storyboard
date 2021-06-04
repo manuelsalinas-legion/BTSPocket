@@ -292,7 +292,10 @@
                             <constraint firstItem="XNs-1b-N3y" firstAttribute="trailing" secondItem="dyg-aT-iQj" secondAttribute="trailing" id="ytO-Y5-eXb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="ud2-YG-C88"/>
+                    <tabBarItem key="tabBarItem" title="Profile" springLoaded="YES" id="ud2-YG-C88">
+                        <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="large"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="buttonBack" destination="5zZ-JY-ujM" id="Bxc-X1-DcP"/>
                         <outlet property="buttonLogout" destination="2KP-xp-XmU" id="6rq-If-Q4i"/>
@@ -307,7 +310,7 @@
             </objects>
             <point key="canvasLocation" x="-296" y="840"/>
         </scene>
-        <!--Team-->
+        <!--Team View Controller-->
         <scene sceneID="iWL-pJ-SS3">
             <objects>
                 <viewController storyboardIdentifier="TeamViewController" id="Yez-D9-iu2" customClass="TeamViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,7 +336,6 @@
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="leading" secondItem="xAO-fw-wyZ" secondAttribute="leading" id="sqJ-EC-CrZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Team" id="GxR-RL-aQp"/>
                     <navigationItem key="navigationItem" id="ZDH-1x-fuP"/>
                     <connections>
                         <outlet property="tableViewTeam" destination="Xjw-r3-rQk" id="IXa-FY-96q"/>
@@ -388,7 +390,7 @@
                         <viewLayoutGuide key="safeArea" id="bJD-ql-Rhe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timesheet" id="Zwa-9N-HUZ"/>
+                    <tabBarItem key="tabBarItem" title="Timesheet" image="clock.fill" catalog="system" id="Zwa-9N-HUZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clj-MY-Hth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -398,7 +400,9 @@
         <scene sceneID="xx0-Qc-M7X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hhx-kM-F1V" customClass="BTSNavigationController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE"/>
+                    <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE">
+                        <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zgP-US-ebq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -417,7 +421,9 @@
         <scene sceneID="bs7-sr-zaQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4FP-T1-pO3" customClass="BTSNavigationController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" id="Ahl-89-M1P"/>
+                    <tabBarItem key="tabBarItem" title="Projects" id="Ahl-89-M1P">
+                        <imageReference key="image" image="book.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tBP-Hi-X4q">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -437,7 +443,11 @@
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="arrow.up.forward.app" catalog="system" width="128" height="114"/>
+        <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="logoBTS" width="120" height="120"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="placeholderUser" width="950" height="891"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

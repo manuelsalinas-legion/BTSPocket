@@ -83,7 +83,6 @@ class UserTableViewCell: UITableViewCell {
                                                 .scaleFactor(UIScreen.main.scale),
                                                 .cacheOriginalImage
                                                ])
-                
             }
         }
     }

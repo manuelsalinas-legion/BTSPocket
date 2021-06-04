@@ -142,7 +142,7 @@ extension ProjectsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let text = searchBar.text {
             if !text.isEmpty {
-                if text.count >= 3 {
+                if text.count >= Constants.kMinimumCharactersForSearch {
                     NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: searchBar)
                     perform(#selector(self.reload), with: searchBar, afterDelay: 1.0)
                 }
@@ -155,7 +155,7 @@ extension ProjectsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text?.trim() {
             if !text.isEmpty {
-                if text.count < 3 {
+                if text.count < Constants.kMinimumCharactersForSearch {
                     MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
                 }
             }

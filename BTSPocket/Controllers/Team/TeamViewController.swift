@@ -7,13 +7,13 @@
 
 import UIKit
 
-enum ReloadType {
+public enum ReloadType {
     case firstPage
     case refresh(Int, String)
     case nextPage(Int, String)
 }
 
-enum TeamListStyle {
+public enum TeamListStyle {
     case allUsers, projectUsers
 }
 

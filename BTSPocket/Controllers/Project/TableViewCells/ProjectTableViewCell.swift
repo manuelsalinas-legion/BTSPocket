@@ -36,7 +36,7 @@ class ProjectTableViewCell: UITableViewCell {
         let attributedMessage = NSMutableAttributedString(string: countUsersMessage!)
         attributedMessage.setColor(countUsersMessage!, color: .btsBlue())
         
-        self.labelNameProject.text = project?.name
+        self.labelNameProject.text = project?.name?.capitalized
         self.labelCountUsers.attributedText = attributedMessage
         if let photoPath = project?.image {
             let url = URL(string: Constants.urlBucketImages + photoPath)
@@ -48,13 +48,18 @@ class ProjectTableViewCell: UITableViewCell {
             }
             self.imageViewProject.kf.indicatorType = .activity
             self.imageViewProject.kf.setImage(with: url,
-                                           placeholder: UIImage(named: "placeholderUser"),
+                                           placeholder: UIImage(named: "placeholderProject"),
                                            options: [
                                             .requestModifier(modifier),
                                             .processor(DownsamplingImageProcessor(size: self.imageViewProject.frame.size)),
                                             .scaleFactor(UIScreen.main.scale),
                                             .cacheOriginalImage
                                            ])
+        } else {
+            DispatchQueue.main.async {
+                self.imageViewProject.image = UIImage(named: "placeholderProject")
+                self.imageViewProject.contentMode = .scaleToFill
+            }
         }
         
     }
