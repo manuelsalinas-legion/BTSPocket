@@ -84,7 +84,7 @@ class TeamViewController: UIViewController {
         self.tableViewTeam.hideEmtpyCells()
         
         // refresh control
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
         self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
         self.tableViewTeam.addSubview(self.refreshControl)
     }

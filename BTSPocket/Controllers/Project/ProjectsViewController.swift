@@ -104,6 +104,7 @@ class ProjectsViewController: UIViewController {
     }
 }
 
+// MARK:- UITable delegate
 extension ProjectsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.projectsByUser?.count ?? 0
