@@ -18,6 +18,7 @@ class ProjectTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.enableSelectedColor()
+        self.imageViewProject.cornerRadius(10)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,15 +27,19 @@ class ProjectTableViewCell: UITableViewCell {
     }
     
     func setProjectValues(_ project: Project?) {
-        var countUsersMessage: String?
-        let countUsers = (project?.users?.count ?? 1) - 1
-        if countUsers == 1 {
-            countUsersMessage = "Only You"
+        var title = ""
+        let usersInProject: Int = (project?.users?.count ?? 1) - 1
+        var numberOfUsers: String = ""
+        if usersInProject == 1 {
+            numberOfUsers = "Only you".localized
+            title = numberOfUsers
         } else {
-            countUsersMessage = "\(countUsers) users and you"
+            numberOfUsers = "\(usersInProject) users"
+            title =  numberOfUsers + " " + "and you"
         }
-        let attributedMessage = NSMutableAttributedString(string: countUsersMessage!)
-        attributedMessage.setColor(countUsersMessage!, color: .btsBlue())
+        let attributedMessage = NSMutableAttributedString(string: title)
+        attributedMessage.setColor("you", color: .indigo(), font: UIFont(name: "Montserrat-MediumItalic", size: 12) ?? UIFont.systemFont(ofSize: 12))
+        attributedMessage.setColor(numberOfUsers, color: .indigo(), font: UIFont(name: "Montserrat-MediumItalic", size: 12) ?? UIFont.systemFont(ofSize: 12))
         
         self.labelNameProject.text = project?.name?.capitalized
         self.labelCountUsers.attributedText = attributedMessage
@@ -46,6 +51,7 @@ class ProjectTableViewCell: UITableViewCell {
                 mutableRequest.setValue(Constants.serverAddress, forHTTPHeaderField: "Referer")
                 return mutableRequest
             }
+            
             self.imageViewProject.kf.indicatorType = .activity
             self.imageViewProject.kf.setImage(with: url,
                                            placeholder: UIImage(named: "placeholderProject"),
