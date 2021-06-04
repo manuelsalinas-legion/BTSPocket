@@ -7,6 +7,8 @@
 import UIKit
 
 class BTSNavigationController: UINavigationController {
+    // set light status bar color
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     override func viewDidLoad() {
         super.viewDidLoad()
         

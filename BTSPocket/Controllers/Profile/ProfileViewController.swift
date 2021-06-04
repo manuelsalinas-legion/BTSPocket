@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonLogout: UIButton!
     @IBOutlet weak var buttonBack: UIButton!
     
+    private var refreshControl = UIRefreshControl()
     private var profileVM: ProfileViewModel = ProfileViewModel()
     private var profile: ProfileData? {
         didSet {
@@ -82,7 +83,6 @@ class ProfileViewController: UIViewController {
         self.buttonBack.isHidden = false
         self.buttonBack.backgroundColor = UIColor.semiblackColor()
         self.buttonBack.round()
-        
     }
     
     // MARK:- getMemberProfile function
@@ -94,8 +94,7 @@ class ProfileViewController: UIViewController {
                 self.setupProfile()
             case .failure(let error):
                 if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
-                    BTSApi.shared.deleteSession()
-                    self.showLogin()
+                    self.logout()
                 } else {
                     self.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
@@ -114,18 +113,31 @@ class ProfileViewController: UIViewController {
         self.tableView.registerNib(ProfileTableViewCell.self)
         self.tableView.registerNib(SkillsTableViewCell.self)
         self.tableView.separatorStyle = .none
+        
+        // refresh controller
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(self.reloadProfile), for: .valueChanged)
+        self.tableView.addSubview(self.refreshControl)
+    }
+    
+    @objc private func reloadProfile() {
+        switch mode {
+        case .myProfile:
+            self.getProfile()
+        case .teamMember:
+            self.getMemberProfile()
+        }
+        self.refreshControl.endRefreshing()
     }
     
     // MARK: WEB SERVICE
     private func getProfile() {
-                
         self.profileVM.getProfile { [weak self] error in
             
             if let error = error {
                 // Expired session?
                 if error.code == HttpStatusCode.unauthorized.rawValue {
-                    BTSApi.shared.deleteSession()
-                    self?.showLogin()
+                    self?.logout()
                 } else {
                     print(error.localizedDescription)
                     MessageManager.shared.showBar(title: "Error", subtitle: "Profile update failed.  Please, try again.", type: .error, containsIcon: true, fromBottom: false)
@@ -183,8 +195,7 @@ class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes, Logout", style: .default, handler: { [weak self  ] _ in
             // Logout
-            BTSApi.shared.deleteSession()
-            self?.showLogin()
+            self?.logout()
         }))
         
         self.present(alert, animated: true, completion: nil)

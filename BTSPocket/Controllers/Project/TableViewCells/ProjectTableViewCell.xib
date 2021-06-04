@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-LightItalic.ttf">
+            <string>Montserrat-LightItalic</string>
+        </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="ProjectTableViewCell" customModule="BTSPocket" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auL-3o-T4o">
+                        <rect key="frame" x="16" y="12.5" width="234" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="JLg-27-glQ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jvW-fb-KTl">
+                        <rect key="frame" x="265" y="7.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="e91-cp-Lz8"/>
+                            <constraint firstAttribute="width" constant="50" id="i51-b3-73f"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esG-fE-dIf">
+                        <rect key="frame" x="16" y="34.5" width="234" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="zRI-5o-AKv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Montserrat-LightItalic" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jvW-fb-KTl" secondAttribute="bottom" constant="7.5" id="07F-zy-Gng"/>
+                    <constraint firstItem="auL-3o-T4o" firstAttribute="top" secondItem="jvW-fb-KTl" secondAttribute="top" constant="5" id="0Wu-Ib-G3o"/>
+                    <constraint firstItem="jvW-fb-KTl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7.5" id="1Gi-mF-ZVS"/>
+                    <constraint firstItem="esG-fE-dIf" firstAttribute="leading" secondItem="auL-3o-T4o" secondAttribute="leading" id="4Cc-PQ-0Fw"/>
+                    <constraint firstItem="esG-fE-dIf" firstAttribute="top" secondItem="auL-3o-T4o" secondAttribute="bottom" id="6sX-t1-e1g"/>
+                    <constraint firstItem="jvW-fb-KTl" firstAttribute="leading" secondItem="auL-3o-T4o" secondAttribute="trailing" constant="15" id="9ak-5A-Ef6"/>
+                    <constraint firstItem="auL-3o-T4o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ma2-jr-yYN"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="esG-fE-dIf" secondAttribute="bottom" constant="15" id="N8T-Yl-FJr"/>
+                    <constraint firstAttribute="trailing" secondItem="jvW-fb-KTl" secondAttribute="trailing" constant="5" id="hmh-L5-5oX"/>
+                    <constraint firstItem="jvW-fb-KTl" firstAttribute="leading" secondItem="esG-fE-dIf" secondAttribute="trailing" constant="15" id="um6-jH-yOO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imageViewProject" destination="jvW-fb-KTl" id="jfD-IZ-V14"/>
+                <outlet property="labelCountUsers" destination="esG-fE-dIf" id="d2G-aB-Atg"/>
+                <outlet property="labelNameProject" destination="auL-3o-T4o" id="3iK-MO-EjO"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="90.401785714285708"/>
+        </tableViewCell>
+    </objects>
+</document>

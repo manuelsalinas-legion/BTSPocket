@@ -29,8 +29,19 @@
 		2B798EA62625F9ED00394FF7 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B798EA52625F9ED00394FF7 /* Alert.swift */; };
 		2B798EA92625FA1300394FF7 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B798EA82625FA1300394FF7 /* UIImage+extension.swift */; };
 		2B798EAD262601B500394FF7 /* ProfileDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B798EAC262601B500394FF7 /* ProfileDataRealm.swift */; };
+		2BAC79F3265CC09A002291A8 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC79F2265CC09A002291A8 /* Client.swift */; };
+		2BAC79F6265CC160002291A8 /* UserInProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC79F5265CC160002291A8 /* UserInProject.swift */; };
+		2BAC79FE265CCAA0002291A8 /* ProjectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */; };
+		2BAC7A01265CCB61002291A8 /* ClientMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC7A00265CCB61002291A8 /* ClientMember.swift */; };
+		2BAC7A05265CCDE9002291A8 /* ProjectDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC7A04265CCDE9002291A8 /* ProjectDetailsResponse.swift */; };
 		2BC591ED2627443C00F9A6EA /* ExperienceRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC591EC2627443C00F9A6EA /* ExperienceRealm.swift */; };
 		2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC591F32627493F00F9A6EA /* SkillRealm.swift */; };
+		2BCAC13D2655EF2100C51830 /* Projet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAC13C2655EF2100C51830 /* Projet.swift */; };
+		2BCAC1402655F02600C51830 /* PaginationProjectsFilterByUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAC13F2655F02600C51830 /* PaginationProjectsFilterByUser.swift */; };
+		2BCAC1432655F08C00C51830 /* ProjectByUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAC1422655F08C00C51830 /* ProjectByUserResponse.swift */; };
+		2BCAC1522656C94C00C51830 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCAC1502656C94C00C51830 /* ProjectTableViewCell.swift */; };
+		2BCAC1532656C94C00C51830 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BCAC1512656C94C00C51830 /* ProjectTableViewCell.xib */; };
+		2BD02FD9265560C700BEF1C0 /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD02FD8265560C700BEF1C0 /* ProjectsViewModel.swift */; };
 		2BF892F7260C012300061491 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF892F6260C012300061491 /* AppDelegate.swift */; };
 		2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF892F8260C012300061491 /* SceneDelegate.swift */; };
 		2BF892FE260C012300061491 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF892FC260C012300061491 /* Main.storyboard */; };
@@ -112,8 +123,19 @@
 		2B798EA52625F9ED00394FF7 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		2B798EA82625FA1300394FF7 /* UIImage+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		2B798EAC262601B500394FF7 /* ProfileDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataRealm.swift; sourceTree = "<group>"; };
+		2BAC79F2265CC09A002291A8 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		2BAC79F5265CC160002291A8 /* UserInProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInProject.swift; sourceTree = "<group>"; };
+		2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetails.swift; sourceTree = "<group>"; };
+		2BAC7A00265CCB61002291A8 /* ClientMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientMember.swift; sourceTree = "<group>"; };
+		2BAC7A04265CCDE9002291A8 /* ProjectDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsResponse.swift; sourceTree = "<group>"; };
 		2BC591EC2627443C00F9A6EA /* ExperienceRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceRealm.swift; sourceTree = "<group>"; };
 		2BC591F32627493F00F9A6EA /* SkillRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillRealm.swift; sourceTree = "<group>"; };
+		2BCAC13C2655EF2100C51830 /* Projet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projet.swift; sourceTree = "<group>"; };
+		2BCAC13F2655F02600C51830 /* PaginationProjectsFilterByUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationProjectsFilterByUser.swift; sourceTree = "<group>"; };
+		2BCAC1422655F08C00C51830 /* ProjectByUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectByUserResponse.swift; sourceTree = "<group>"; };
+		2BCAC1502656C94C00C51830 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		2BCAC1512656C94C00C51830 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
+		2BD02FD8265560C700BEF1C0 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		2BF892F3260C012300061491 /* BTSPocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTSPocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF892F6260C012300061491 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BF892F8260C012300061491 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +257,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		2BCAC14F2656C93500C51830 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2BCAC1502656C94C00C51830 /* ProjectTableViewCell.swift */,
+				2BCAC1512656C94C00C51830 /* ProjectTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		2BF892EA260C012300061491 = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +370,7 @@
 		2BF8934E260D224500061491 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				2BCAC14F2656C93500C51830 /* TableViewCells */,
 				2BF8934F260D225400061491 /* ProjectsViewController.swift */,
 			);
 			path = Project;
@@ -363,6 +395,12 @@
 				2B798E792625F6BF00394FF7 /* Skill.swift */,
 				2B47ADE62638E22400AA880F /* User.swift */,
 				2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */,
+				2BCAC13C2655EF2100C51830 /* Projet.swift */,
+				2BCAC13F2655F02600C51830 /* PaginationProjectsFilterByUser.swift */,
+				2BAC79F2265CC09A002291A8 /* Client.swift */,
+				2BAC79F5265CC160002291A8 /* UserInProject.swift */,
+				2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */,
+				2BAC7A00265CCB61002291A8 /* ClientMember.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -458,6 +496,8 @@
 				2B798E852625F6D900394FF7 /* LoginResponse.swift */,
 				2B798E862625F6D900394FF7 /* ProfileResponse.swift */,
 				2B47ADF32638E69700AA880F /* AllUsersReponse.swift */,
+				2BCAC1422655F08C00C51830 /* ProjectByUserResponse.swift */,
+				2BAC7A04265CCDE9002291A8 /* ProjectDetailsResponse.swift */,
 			);
 			path = EndpointResponses;
 			sourceTree = "<group>";
@@ -497,6 +537,7 @@
 				2B798E8E2625F76000394FF7 /* ProfileViewModel.swift */,
 				FF0DDFF3260D50AB003F2224 /* LoginViewModel.swift */,
 				2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */,
+				2BD02FD8265560C700BEF1C0 /* ProjectsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -605,6 +646,7 @@
 				FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */,
 				FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */,
 				FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */,
+				2BCAC1532656C94C00C51830 /* ProjectTableViewCell.xib in Resources */,
 				FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */,
 				2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */,
 				FF01E87D264DC4DE004687E7 /* Montserrat-ThinItalic.ttf in Resources */,
@@ -676,19 +718,24 @@
 				2B798E802625F6C100394FF7 /* Permissions.swift in Sources */,
 				2B798E872625F6DA00394FF7 /* LoginResponse.swift in Sources */,
 				FF0DDFE8260D4ACB003F2224 /* Dictionary+extensions.swift in Sources */,
+				2BAC7A05265CCDE9002291A8 /* ProjectDetailsResponse.swift in Sources */,
 				FF534C5A264AC6360085758A /* UIColor+extensions.swift in Sources */,
 				FF534C5C264AC9060085758A /* UITextField+extensions.swift in Sources */,
 				2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */,
+				2BAC7A01265CCB61002291A8 /* ClientMember.swift in Sources */,
 				FFCC490E2620C0420030527D /* Persistable.swift in Sources */,
 				2B798E832625F6CD00394FF7 /* Experience.swift in Sources */,
 				2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */,
 				FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */,
 				2B798E742625F68800394FF7 /* ProfileTableViewCell.swift in Sources */,
+				2BAC79FE265CCAA0002291A8 /* ProjectDetails.swift in Sources */,
+				2BCAC1402655F02600C51830 /* PaginationProjectsFilterByUser.swift in Sources */,
 				FFCC48E42620B6BE0030527D /* Storyboard.swift in Sources */,
 				2BF89320260CE20900061491 /* Login.swift in Sources */,
 				2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */,
 				2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */,
 				FF0DDFEF260D4D6C003F2224 /* BTSPlatformEndpoints.swift in Sources */,
+				2BD02FD9265560C700BEF1C0 /* ProjectsViewModel.swift in Sources */,
 				2B47ADE72638E22400AA880F /* User.swift in Sources */,
 				2BC591ED2627443C00F9A6EA /* ExperienceRealm.swift in Sources */,
 				2BF8930F260C07B800061491 /* LoginViewController.swift in Sources */,
@@ -707,13 +754,16 @@
 				FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */,
 				2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */,
 				2B798E7F2625F6C100394FF7 /* ProfileData.swift in Sources */,
+				2BCAC1432655F08C00C51830 /* ProjectByUserResponse.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
 				FFCC48E72620B7550030527D /* MessageManager.swift in Sources */,
 				FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */,
+				2BAC79F3265CC09A002291A8 /* Client.swift in Sources */,
 				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
 				FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */,
 				FFCC48FC2620BB480030527D /* UITableView+extensions.swift in Sources */,
 				2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */,
+				2BAC79F6265CC160002291A8 /* UserInProject.swift in Sources */,
 				2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */,
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
 				2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */,
@@ -721,9 +771,11 @@
 				2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
 				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,
+				2BCAC13D2655EF2100C51830 /* Projet.swift in Sources */,
 				2B798EA92625FA1300394FF7 /* UIImage+extension.swift in Sources */,
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
 				FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */,
+				2BCAC1522656C94C00C51830 /* ProjectTableViewCell.swift in Sources */,
 				FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */,
 				FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */,
 				2B798E8F2625F76000394FF7 /* ProfileViewModel.swift in Sources */,
@@ -876,7 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JLWHA6949H;
+				DEVELOPMENT_TEAM = P46WHJJNMQ;
 				INFOPLIST_FILE = BTSPocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -897,7 +949,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JLWHA6949H;
+				DEVELOPMENT_TEAM = P46WHJJNMQ;
 				INFOPLIST_FILE = BTSPocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

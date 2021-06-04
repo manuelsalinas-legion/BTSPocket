@@ -7,15 +7,30 @@
 
 import Foundation
 
+enum RequestType {
+    case justPage(Int)
+    case pageAndFilter(Int, String)
+}
+
 struct TeamViewModel {
-    //Fuction that comes the data of the team in BTS
-    func getTeamMembers(_ numberOfPage: Int, _ inputSearch: String?, _ completition: @escaping( (Result<PaginationAllUsers, Error>) -> Void )) {
+    
+    // Fuction that comes the data of the team in BTS
+    func getTeamMembers(_ requestType: RequestType, _ completition: @escaping( (Result<PaginationAllUsers, Error>) -> Void )) {
+        var url = Constants.serverAddress + Constants.Endpoints.getAllUsers
+        
         if let userId = BTSApi.shared.currentSession?.id {
-            var url = Constants.serverAddress + Constants.Endpoints.getAllUsers + "?page=\(numberOfPage)&status=active&skipId=\(userId)"
-            if let inputToSearch = inputSearch,
-               inputSearch?.isEmpty == false {
-                url.append("&search=\(inputToSearch)")
+            // complete the url
+            switch requestType {
+            case .justPage(let page):
+                url.append("?page=\(page)&status=active&skipId=\(userId)")
+            case .pageAndFilter(let page, let filter):
+                if filter.isEmpty == true {
+                    url.append("?page=\(page)&status=active&skipId=\(userId)")
+                } else {
+                    url.append("?page=\(page)&status=active&skipId=\(userId)&search=\(filter)")
+                }
             }
+            // call get method
             BTSApi.shared.platformEP.getMethod(url) { (response: AllUsersReponse) in
                 if let paginationUsers = response.data {
                     completition(.success(paginationUsers))
@@ -23,7 +38,6 @@ struct TeamViewModel {
             } onError: { (error) in
                 completition(.failure(error))
             }
-
         }
     }
 }

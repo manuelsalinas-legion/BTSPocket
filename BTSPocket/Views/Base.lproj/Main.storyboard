@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -173,7 +173,7 @@
                     <connections>
                         <segue destination="qlj-5a-c27" kind="relationship" relationship="viewControllers" id="mZO-Hr-32A"/>
                         <segue destination="hhx-kM-F1V" kind="relationship" relationship="viewControllers" id="qqg-eG-Cyj"/>
-                        <segue destination="Swg-RM-mAp" kind="relationship" relationship="viewControllers" id="v8N-GD-fxW"/>
+                        <segue destination="4FP-T1-pO3" kind="relationship" relationship="viewControllers" id="v8N-GD-fxW"/>
                         <segue destination="lOb-ad-JoF" kind="relationship" relationship="viewControllers" id="Qqw-CM-KUU"/>
                     </connections>
                 </tabBarController>
@@ -292,7 +292,10 @@
                             <constraint firstItem="XNs-1b-N3y" firstAttribute="trailing" secondItem="dyg-aT-iQj" secondAttribute="trailing" id="ytO-Y5-eXb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="ud2-YG-C88"/>
+                    <tabBarItem key="tabBarItem" title="Profile" springLoaded="YES" id="ud2-YG-C88">
+                        <imageReference key="image" image="person.crop.circle" catalog="system" symbolScale="large"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="buttonBack" destination="5zZ-JY-ujM" id="Bxc-X1-DcP"/>
                         <outlet property="buttonLogout" destination="2KP-xp-XmU" id="6rq-If-Q4i"/>
@@ -307,10 +310,10 @@
             </objects>
             <point key="canvasLocation" x="-296" y="840"/>
         </scene>
-        <!--Team-->
+        <!--Team View Controller-->
         <scene sceneID="iWL-pJ-SS3">
             <objects>
-                <viewController id="Yez-D9-iu2" customClass="TeamViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamViewController" id="Yez-D9-iu2" customClass="TeamViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ga9-wK-TW3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,7 +336,6 @@
                             <constraint firstItem="Xjw-r3-rQk" firstAttribute="leading" secondItem="xAO-fw-wyZ" secondAttribute="leading" id="sqJ-EC-CrZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Team" id="GxR-RL-aQp"/>
                     <navigationItem key="navigationItem" id="ZDH-1x-fuP"/>
                     <connections>
                         <outlet property="tableViewTeam" destination="Xjw-r3-rQk" id="IXa-FY-96q"/>
@@ -343,21 +345,40 @@
             </objects>
             <point key="canvasLocation" x="419" y="1571"/>
         </scene>
-        <!--Projects-->
+        <!--Projects View Controller-->
         <scene sceneID="drj-UK-b1i">
             <objects>
                 <viewController id="Swg-RM-mAp" customClass="ProjectsViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hfO-C2-yYg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hSe-vZ-R2m">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Swg-RM-mAp" id="H4X-XU-rjd"/>
+                                    <outlet property="delegate" destination="Swg-RM-mAp" id="JP2-rp-lFP"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="y3H-4G-p0d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="y3H-4G-p0d" firstAttribute="bottom" secondItem="hSe-vZ-R2m" secondAttribute="bottom" id="8ma-ek-5yU"/>
+                            <constraint firstItem="y3H-4G-p0d" firstAttribute="trailing" secondItem="hSe-vZ-R2m" secondAttribute="trailing" id="ZcB-iP-C9S"/>
+                            <constraint firstItem="hSe-vZ-R2m" firstAttribute="leading" secondItem="y3H-4G-p0d" secondAttribute="leading" id="xF1-0h-phc"/>
+                            <constraint firstItem="hSe-vZ-R2m" firstAttribute="top" secondItem="y3H-4G-p0d" secondAttribute="top" id="z4u-2L-CNc"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Projects" id="Ahl-89-M1P"/>
+                    <navigationItem key="navigationItem" id="usx-1D-0VE"/>
+                    <connections>
+                        <outlet property="tableViewProjects" destination="hSe-vZ-R2m" id="vSo-gs-wdZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6a7-uX-YaB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177" y="840"/>
+            <point key="canvasLocation" x="1142" y="1571"/>
         </scene>
         <!--Timesheet-->
         <scene sceneID="jRc-9X-2cP">
@@ -369,17 +390,19 @@
                         <viewLayoutGuide key="safeArea" id="bJD-ql-Rhe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timesheet" id="Zwa-9N-HUZ"/>
+                    <tabBarItem key="tabBarItem" title="Timesheet" image="clock.fill" catalog="system" id="Zwa-9N-HUZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clj-MY-Hth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957" y="840"/>
+            <point key="canvasLocation" x="1877" y="840"/>
         </scene>
         <!--Team-->
         <scene sceneID="xx0-Qc-M7X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hhx-kM-F1V" customClass="BTSNavigationController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE"/>
+                    <tabBarItem key="tabBarItem" title="Team" id="BNm-UL-HxE">
+                        <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zgP-US-ebq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -394,12 +417,37 @@
             </objects>
             <point key="canvasLocation" x="418.84057971014494" y="839.73214285714278"/>
         </scene>
+        <!--Projects-->
+        <scene sceneID="bs7-sr-zaQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4FP-T1-pO3" customClass="BTSNavigationController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Projects" id="Ahl-89-M1P">
+                        <imageReference key="image" image="book.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tBP-Hi-X4q">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Swg-RM-mAp" kind="relationship" relationship="rootViewController" id="cP2-Fz-OlE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7uq-vl-Uyw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1143" y="840"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="arrow.up.forward.app" catalog="system" width="128" height="114"/>
+        <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="logoBTS" width="120" height="120"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="placeholderUser" width="950" height="891"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

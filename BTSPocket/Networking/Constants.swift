@@ -11,6 +11,7 @@ struct Constants {
     static let kTimeout: TimeInterval = 60
     static var urlBucketImages: String = "https://s3.amazonaws.com/cdn.platform.bluetrail.software/prod/"
     static let serverAddress = "https://platform.bluetrail.software/"
+    static let kMinimumCharactersForSearch: Int = 3
     
     struct Keychain {
         static let kSecretToken = "kSecretToken"
@@ -19,10 +20,15 @@ struct Constants {
     }
     
     struct Endpoints {
+        // User
         static let postAuthentication = "api/users/login"
         static let getUserProfile = "api/users/{userId}/profile"
         static let logoutUser = "api/users/logout"
         static let getAllUsers = "api/users"
+        
+        //Projects
+        static let getProjects = "api/projects"
+        static let getProjectDetails = "api/projects/"
     }
 }
 
