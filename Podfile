@@ -18,6 +18,9 @@ target 'BTSPocket' do
   
 # - - - Image cache 'Kingfisher'
   pod 'Kingfisher'
+
+# - - - Calendar - - -
+  pod 'JTAppleCalendar'
 end
 
 post_install do |installer|
