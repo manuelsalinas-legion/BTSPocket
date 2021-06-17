@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B15993D267B976900C9B642 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B15993C267B976900C9B642 /* CalendarCell.swift */; };
 		2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */; };
 		2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */; };
 		2B47ADDC2638B04000AA880F /* TeamsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */; };
@@ -102,6 +103,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B15993C267B976900C9B642 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		2B1BB9EE2631C5E40060231F /* SkillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsTableViewCell.swift; sourceTree = "<group>"; };
 		2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillsTableViewCell.xib; sourceTree = "<group>"; };
 		2B47ADDB2638B04000AA880F /* TeamsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewModel.swift; sourceTree = "<group>"; };
@@ -212,6 +214,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B15993B267B95D800C9B642 /* CalendarCell */ = {
+			isa = PBXGroup;
+			children = (
+				2B15993C267B976900C9B642 /* CalendarCell.swift */,
+			);
+			path = CalendarCell;
+			sourceTree = "<group>";
+		};
 		2B1BB9F52631F3780060231F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +381,7 @@
 		2BF89353260D225A00061491 /* Timesheet */ = {
 			isa = PBXGroup;
 			children = (
+				2B15993B267B95D800C9B642 /* CalendarCell */,
 				2BF89354260D227B00061491 /* TimesheetViewController.swift */,
 			);
 			path = Timesheet;
@@ -776,6 +787,7 @@
 				2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */,
 				FF0DDFE1260D491B003F2224 /* Array+extensions.swift in Sources */,
 				2BCAC1522656C94C00C51830 /* ProjectTableViewCell.swift in Sources */,
+				2B15993D267B976900C9B642 /* CalendarCell.swift in Sources */,
 				FF5CB627263079760080B4B9 /* LAContext+extension.swift in Sources */,
 				FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */,
 				2B798E8F2625F76000394FF7 /* ProfileViewModel.swift in Sources */,
