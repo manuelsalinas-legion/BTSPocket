@@ -11,4 +11,6 @@ import JTAppleCalendar
 class CalendarCell: JTACDayCell {
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var selectedView: UIView!
+    @IBOutlet weak var colorView: UIView!
 }
