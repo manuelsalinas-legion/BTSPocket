@@ -462,10 +462,10 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="37" height="61"/>
                                         <connections>
-                                            <outlet property="colorView" destination="XhR-zg-HMF" id="UEK-6b-yXT"/>
                                             <outlet property="dateLabel" destination="MQD-4N-fLr" id="qlM-as-xMV"/>
                                             <outlet property="dayOfWeekLabel" destination="Dut-Jy-c3G" id="gCh-KK-rbB"/>
                                             <outlet property="selectedView" destination="HfJ-PD-kXB" id="O4o-NE-X5W"/>
+                                            <outlet property="statusDotView" destination="XhR-zg-HMF" id="omG-G6-Fu5"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -545,9 +545,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="mSo-To-kLr"/>
                     <connections>
-                        <outlet property="TableViewTimesheets" destination="VzI-bF-lBf" id="zEL-3o-4PU"/>
                         <outlet property="calendarView" destination="Ssy-rr-9yp" id="B8a-e1-1NY"/>
-                        <outlet property="headerCalendarLabel" destination="yza-Xi-S74" id="8cN-e0-L1m"/>
+                        <outlet property="headerCalendarMonthLabel" destination="yza-Xi-S74" id="75f-mD-sm7"/>
+                        <outlet property="tableTimesheets" destination="VzI-bF-lBf" id="j6t-Vd-WhB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clj-MY-Hth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -15,7 +15,7 @@ enum StatusTimesheet: Int {
 
 class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
-    // MARK:- Outlets and variables
+    // MARK: Outlets and variables
     @IBOutlet weak private var calendarView: JTACMonthView!
     @IBOutlet weak private var headerCalendarMonthLabel: UIButton!
     @IBOutlet weak private var weekViewStackView: UIStackView!
@@ -158,13 +158,13 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
         calendarCell.dateLabel.attributedText = attributedDayText
         switch self.checkTimesheetDayAndFullColor(calendarCell, cellState) {
         case .empty:
-            calendarCell.colorView.backgroundColor = .lightGray
+            calendarCell.statusDotView.backgroundColor = .lightGray
         case .incomplete:
-            calendarCell.colorView.backgroundColor = .yellow
+            calendarCell.statusDotView.backgroundColor = .yellow
         case .complete:
-            calendarCell.colorView.backgroundColor = .green
+            calendarCell.statusDotView.backgroundColor = .green
         case .extraHours:
-            calendarCell.colorView.backgroundColor = .orange
+            calendarCell.statusDotView.backgroundColor = .orange
         }
         return calendarCell
     }
@@ -174,7 +174,6 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
         for registerTimesheet in weekTimesheets ?? [] {
             if let timesheetDate = registerTimesheet.date {
                 
-                let formatter = DateFormatter()
                 let timesheetIsoDate = timesheetDate.toISODate()?.date
                 
                 var workedHours = 0
