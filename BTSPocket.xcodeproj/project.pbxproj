@@ -81,6 +81,7 @@
 		FF01E889264DC4DE004687E7 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E876264DC4DE004687E7 /* Montserrat-Italic.ttf */; };
 		FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E877264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf */; };
 		FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */; };
+		FF021832268F7BD100E4A2B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF021834268F7BD100E4A2B1 /* Localizable.strings */; };
 		FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */; };
 		FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */; };
 		FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */; };
@@ -188,6 +189,8 @@
 		FF01E876264DC4DE004687E7 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		FF01E877264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		FF021833268F7BD100E4A2B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF021835268F7BFD00E4A2B1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendResponse.swift; sourceTree = "<group>"; };
 		FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
@@ -322,7 +325,7 @@
 				2BF892F8260C012300061491 /* SceneDelegate.swift */,
 				2BF892F6260C012300061491 /* AppDelegate.swift */,
 				2BF89304260C012700061491 /* Info.plist */,
-				2BF89301260C012700061491 /* LaunchScreen.storyboard */,
+				FF021834268F7BD100E4A2B1 /* Localizable.strings */,
 				2BF892FF260C012600061491 /* Assets.xcassets */,
 			);
 			path = BTSPocket;
@@ -331,6 +334,7 @@
 		2BF89330260CF3B600061491 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BF89301260C012700061491 /* LaunchScreen.storyboard */,
 				2BF892FC260C012300061491 /* Main.storyboard */,
 			);
 			path = Views;
@@ -630,6 +634,8 @@
 				2BF892F0260C012300061491 /* Frameworks */,
 				2BF892F1260C012300061491 /* Resources */,
 				96C7FB36EDAB2A7EEA1FAD9C /* [CP] Embed Pods Frameworks */,
+				FF021836268F7C9C00E4A2B1 /* Alphabetic Sorting Localization */,
+				FF021837268F7CBF00E4A2B1 /* Duplicated Localization */,
 			);
 			buildRules = (
 			);
@@ -661,6 +667,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 2BF892EA260C012300061491;
 			productRefGroup = 2BF892F4260C012300061491 /* Products */;
@@ -694,6 +701,7 @@
 				FF01E888264DC4DE004687E7 /* Montserrat-Regular.ttf in Resources */,
 				2B1BB9F12631C5E40060231F /* SkillsTableViewCell.xib in Resources */,
 				FF01E881264DC4DE004687E7 /* Montserrat-MediumItalic.ttf in Resources */,
+				FF021832268F7BD100E4A2B1 /* Localizable.strings in Resources */,
 				2BF89300260C012600061491 /* Assets.xcassets in Resources */,
 				FF01E889264DC4DE004687E7 /* Montserrat-Italic.ttf in Resources */,
 				FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
@@ -748,6 +756,42 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FF021836268F7C9C00E4A2B1 /* Alphabetic Sorting Localization */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Alphabetic Sorting Localization";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./scripts/alphabetic_sorting_localizables.sh\n";
+		};
+		FF021837268F7CBF00E4A2B1 /* Duplicated Localization */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Duplicated Localization";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./scripts/duplicated_localizables.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -850,6 +894,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		FF021834268F7BD100E4A2B1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF021833268F7BD100E4A2B1 /* en */,
+				FF021835268F7BFD00E4A2B1 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -857,6 +910,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -918,6 +972,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

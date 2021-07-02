@@ -27,7 +27,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonLogout: UIButton!
     @IBOutlet weak var buttonBack: UIButton!
     
-    private var refreshControl = UIRefreshControl()
     private var profileVM: ProfileViewModel = ProfileViewModel()
     private var profile: ProfileData? {
         didSet {
@@ -69,6 +68,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.backButtonArrow()
         self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,9 +115,9 @@ class ProfileViewController: UIViewController {
         self.tableView.separatorStyle = .none
         
         // refresh controller
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: #selector(self.reloadProfile), for: .valueChanged)
-        self.tableView.addSubview(self.refreshControl)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.reloadProfile), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
     }
     
     @objc private func reloadProfile() {
@@ -127,7 +127,7 @@ class ProfileViewController: UIViewController {
         case .teamMember:
             self.getMemberProfile()
         }
-        self.refreshControl.endRefreshing()
+        self.tableView.refreshControl?.endRefreshing()
     }
     
     // MARK: WEB SERVICE

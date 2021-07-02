@@ -12,8 +12,10 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
     // MARK:- Outlets and variables
     @IBOutlet weak private var calendarView: JTACMonthView!
-    @IBOutlet weak private var headerCalendarLabel: UIButton!
-    @IBOutlet weak var TableViewTimesheets: UITableView!
+    @IBOutlet weak private var headerCalendarMonthLabel: UIButton!
+    @IBOutlet weak private var weekViewStackView: UIStackView!
+    @IBOutlet weak var tableTimesheets: UITableView!
+    
     private var timesheetVM = TimesheetViewModel()
     private var weekTimesheets: [GetTimesheets]? {
         didSet {
@@ -23,14 +25,34 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         }
     }
     private var selectedDate: Date?
-    // MARK:- life cicle
+    
+    // MARK: life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Timesheet".localized
+        self.setup()
         self.setupCalendarView()
     }
     
-    // MARK:- setup UI calendar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.backButtonArrow()
+    }
+    
+    // MARK: SETUP
+    private func setup() {
+        self.title = "Timesheet".localized
+        self.weekViewStackView.addBorder(edges: [.top, .bottom], color: UIColor.grayCity(), thickness: 1)
+        
+        // Table
+        self.tableTimesheets.hideEmtpyCells()
+
+        // refresh controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        self.tableTimesheets.refreshControl = refreshControl
+    }
+    
+    // MARK: setup UI calendar
     private func setupCalendarView() {
         self.calendarView.minimumLineSpacing = 0
         self.calendarView.minimumInteritemSpacing = 0
@@ -64,6 +86,11 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         }
     }
     
+    // MARK: PULL TO REFRESH ACTION
+    @objc private func reload() {
+        self.tableTimesheets.refreshControl?.endRefreshing()
+    }
+    
     // MARK:- IBAcctions
     @IBAction private func nextWeek(_ sender: Any) {
         self.calendarView.deselectAllDates()
@@ -86,7 +113,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
         let dateSelectedString = dateFormatter.string(from: Date())
-        self.headerCalendarLabel.setTitle(dateSelectedString, for: .normal)
+        self.headerCalendarMonthLabel.setTitle(dateSelectedString, for: .normal)
     }
 }
 
@@ -144,7 +171,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
                 let order = Calendar.current.compare(currentTimesheetDate!, to: cellState.date, toGranularity: .day)
                 print("cellState: \(cellState.date)   yyyyyy \(currentTimesheetDate)" )
                 if order == .orderedSame {
-                    calendarCell.colorView.backgroundColor = .red
+                    calendarCell.statusDotView.backgroundColor = .red
                     print("cellState: \(cellState.date)   entra \(currentTimesheetDate)" )
                 }
             }
@@ -158,7 +185,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
         let dateSelectedString = dateFormatter.string(from: date)
-        self.headerCalendarLabel.setTitle(dateSelectedString, for: .normal)
+        self.headerCalendarMonthLabel.setTitle(dateSelectedString, for: .normal)
         
         self.selectedDate = date
     }

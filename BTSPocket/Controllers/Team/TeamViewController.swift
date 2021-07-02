@@ -23,7 +23,6 @@ class TeamViewController: UIViewController {
     @IBOutlet weak private var tableViewTeam: UITableView!
     
     private var searchbarController = UISearchController()
-    private var refreshControl = UIRefreshControl()
     private var currentPage: Int = 1
     private var totalPages: Int = 1
     private var teamsVM: TeamViewModel = TeamViewModel()
@@ -54,10 +53,15 @@ class TeamViewController: UIViewController {
             self.getTeamMembers(.firstPage)
         case .projectUsers:
             // Title
-            self.title = (project?.name ?? "") + "Team".localized
+            self.title = (project?.name?.capitalized ?? "") + " " + "Team".localized
             // Load users in project infor
             self.getProfileTeamMembers()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.backButtonArrow()
     }
         
     // MARK: SETUP
@@ -83,10 +87,11 @@ class TeamViewController: UIViewController {
         self.tableViewTeam.registerNib(UserTableViewCell.self)
         self.tableViewTeam.hideEmtpyCells()
         
-        // refresh control
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
-        self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        self.tableViewTeam.addSubview(self.refreshControl)
+        // refresh controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        self.tableViewTeam.refreshControl = refreshControl
     }
     
     // MARK:- WEB SERVICE TO GET USER PROJECTS
@@ -247,8 +252,8 @@ extension TeamViewController: UISearchBarDelegate {
     }
     
     // reload page of users
-    @objc func reload() {
+    @objc private func reload() {
         self.getTeamMembers(.refresh(1, self.searchbarController.searchBar.text?.trim() ?? ""))
-        self.refreshControl.endRefreshing()
+        self.tableViewTeam.refreshControl?.endRefreshing()
     }
 }

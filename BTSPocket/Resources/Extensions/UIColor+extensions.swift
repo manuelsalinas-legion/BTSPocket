@@ -354,4 +354,12 @@ extension UIColor
     class func btsBlue() -> UIColor {
         return UIColor(red: 0.080886, green: 0.153307, blue: 0.392179, alpha: 1)
     }
+    
+    class func itemSelection() -> UIColor {
+        return UIColor(red: 0.922014, green: 0.948368, blue: 0.984320, alpha: 1)
+    }
+    
+    class func daySelection() -> UIColor {
+        return UIColor(red: 0.638021, green: 0.829152, blue: 0.945116, alpha: 1)
+    }
 }

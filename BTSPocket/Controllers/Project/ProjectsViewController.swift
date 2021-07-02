@@ -29,6 +29,11 @@ class ProjectsViewController: UIViewController {
         self.setUpUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.backButtonArrow()
+    }
+    
     // MARK: setupUI function
     private func setUpUI() {
         self.title = "Projects".localized
@@ -49,10 +54,11 @@ class ProjectsViewController: UIViewController {
         self.tableViewProjects.hideEmtpyCells()
         self.tableViewProjects.registerNib(ProjectTableViewCell.self)
         
-        // Refresh control
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
-        self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        self.tableViewProjects.addSubview(refreshControl)
+        // refresh controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        self.tableViewProjects.refreshControl = refreshControl
         
         self.getProjectsByUser(.firstPage)
     }
@@ -163,7 +169,7 @@ extension ProjectsViewController: UISearchBarDelegate {
         }
     }
     
-    @objc func reload() {
+    @objc private func reload() {
         self.getProjectsByUser(.refresh(1, self.searchController.searchBar.text?.trim() ?? ""))
         self.refreshControl.endRefreshing()
     }
