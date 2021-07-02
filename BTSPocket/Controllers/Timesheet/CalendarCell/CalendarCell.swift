@@ -12,5 +12,10 @@ class CalendarCell: JTACDayCell {
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var selectedView: UIView!
-    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var statusDotView: UIView!
+    
+    override func awakeFromNib() {
+        self.selectedView.backgroundColor = UIColor.daySelection()
+        self.statusDotView.round()
+    }
 }

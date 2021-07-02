@@ -84,7 +84,7 @@ extension UITableViewController
 
 extension UITableViewCell
 { 
-    func enableSelectedColor(_ color: UIColor = UIColor(red: 0.922014, green: 0.948368, blue: 0.984320, alpha: 1))
+    func enableSelectedColor(_ color: UIColor = UIColor.itemSelection())
     {
         //Color for selected cell
         let selectedColor = UIView()

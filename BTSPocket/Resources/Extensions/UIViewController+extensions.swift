@@ -21,4 +21,8 @@ extension UIViewController {
             sceneDelegate?.switchRoot(to: .login(true))
         }
     }
+    
+    func backButtonArrow() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
 }
