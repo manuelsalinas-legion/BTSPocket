@@ -21,6 +21,9 @@ target 'BTSPocket' do
 
 # - - - Calendar - - -
   pod 'JTAppleCalendar'
+  
+# - - - SwiftDate - - -
+  pod 'SwiftDate'
 end
 
 post_install do |installer|

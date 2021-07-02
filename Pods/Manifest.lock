@@ -8,6 +8,7 @@ PODS:
   - Realm/Headers (10.7.5)
   - RealmSwift (10.7.5):
     - Realm (= 10.7.5)
+  - SwiftDate (6.3.1)
   - SwiftMessages (9.0.2):
     - SwiftMessages/App (= 9.0.2)
   - SwiftMessages/App (9.0.2)
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - Kingfisher
   - PKHUD
   - RealmSwift
+  - SwiftDate
   - SwiftMessages
 
 SPEC REPOS:
@@ -28,6 +30,7 @@ SPEC REPOS:
     - PKHUD
     - Realm
     - RealmSwift
+    - SwiftDate
     - SwiftMessages
 
 SPEC CHECKSUMS:
@@ -37,8 +40,9 @@ SPEC CHECKSUMS:
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   Realm: 06f5c67f87cb8c5f27b122218ce22e9a77314517
   RealmSwift: b46535b52e69b9ed33912f0fcb3182ab0a5743ee
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftMessages: 77b847d1405f99046ffbd0d856bc7d73e6892686
 
-PODFILE CHECKSUM: b033c028f7478d57351b9e79857109ae073556f1
+PODFILE CHECKSUM: 482e2dd3904fb85ec3c97ba06cc38cb2a1ac7eca
 
 COCOAPODS: 1.10.1

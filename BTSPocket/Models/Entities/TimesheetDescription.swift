@@ -11,6 +11,7 @@ struct TimesheetDescription: Codable {
     var id: Int?
     var timesheetId: Int?
     var projectId: Int?
+    var dedicatedHours: Int?
     var task: String?
     var isHappy: Bool?
     var note: String?

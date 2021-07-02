@@ -7,6 +7,11 @@
 
 import UIKit
 import JTAppleCalendar
+import SwiftDate
+
+enum StatusTimesheet: Int {
+    case empty, incomplete, complete, extraHours
+}
 
 class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
@@ -15,14 +20,10 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak private var headerCalendarLabel: UIButton!
     @IBOutlet weak var TableViewTimesheets: UITableView!
     private var timesheetVM = TimesheetViewModel()
-    private var weekTimesheets: [GetTimesheets]? {
-        didSet {
-            DispatchQueue.main.async {
-                self.calendarView.reloadData()
-            }
-        }
-    }
+    private var weekTimesheets: [GetTimesheets]?
     private var selectedDate: Date?
+    
+    
     // MARK:- life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
             switch response {
             case .success(let timesheets):
                 self?.weekTimesheets = timesheets
+                self?.calendarView.reloadData()
             case .failure(let error):
                 print(error)
                 print(error.localizedDescription)
@@ -112,10 +114,9 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     }
     
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
-        guard let calendarCell = calendarView.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as? CalendarCell else {
-            return JTACDayCell()
-        }
-        print(date)
+        guard let calendarCell = calendarView.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as? CalendarCell else { return JTACDayCell() }
+//        calendarCell.isHidden = cellState.isSelected ? false : true
+        
         if cellState.isSelected {
             self.selectedDate = cellState.date
             calendarCell.selectedView.isHidden = false
@@ -130,25 +131,49 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
             attributedDayText.addAttributes([NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue], range: NSRange(location: 0, length: attributedDayText.string.count))
         }
         calendarCell.dateLabel.attributedText = attributedDayText
-        self.checkTimesheetDayAndFullCollor(calendarCell, cellState)
+        switch self.checkTimesheetDayAndFullColor(calendarCell, cellState) {
+        case .empty:
+            calendarCell.colorView.backgroundColor = .lightGray
+        case .incomplete:
+            calendarCell.colorView.backgroundColor = .yellow
+        case .complete:
+            calendarCell.colorView.backgroundColor = .green
+        case .extraHours:
+            calendarCell.colorView.backgroundColor = .orange
+        }
         return calendarCell
     }
     
-    func checkTimesheetDayAndFullCollor(_ calendarCell: CalendarCell, _ cellState: CellState) {
+    func checkTimesheetDayAndFullColor(_ calendarCell: CalendarCell, _ cellState: CellState) -> StatusTimesheet {
+        var status: StatusTimesheet = .incomplete
         for registerTimesheet in weekTimesheets ?? [] {
-            if let timesheetDate = registerTimesheet.date,
-               registerTimesheet.date?.isEmpty == false {
+            if let timesheetDate = registerTimesheet.date {
+                
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                let currentTimesheetDate = formatter.date(from: timesheetDate)
-                let order = Calendar.current.compare(currentTimesheetDate!, to: cellState.date, toGranularity: .day)
-                print("cellState: \(cellState.date)   yyyyyy \(currentTimesheetDate)" )
-                if order == .orderedSame {
-                    calendarCell.colorView.backgroundColor = .red
-                    print("cellState: \(cellState.date)   entra \(currentTimesheetDate)" )
+                let timesheetIsoDate = timesheetDate.toISODate()?.date
+                
+                var workedHours = 0
+                
+                if cellState.date.day == timesheetIsoDate?.day {
+                    for descriptionTimesheet: TimesheetDescription in registerTimesheet.descriptions ?? [] {
+                        if let dedicatedHours = descriptionTimesheet.dedicatedHours {
+                            workedHours += dedicatedHours
+                        }
+                    }
+                }
+                
+                if workedHours == 0 {
+                    status = .empty
+                } else if workedHours < Constants.hoursWorkingDay {
+                    status = .incomplete
+                } else if workedHours == Constants.hoursWorkingDay {
+                    status = .complete
+                } else if workedHours > Constants.hoursWorkingDay {
+                    status = .extraHours
                 }
             }
         }
+        return status
     }
     
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
@@ -180,7 +205,6 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
 
 extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of row section")
         return weekTimesheets?.count ?? 0
     }
     

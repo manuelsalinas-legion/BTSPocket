@@ -12,6 +12,7 @@ struct Constants {
     static var urlBucketImages: String = "https://s3.amazonaws.com/cdn.platform.bluetrail.software/prod/"
     static let serverAddress = "https://platform.bluetrail.software/"
     static let kMinimumCharactersForSearch: Int = 3
+    static let hoursWorkingDay: Int = 8
     
     struct Keychain {
         static let kSecretToken = "kSecretToken"
