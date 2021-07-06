@@ -52,6 +52,9 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.title = "Timesheet".localized
         self.weekViewStackView.addBorder(edges: [.top, .bottom], color: UIColor.grayCity(), thickness: 1)
         
+        let btnCreateNew = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createTimesheet))
+        self.navigationItem.rightBarButtonItem = btnCreateNew
+        
         // Table
         self.tableTimesheets.hideEmtpyCells()
 
@@ -103,7 +106,19 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.tableTimesheets.refreshControl?.endRefreshing()
     }
     
-    // MARK:- IBAcctions
+    // MARK: NEW TIMESHEET
+    @objc private func createTimesheet() {
+        
+        let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
+        vcNewTimesheet.mode = .new
+        
+        let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
+        navBar.modalPresentationStyle = .fullScreen
+        
+        self.present(navBar, animated: true, completion: nil)
+    }
+    
+    // MARK: ACTIONS BUTTONS
     @IBAction private func nextWeek(_ sender: Any) {
         self.calendarView.deselectAllDates()
         self.calendarView.scrollToSegment(.next) {
