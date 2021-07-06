@@ -638,6 +638,24 @@
             </objects>
             <point key="canvasLocation" x="1876.8115942028987" y="839.73214285714278"/>
         </scene>
+        <!--Timesheet Detail Controller-->
+        <scene sceneID="mry-6r-47z">
+            <objects>
+                <viewController storyboardIdentifier="TimesheetDetailController" id="YbQ-aD-XzC" customClass="TimesheetDetailController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="99V-51-eKD"/>
+                        <viewControllerLayoutGuide type="bottom" id="CJR-Gk-VnC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LEL-09-Dcc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aah-UT-pT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2806" y="1571"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
