@@ -22,8 +22,18 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak var tableTimesheets: UITableView!
     
     private var timesheetVM = TimesheetViewModel()
-    private var weekTimesheets: [GetTimesheets]?
+    private var weekTimesheets: [GetTimesheets]? {
+        didSet {
+            DispatchQueue.main.async { self.calendarView.reloadData() }
+        }
+    }
+    private var dayTimesheets: GetTimesheets? {
+        didSet {
+             self.tableTimesheets.reloadData()
+        }
+    }
     private var selectedDate: Date?
+    var times: Int = 0
     
     // MARK: life cicle
     override func viewDidLoad() {
@@ -49,6 +59,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
         self.tableTimesheets.refreshControl = refreshControl
+        self.tableTimesheets.registerNib(TimesheetTableViewCell.self)
     }
     
     // MARK: setup UI calendar
@@ -78,7 +89,8 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
             switch response {
             case .success(let timesheets):
                 self?.weekTimesheets = timesheets
-                self?.calendarView.reloadData()
+                self?.times += 1
+                print(self?.times)
             case .failure(let error):
                 print(error)
                 print(error.localizedDescription)
@@ -115,6 +127,21 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         let dateSelectedString = dateFormatter.string(from: Date())
         self.headerCalendarMonthLabel.setTitle(dateSelectedString, for: .normal)
     }
+    
+    private func updateTableView(date: Date) {
+        self.selectedDate = date
+        self.getTimesheets(self.calendarView.visibleDates())
+        
+        for (index, timesheetRegister) in weekTimesheets?.enumerated() ?? [].enumerated() {
+            if self.selectedDate?.day == timesheetRegister.date?.toISODate()?.date.day {
+                dayTimesheets = weekTimesheets![index]
+                break
+            } else {
+                dayTimesheets = nil
+            }
+        }
+        
+    }
 }
 
 // MARK:- JTACMonthViewDelegate and JTACMonthViewDataSource
@@ -140,7 +167,6 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
         guard let calendarCell = calendarView.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as? CalendarCell else { return JTACDayCell() }
-//        calendarCell.isHidden = cellState.isSelected ? false : true
         
         if cellState.isSelected {
             self.selectedDate = cellState.date
@@ -170,7 +196,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     }
     
     func checkTimesheetDayAndFullColor(_ calendarCell: CalendarCell, _ cellState: CellState) -> StatusTimesheet {
-        var status: StatusTimesheet = .incomplete
+        var status: StatusTimesheet = .empty
         for registerTimesheet in weekTimesheets ?? [] {
             if let timesheetDate = registerTimesheet.date {
                 
@@ -179,21 +205,22 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
                 var workedHours = 0
                 
                 if cellState.date.day == timesheetIsoDate?.day {
-                    for descriptionTimesheet: TimesheetDescription in registerTimesheet.descriptions ?? [] {
+                    for descriptionTimesheet in registerTimesheet.descriptions ?? [] {
                         if let dedicatedHours = descriptionTimesheet.dedicatedHours {
                             workedHours += dedicatedHours
                         }
                     }
-                }
                 
-                if workedHours == 0 {
-                    status = .empty
-                } else if workedHours < Constants.hoursWorkingDay {
-                    status = .incomplete
-                } else if workedHours == Constants.hoursWorkingDay {
-                    status = .complete
-                } else if workedHours > Constants.hoursWorkingDay {
-                    status = .extraHours
+                    if workedHours == 0 {
+                        status = .empty
+                    } else if workedHours < Constants.hoursWorkingDay {
+                        status = .incomplete
+                    } else if workedHours == Constants.hoursWorkingDay {
+                        status = .complete
+                    } else if workedHours > Constants.hoursWorkingDay {
+                        status = .extraHours
+                    }
+                    break
                 }
             }
         }
@@ -209,7 +236,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
         let dateSelectedString = dateFormatter.string(from: date)
         self.headerCalendarMonthLabel.setTitle(dateSelectedString, for: .normal)
         
-        self.selectedDate = date
+        self.updateTableView(date: date)
     }
     
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
@@ -227,15 +254,30 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     }
 }
 
+// MARK: Table Delegate
 extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weekTimesheets?.count ?? 0
+        return dayTimesheets?.descriptions?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print("cellfor row")
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withClass: TimesheetTableViewCell.self)
+        cell.setTimesheetValues(timesheetDescription: dayTimesheets?.descriptions?[indexPath.row])
+        return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
+            print("edit")
+        }
+        let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
+            print("Delete")
+        }
+        actionEdit.backgroundColor = .blue
+        return [actionEdit, actionDelete]
+    }
 }
