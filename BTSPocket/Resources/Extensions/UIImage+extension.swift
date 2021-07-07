@@ -9,5 +9,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    
+    func img() -> UIImage {
+        return #imageLiteral(resourceName:"small-checkmark")
+    }
 }
