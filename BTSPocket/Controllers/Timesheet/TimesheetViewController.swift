@@ -308,14 +308,18 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
-//            print("edit")
-//        }
-//        let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
-//            print("Delete")
-//        }
-//        actionEdit.backgroundColor = .blue
-//        return [actionEdit, actionDelete]
-//    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
+            print("edit")
+        }
+        let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
+            print("Delete")
+        }
+        actionEdit.backgroundColor = .blue
+        return [actionEdit, actionDelete]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
