@@ -295,4 +295,8 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         actionEdit.backgroundColor = .blue
         return [actionEdit, actionDelete]
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
