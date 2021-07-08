@@ -14,6 +14,8 @@ class TimesheetTableViewCell: UITableViewCell {
     @IBOutlet weak var labelSubtitle: UILabel!
     @IBOutlet weak var imageViewIsHappy: UIImageView!
     @IBOutlet weak var buttonNote: UIButton!
+    private var noteMessage: String?
+    var onTapNote: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,10 +25,15 @@ class TimesheetTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func noteClicked(_ sender: Any) {
+        self.onTapNote?()
+    }
+    
     func setTimesheetValues(timesheetDescription: TimesheetDescription?) {
         self.labelHours?.text = String(timesheetDescription?.dedicatedHours ?? 0)
         self.labelTitle?.text = timesheetDescription?.projectName
         self.labelSubtitle?.text = timesheetDescription?.task
+        self.noteMessage = timesheetDescription?.note
         self.imageViewIsHappy?.image = timesheetDescription?.isHappy ?? true ? #imageLiteral(resourceName: "iconHappy") : #imageLiteral(resourceName: "iconSad")
         self.buttonNote.isHidden = timesheetDescription?.note?.isEmpty ?? true ? true : false
     }

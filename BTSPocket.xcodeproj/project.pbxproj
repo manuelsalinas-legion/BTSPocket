@@ -36,6 +36,8 @@
 		2B798EAD262601B500394FF7 /* ProfileDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B798EAC262601B500394FF7 /* ProfileDataRealm.swift */; };
 		2BA9720926896605002EBAE6 /* TimesheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA9720726896605002EBAE6 /* TimesheetTableViewCell.swift */; };
 		2BA9720A26896605002EBAE6 /* TimesheetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BA9720826896605002EBAE6 /* TimesheetTableViewCell.xib */; };
+		2BAC20DF2696DB60006719A4 /* NoteAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC20DD2696DB60006719A4 /* NoteAlertViewController.swift */; };
+		2BAC20E02696DB60006719A4 /* NoteAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BAC20DE2696DB60006719A4 /* NoteAlertViewController.xib */; };
 		2BAC79F3265CC09A002291A8 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC79F2265CC09A002291A8 /* Client.swift */; };
 		2BAC79F6265CC160002291A8 /* UserInProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC79F5265CC160002291A8 /* UserInProject.swift */; };
 		2BAC79FE265CCAA0002291A8 /* ProjectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */; };
@@ -141,6 +143,8 @@
 		2B798EAC262601B500394FF7 /* ProfileDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataRealm.swift; sourceTree = "<group>"; };
 		2BA9720726896605002EBAE6 /* TimesheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetTableViewCell.swift; sourceTree = "<group>"; };
 		2BA9720826896605002EBAE6 /* TimesheetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimesheetTableViewCell.xib; sourceTree = "<group>"; };
+		2BAC20DD2696DB60006719A4 /* NoteAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAlertViewController.swift; sourceTree = "<group>"; };
+		2BAC20DE2696DB60006719A4 /* NoteAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteAlertViewController.xib; sourceTree = "<group>"; };
 		2BAC79F2265CC09A002291A8 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		2BAC79F5265CC160002291A8 /* UserInProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInProject.swift; sourceTree = "<group>"; };
 		2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetails.swift; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				2B798EA52625F9ED00394FF7 /* Alert.swift */,
+				2BAC20DD2696DB60006719A4 /* NoteAlertViewController.swift */,
+				2BAC20DE2696DB60006719A4 /* NoteAlertViewController.xib */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -688,6 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF01E87C264DC4DE004687E7 /* Montserrat-Light.ttf in Resources */,
+				2BAC20E02696DB60006719A4 /* NoteAlertViewController.xib in Resources */,
 				FF01E87F264DC4DE004687E7 /* Montserrat-Thin.ttf in Resources */,
 				FF01E87E264DC4DE004687E7 /* Montserrat-ExtraLight.ttf in Resources */,
 				FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */,
@@ -860,6 +867,7 @@
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
 				2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */,
 				2B72C8662684E88E0053C764 /* GetTimesheets.swift in Sources */,
+				2BAC20DF2696DB60006719A4 /* NoteAlertViewController.swift in Sources */,
 				FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */,
 				2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,

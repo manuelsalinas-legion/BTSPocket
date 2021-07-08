@@ -21,19 +21,23 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak private var weekViewStackView: UIStackView!
     @IBOutlet weak var tableTimesheets: UITableView!
     
+    private let alertService = AlertService()
     private var timesheetVM = TimesheetViewModel()
     private var weekTimesheets: [GetTimesheets]? {
         didSet {
-            DispatchQueue.main.async { self.calendarView.reloadData() }
+            DispatchQueue.main.async {
+                self.calendarView.reloadData()
+            }
         }
     }
     private var dayTimesheets: GetTimesheets? {
         didSet {
-             self.tableTimesheets.reloadData()
+            DispatchQueue.main.async {
+                self.tableTimesheets.reloadData()
+            }
         }
     }
     private var selectedDate: Date?
-    var times: Int = 0
     
     // MARK: life cicle
     override func viewDidLoad() {
@@ -92,8 +96,8 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
             switch response {
             case .success(let timesheets):
                 self?.weekTimesheets = timesheets
-                self?.times += 1
-                print(self?.times)
+                self?.tableTimesheets.reloadData()
+                self?.calendarView.reloadData()
             case .failure(let error):
                 print(error)
                 print(error.localizedDescription)
@@ -123,6 +127,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.calendarView.deselectAllDates()
         self.calendarView.scrollToSegment(.next) {
             self.calendarView.selectDates([ self.calendarView.visibleDates().monthDates[0].date ])
+            self.updateTableView(date: self.calendarView.visibleDates().monthDates[0].date)
         }
     }
     
@@ -130,6 +135,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.calendarView.deselectAllDates()
         self.calendarView.scrollToSegment(.previous) {
             self.calendarView.selectDates([ self.calendarView.visibleDates().monthDates[0].date ])
+            self.updateTableView(date: self.calendarView.visibleDates().monthDates[0].date)
         }
     }
     
@@ -145,17 +151,19 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
     private func updateTableView(date: Date) {
         self.selectedDate = date
-        self.getTimesheets(self.calendarView.visibleDates())
-        
-        for (index, timesheetRegister) in weekTimesheets?.enumerated() ?? [].enumerated() {
-            if self.selectedDate?.day == timesheetRegister.date?.toISODate()?.date.day {
-                dayTimesheets = weekTimesheets![index]
-                break
-            } else {
-                dayTimesheets = nil
+        DispatchQueue.main.async {
+            self.getTimesheets(self.calendarView.visibleDates())
+            
+            for (index, timesheetRegister) in self.weekTimesheets?.enumerated() ?? [].enumerated() {
+                if self.selectedDate?.day == timesheetRegister.date?.toISODate()?.date.day {
+                    self.dayTimesheets = self.weekTimesheets![index]
+                    break
+                } else {
+                    self.dayTimesheets = nil
+                }
             }
+            self.tableTimesheets.reloadData()
         }
-        
     }
 }
 
@@ -262,6 +270,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         self.calendarView.selectDates([ visibleDates.monthDates[0].date ])
         self.getTimesheets(visibleDates)
+        self.updateTableView(date: visibleDates.monthDates[0].date)
     }
     
     func calendar(_ calendar: JTACMonthView, willScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -278,21 +287,35 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: TimesheetTableViewCell.self)
         cell.setTimesheetValues(timesheetDescription: dayTimesheets?.descriptions?[indexPath.row])
+//        cell.buttonNote.addTarget(self, action: #selector(self.showNoteAlert), for: .touchUpInside)
+        // week self si necesitas algo de la clase.
+        // algo de tu clase padre que se este reteniendo.
+        //
+        cell.onTapNote = { [weak self] in
+            print(self?.dayTimesheets?.descriptions?[indexPath.row].note)
+            
+            // mostrar alerta personalizada enviando daytimesheet como parametro.
+        }
         return cell
+    }
+    
+    @objc func showNoteAlert() {
+        
+        self.present(alert, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
-            print("edit")
-        }
-        let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
-            print("Delete")
-        }
-        actionEdit.backgroundColor = .blue
-        return [actionEdit, actionDelete]
-    }
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
+//            print("edit")
+//        }
+//        let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
+//            print("Delete")
+//        }
+//        actionEdit.backgroundColor = .blue
+//        return [actionEdit, actionDelete]
+//    }
 }
