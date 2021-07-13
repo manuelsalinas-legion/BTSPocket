@@ -24,6 +24,10 @@ target 'BTSPocket' do
   
 # - - - SwiftDate - - -
   pod 'SwiftDate'
+
+# - - - Keyboard - - - 
+pod 'IQKeyboardManagerSwift'
+
 end
 
 post_install do |installer|

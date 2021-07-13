@@ -86,6 +86,8 @@
 		FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E877264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf */; };
 		FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */; };
 		FF021832268F7BD100E4A2B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF021834268F7BD100E4A2B1 /* Localizable.strings */; };
+		FF03BB5D269E4AC3008FF927 /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF03BB5B269E4AC3008FF927 /* TextViewCell.swift */; };
+		FF03BB5E269E4AC3008FF927 /* TextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF03BB5C269E4AC3008FF927 /* TextViewCell.xib */; };
 		FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */; };
 		FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */; };
 		FF0DDFD2260D40D3003F2224 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */; };
@@ -200,6 +202,8 @@
 		FF01E878264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FF021833268F7BD100E4A2B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF021835268F7BFD00E4A2B1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF03BB5B269E4AC3008FF927 /* TextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
+		FF03BB5C269E4AC3008FF927 /* TextViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewCell.xib; sourceTree = "<group>"; };
 		FF0DDFC8260D3FEF003F2224 /* BackendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendResponse.swift; sourceTree = "<group>"; };
 		FF0DDFCF260D40D3003F2224 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FF0DDFD0260D40D3003F2224 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 		2B798EA32625F9ED00394FF7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FF03BB5A269E4AC3008FF927 /* TextViewCell */,
 				2B798EA42625F9ED00394FF7 /* Alert */,
 			);
 			path = Components;
@@ -505,6 +510,15 @@
 			path = Montserrat;
 			sourceTree = "<group>";
 		};
+		FF03BB5A269E4AC3008FF927 /* TextViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FF03BB5B269E4AC3008FF927 /* TextViewCell.swift */,
+				FF03BB5C269E4AC3008FF927 /* TextViewCell.xib */,
+			);
+			path = TextViewCell;
+			sourceTree = "<group>";
+		};
 		FF0DDFC4260D3F8F003F2224 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +724,7 @@
 				FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */,
 				FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */,
 				2BCAC1532656C94C00C51830 /* ProjectTableViewCell.xib in Resources */,
+				FF03BB5E269E4AC3008FF927 /* TextViewCell.xib in Resources */,
 				FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */,
 				2B798E752625F68800394FF7 /* ProfileTableViewCell.xib in Resources */,
 				FF01E87D264DC4DE004687E7 /* Montserrat-ThinItalic.ttf in Resources */,
@@ -871,6 +886,7 @@
 				2BAC79F6265CC160002291A8 /* UserInProject.swift in Sources */,
 				2BF892F9260C012300061491 /* SceneDelegate.swift in Sources */,
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
+				FF03BB5D269E4AC3008FF927 /* TextViewCell.swift in Sources */,
 				2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */,
 				2B5E2D45269D5DD60092D524 /* PostTimesheet.swift in Sources */,
 				2B72C8662684E88E0053C764 /* GetTimesheets.swift in Sources */,

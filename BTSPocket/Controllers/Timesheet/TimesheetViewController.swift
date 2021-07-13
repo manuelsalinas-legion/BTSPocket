@@ -284,6 +284,7 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTimesheetValues(timesheetDescription: descriptionsTS[indexPath.row])
         
         cell.onTapNote = { [weak self] in
+            // FIXME: Create a controller with popup style instead of use alert native class (uncustomizable)
             let alertVC = self?.alertService.alert(descriptionsTS[indexPath.row].note)
             self?.present(alertVC!, animated: true)
         }
@@ -330,21 +331,18 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
             self.present(alertDelete, animated: true, completion: nil)
         }
         
-        actionEdit.backgroundColor = .blue
-        return [actionEdit, actionDelete]
+        actionEdit.backgroundColor = .blueBelize()
+        actionDelete.backgroundColor = .redAlizarin()
+        return [actionDelete, actionEdit]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
-        vcNewTimesheet.mode = .detail
         vcNewTimesheet.dateTitle = dayTimesheets?.date
         vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
-        
-        let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
-        navBar.modalPresentationStyle = .fullScreen
-        
-        self.present(navBar, animated: true, completion: nil)
+                
+        self.navigationController?.pushViewController(vcNewTimesheet, animated: true)
     }
 }
