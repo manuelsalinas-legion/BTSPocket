@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         self.setup()
         
         if expiredToken {
-            MessageManager.shared.showBar(title: "Expired session", subtitle: "Your session has expired. Please, login again", type: .info, containsIcon: true, fromBottom: false)
+            MessageManager.shared.showBar(title: "Expired session".localized, subtitle: "Your session has expired. Please, login again".localized, type: .info, containsIcon: true, fromBottom: false)
         }
     }
     
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
                     return
                 }
                 self.buttonFaceIdTouchId.isHidden = false
-                self.buttonFaceIdTouchId.setTitle(LAContext().biometryType == LABiometryType.faceID ? "Login with Face ID" : "Login with Touch ID", for: .normal)
+                self.buttonFaceIdTouchId.setTitle(LAContext().biometryType == LABiometryType.faceID ? "Login with Face ID".localized : "Login with Touch ID".localized, for: .normal)
             }
         } else {
             self.buttonFaceIdTouchId.isHidden = true
@@ -76,12 +76,12 @@ class LoginViewController: UIViewController {
         
         // Validations
         guard let email = self.textfieldEmail.text?.trim(), !email.isEmpty, email.isEmail() else {
-            MessageManager.shared.showBar(title: "Warning", subtitle: "Invalid email", type: .warning, containsIcon: true, fromBottom: false)
+            MessageManager.shared.showBar(title: "Warning".localized, subtitle: "Invalid email".localized, type: .warning, containsIcon: true, fromBottom: false)
             return
         }
         
         guard let pass = self.textfieldPassword.text?.trim(), !pass.isEmpty else {
-            MessageManager.shared.showBar(title: "Warning", subtitle: "Empty password", type: .warning, containsIcon: true, fromBottom: false)
+            MessageManager.shared.showBar(title: "Warning".localized, subtitle: "Empty password".localized, type: .warning, containsIcon: true, fromBottom: false)
             return
         }
 
@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    MessageManager.shared.showBar(title: "Error", subtitle: "Invalid credentials", type: .error, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Error".localized, subtitle: "Invalid credentials".localized, type: .error, containsIcon: true, fromBottom: false)
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -108,13 +108,13 @@ class LoginViewController: UIViewController {
                         // si hay credenciales en el key chain
                         if KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthUsername) == nil && KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthPassword) == nil {
                             // show alert
-                            let alert = UIAlertController(title: "Relate credentials", message: "Relate credentials with biometric autentication", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Relate credentials".localized, message: "Relate credentials with biometric autentication".localized, preferredStyle: .alert)
                             // action no
                             alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
                                 self?.showHome()
                             }))
                             // action yes
-                            alert.addAction(UIAlertAction(title: "Agree", style: .default, handler: { (_) in
+                            alert.addAction(UIAlertAction(title: "Agree".localized, style: .default, handler: { (_) in
                                 // autenticate with LA
                                 self?.localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Reason") { (success, error) in
                                     if success {
@@ -139,7 +139,7 @@ class LoginViewController: UIViewController {
     
     @IBAction private func showBiometrics() {
         let localAuthenticationContext = LAContext()
-        localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode"
+        localAuthenticationContext.localizedFallbackTitle = "Please use your Passcode".localized
 
         var authorizationError: NSError?
         let reason = "Authentication required to access the secure data"
@@ -165,7 +165,7 @@ class LoginViewController: UIViewController {
                     self.loginVM.login(username, password, { [weak self] error in
                         if let error = error {
                             // Show message
-                            MessageManager.shared.showBar(title: "Error", subtitle: error.localizedDescription, type: .error, containsIcon: true, fromBottom: false)
+                            MessageManager.shared.showBar(title: "Error".localized, subtitle: error.localizedDescription, type: .error, containsIcon: true, fromBottom: false)
                             
                             // Clean Textfields
                             DispatchQueue.main.async {

@@ -13,7 +13,12 @@ enum TimesheetDetailMode {
 
 class TimesheetDetailController: UIViewController {
     // MARK: OUTLWTS & PROPERTIES
+    @IBOutlet weak var labelHours: UILabel!
+    @IBOutlet weak var labelTask: UITextView!
+    @IBOutlet weak var labelComment: UITextView!
+    
     var mode: TimesheetDetailMode = .detail
+    var dateTitle: String?
     
     
     // MARK: LYCE CYLE
@@ -38,12 +43,18 @@ class TimesheetDetailController: UIViewController {
             self.title = self.mode == .new ? "New Timesheet".localized : "date title goes here"
             
         case .detail:
-            self.title = "date title goes here"
+            self.title = self.dateTitle
         }
     }
     
     // MARK: ACTIONS
     @objc private func close() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setupVales(_ description: TimesheetDescription?) {
+        self.labelHours?.text = String(description?.dedicatedHours ?? 8)
+        self.labelTask?.text = description?.task
+        self.labelComment?.text = description?.note
     }
 }

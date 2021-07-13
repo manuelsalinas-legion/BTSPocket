@@ -27,6 +27,7 @@ struct Constants {
         static let logoutUser = "api/users/logout"
         static let getAllUsers = "api/users"
         static let getUserTimesheet = "api/users/{userId}/timesheet"
+        static let deleteUserTimesheet = "api/users/{userId}/timesheet"
         
         //Projects
         static let getProjects = "api/projects"

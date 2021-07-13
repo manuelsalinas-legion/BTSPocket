@@ -7,17 +7,28 @@
 
 import UIKit
 
-class NoteAlertViewController: UIAlertController {
+class NoteAlertViewController: UIViewController {
 
-    @IBOutlet weak var labelMessage: UILabel!
+    // MARK: Outlets and Variables
+    @IBOutlet weak var buttonClose: UIButton!
     @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var viewNote: UIView!
+    @IBOutlet weak var labelMessage: UILabel!
+    var alertMessage: String? = String()
     
+    // MARK: Life cicles
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.viewNote.cornerRadius()
+        self.labelMessage?.text = "Comment".localized
+        setUpView()
     }
-    @IBAction func buttonClose(_ sender: Any) {
-        self.dismiss(animated: true)
+    
+    // MARK: Close action
+    @IBAction func buttonCloseClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // setup view
+    func setUpView() {
+        self.labelMessage?.text = alertMessage
     }
 }

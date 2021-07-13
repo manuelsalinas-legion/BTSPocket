@@ -8,6 +8,6 @@
 import Foundation
 
 struct DataTimesheets: Codable {
-    let holidays: [String?]?
-    let timesheets: [GetTimesheets]?
+    var holidays: [String?]?
+    var timesheets: [GetTimesheets]?
 }

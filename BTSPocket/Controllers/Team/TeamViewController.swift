@@ -71,7 +71,7 @@ class TeamViewController: UIViewController {
         self.searchbarController.searchBar.tintColor = .white
         self.searchbarController.searchBar.barStyle = .black
         self.searchbarController.searchBar.searchTextField.tintColor = .white
-        self.searchbarController.searchBar.placeholder = "Search Team Member"
+        self.searchbarController.searchBar.placeholder = "Search Team Member".localized
         self.searchbarController.obscuresBackgroundDuringPresentation = false
         self.searchbarController.searchBar.sizeToFit()
         self.searchbarController.searchBar.delegate = self
@@ -107,7 +107,7 @@ class TeamViewController: UIViewController {
                     self?.logout()
                 } else {
                     self?.tableViewTeam.displayBackgroundMessage(message: "No project members found".localized)
-                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Info".localized, subtitle: "Cannot get members".localized, type: .info, containsIcon: true, fromBottom: false)
                 }
             }
         }
@@ -154,7 +154,7 @@ class TeamViewController: UIViewController {
                     self?.logout()
                 } else {
                     self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
-                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Info".localized, subtitle: "Cannot get members".localized, type: .info, containsIcon: true, fromBottom: false)
                 }
             }
         }
@@ -235,7 +235,7 @@ extension TeamViewController: UISearchBarDelegate {
         if let text = searchBar.text?.trim() {
             if !text.isEmpty {
                 if text.count < 3 {
-                    MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Warning".localized, subtitle: "You have to write at least three characters".localized, type: .warning, containsIcon: true, fromBottom: false)
                 }
             }
         }

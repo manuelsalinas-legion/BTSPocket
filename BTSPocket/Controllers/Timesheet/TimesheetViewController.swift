@@ -37,7 +37,18 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
             }
         }
     }
-    private var selectedDate: Date?
+    private var selectedDate: Date? {
+        didSet {
+            for (index, timesheetRegister) in self.weekTimesheets?.enumerated() ?? [].enumerated() {
+                if self.selectedDate?.day == timesheetRegister.date?.toISODate()?.date.day {
+                    self.dayTimesheets = self.weekTimesheets![index]
+                    break
+                } else {
+                    self.dayTimesheets = nil
+                }
+            }
+        }
+    }
     
     // MARK: life cicle
     override func viewDidLoad() {
@@ -78,11 +89,11 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.calendarView.scrollDirection = .horizontal
         self.calendarView.allowsMultipleSelection = false
         self.calendarView.scrollToDate(Date(), animateScroll: false)
-        self.calendarView.selectDates([Date()])
     }
     
     // MARK:- WEB SERVICE
-    private func getTimesheets(_ visibleDates: DateSegmentInfo) {
+    private func getTimesheets() {
+        let visibleDates = self.calendarView.visibleDates()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd"
         guard let firstVisibleDate = visibleDates.monthDates.first?.date,
@@ -96,8 +107,6 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
             switch response {
             case .success(let timesheets):
                 self?.weekTimesheets = timesheets
-                self?.tableTimesheets.reloadData()
-                self?.calendarView.reloadData()
             case .failure(let error):
                 print(error)
                 print(error.localizedDescription)
@@ -107,6 +116,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
     // MARK: PULL TO REFRESH ACTION
     @objc private func reload() {
+        self.getTimesheets()
         self.tableTimesheets.refreshControl?.endRefreshing()
     }
     
@@ -125,18 +135,12 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     // MARK: ACTIONS BUTTONS
     @IBAction private func nextWeek(_ sender: Any) {
         self.calendarView.deselectAllDates()
-        self.calendarView.scrollToSegment(.next) {
-            self.calendarView.selectDates([ self.calendarView.visibleDates().monthDates[0].date ])
-            self.updateTableView(date: self.calendarView.visibleDates().monthDates[0].date)
-        }
+        self.calendarView.scrollToSegment(.next)
     }
     
     @IBAction private func previousWeek(_ sender: Any) {
         self.calendarView.deselectAllDates()
-        self.calendarView.scrollToSegment(.previous) {
-            self.calendarView.selectDates([ self.calendarView.visibleDates().monthDates[0].date ])
-            self.updateTableView(date: self.calendarView.visibleDates().monthDates[0].date)
-        }
+        self.calendarView.scrollToSegment(.previous)
     }
     
     @IBAction func showToday(_ sender: Any) {
@@ -147,23 +151,6 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         dateFormatter.dateFormat = "MMMM yyyy"
         let dateSelectedString = dateFormatter.string(from: Date())
         self.headerCalendarMonthLabel.setTitle(dateSelectedString, for: .normal)
-    }
-    
-    private func updateTableView(date: Date) {
-        self.selectedDate = date
-        DispatchQueue.main.async {
-            self.getTimesheets(self.calendarView.visibleDates())
-            
-            for (index, timesheetRegister) in self.weekTimesheets?.enumerated() ?? [].enumerated() {
-                if self.selectedDate?.day == timesheetRegister.date?.toISODate()?.date.day {
-                    self.dayTimesheets = self.weekTimesheets![index]
-                    break
-                } else {
-                    self.dayTimesheets = nil
-                }
-            }
-            self.tableTimesheets.reloadData()
-        }
     }
 }
 
@@ -253,55 +240,54 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         guard let calendarCell = cell as? CalendarCell else { return }
         calendarCell.selectedView.isHidden = false
-        
+        self.selectedDate = date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
         let dateSelectedString = dateFormatter.string(from: date)
         self.headerCalendarMonthLabel.setTitle(dateSelectedString, for: .normal)
-        
-        self.updateTableView(date: date)
     }
     
+    // a base del dia seleccionado recorrer timesheet y guardar tal arreglo en una variable.
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         guard let calendarCell = cell as? CalendarCell else { return }
         calendarCell.selectedView.isHidden = true
     }
     
     func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        self.calendarView.selectDates([ visibleDates.monthDates[0].date ])
-        self.getTimesheets(visibleDates)
-        self.updateTableView(date: visibleDates.monthDates[0].date)
-    }
-    
-    func calendar(_ calendar: JTACMonthView, willScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        self.calendarView.deselectAllDates()
+        if visibleDates.monthDates.contains(where: { $0.date.date == Date().date }){
+            self.calendarView.selectDates([ Date() ])
+        } else {
+            self.calendarView.selectDates([ visibleDates.monthDates[0].date ])
+        }
+        self.getTimesheets()
     }
 }
 
 // MARK: Table Delegate
 extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dayTimesheets?.descriptions?.count ?? 0
+        if dayTimesheets?.descriptions?.count ?? 0 == 0 {
+            self.tableTimesheets.displayBackgroundMessage(message: "No timesheets registered".localized)
+            return 0
+        } else {
+            self.tableTimesheets.dismissBackgroundMessage()
+            return dayTimesheets?.descriptions?.count ?? 0
+        }
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: TimesheetTableViewCell.self)
-        cell.setTimesheetValues(timesheetDescription: dayTimesheets?.descriptions?[indexPath.row])
-//        cell.buttonNote.addTarget(self, action: #selector(self.showNoteAlert), for: .touchUpInside)
-        // week self si necesitas algo de la clase.
-        // algo de tu clase padre que se este reteniendo.
-        //
+        guard let descriptionsTS = self.dayTimesheets?.descriptions else {
+            return UITableViewCell()
+        }
+        cell.setTimesheetValues(timesheetDescription: descriptionsTS[indexPath.row])
+        
         cell.onTapNote = { [weak self] in
-            print(self?.dayTimesheets?.descriptions?[indexPath.row].note)
-            
-            // mostrar alerta personalizada enviando daytimesheet como parametro.
+            let alertVC = self?.alertService.alert(descriptionsTS[indexPath.row].note)
+            self?.present(alertVC!, animated: true)
         }
         return cell
-    }
-    
-    @objc func showNoteAlert() {
-        
-        self.present(alert, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -312,14 +298,53 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
             print("edit")
         }
+        
         let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
-            print("Delete")
+            let alertDelete = UIAlertController(title: "Wait", message: "Are you sure you want to delete it?", preferredStyle: .alert)
+            alertDelete.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                // si es el ultimo mandar a llamar el delete, si no, sera un update.
+                self.dayTimesheets?.descriptions?.remove(at: indexPath.row)
+                if self.dayTimesheets?.descriptions?.count == 0 {
+                    self.timesheetVM.deleteUserTimesheet(String(self.dayTimesheets!.date!.prefix(10)), { [weak self] result in
+                        switch result {
+                        case .success(let deleted):
+                            if deleted {
+                                self?.getTimesheets()
+                            } else {
+                                MessageManager.shared.showBar(title: "Connot delete", subtitle: "Timesheet connot deleted try again".localized, type: .warning, containsIcon: true, fromBottom: false)
+                            }
+                        case .failure(let error):
+                            print(error)
+                            print(error.localizedDescription)
+                        }
+                    })
+                } else {
+                    self.timesheetVM.updateUserTimesheet(self.dayTimesheets) { resultPost in
+                        switch resultPost {
+                        default:
+                            print("venga")
+                        }
+                    }
+                }
+            }))
+            self.present(alertDelete, animated: true, completion: nil)
         }
+        
         actionEdit.backgroundColor = .blue
         return [actionEdit, actionDelete]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
+        vcNewTimesheet.mode = .detail
+        vcNewTimesheet.dateTitle = dayTimesheets?.date
+        vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
+        
+        let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
+        navBar.modalPresentationStyle = .fullScreen
+        
+        self.present(navBar, animated: true, completion: nil)
     }
 }

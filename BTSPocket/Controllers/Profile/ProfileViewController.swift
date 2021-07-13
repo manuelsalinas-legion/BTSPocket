@@ -50,6 +50,7 @@ class ProfileViewController: UIViewController {
             // Logged user
             if let loggedSession = BTSApi.shared.currentSession {
                 self.profile = loggedSession
+                self.title = "Profile".localized
                 self.setupProfile()
             }
             

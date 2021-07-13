@@ -9,11 +9,11 @@ import UIKit
 
 class TimesheetTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var labelHours: UILabel!
-    @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var labelSubtitle: UILabel!
-    @IBOutlet weak var imageViewIsHappy: UIImageView!
-    @IBOutlet weak var buttonNote: UIButton!
+    @IBOutlet private weak var labelHours: UILabel!
+    @IBOutlet private weak var labelTitle: UILabel!
+    @IBOutlet private weak var labelSubtitle: UILabel!
+    @IBOutlet private weak var imageViewIsHappy: UIImageView!
+    @IBOutlet private weak var buttonNote: UIButton!
     private var noteMessage: String?
     var onTapNote: (() -> Void)?
     

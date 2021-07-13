@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Note Alert View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="NoteAlertVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="Y6W-OH-hqX" customClass="NoteAlertViewController" customModule="BTSPocket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT7-20-m3V">
+                                <rect key="frame" x="82" y="406" width="250" height="84"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ti-t4-A7S">
+                                        <rect key="frame" x="88.5" y="16" width="73" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="hWn-s0-u5D"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="knD-z9-i9k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Ti-JxG">
+                                        <rect key="frame" x="16" y="53" width="218" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Ycc-jU-Ids"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-5s-CSC">
+                                        <rect key="frame" x="8" y="8" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="4fu-Js-bY2"/>
+                                            <constraint firstAttribute="height" constant="22" id="5Fh-Ui-dua"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.89323956819999994" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="x">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.89323956819999994" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonCloseClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="OMa-bd-aAK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.91764705879999997" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="MGl-Ti-JxG" firstAttribute="top" secondItem="5ti-t4-A7S" secondAttribute="bottom" constant="16" id="8jd-4x-2x0"/>
+                                    <constraint firstItem="fVP-5s-CSC" firstAttribute="leading" secondItem="NT7-20-m3V" secondAttribute="leading" constant="8" id="UUJ-uA-Dph"/>
+                                    <constraint firstAttribute="width" constant="250" id="Vln-K7-a04"/>
+                                    <constraint firstItem="fVP-5s-CSC" firstAttribute="top" secondItem="NT7-20-m3V" secondAttribute="top" constant="8" id="fez-4m-7mX"/>
+                                    <constraint firstItem="5ti-t4-A7S" firstAttribute="top" secondItem="NT7-20-m3V" secondAttribute="top" constant="16" id="iGf-zR-8lH"/>
+                                    <constraint firstAttribute="trailing" secondItem="MGl-Ti-JxG" secondAttribute="trailing" constant="16" id="nhV-XR-tcQ"/>
+                                    <constraint firstItem="5ti-t4-A7S" firstAttribute="centerX" secondItem="NT7-20-m3V" secondAttribute="centerX" id="okM-It-w91"/>
+                                    <constraint firstAttribute="bottom" secondItem="MGl-Ti-JxG" secondAttribute="bottom" constant="16" id="vjH-hi-vcm"/>
+                                    <constraint firstItem="MGl-Ti-JxG" firstAttribute="leading" secondItem="NT7-20-m3V" secondAttribute="leading" constant="16" id="vlw-7n-HyO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.3465359517280629" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="NT7-20-m3V" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="1gv-Su-hpc"/>
+                            <constraint firstItem="NT7-20-m3V" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="oRe-a1-flq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonClose" destination="fVP-5s-CSC" id="KvM-nV-BxE"/>
+                        <outlet property="labelMessage" destination="MGl-Ti-JxG" id="wTJ-9r-D7V"/>
+                        <outlet property="labelTitle" destination="5ti-t4-A7S" id="OnJ-hD-kHT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="61.607142857142854"/>
+        </scene>
+    </scenes>
+</document>

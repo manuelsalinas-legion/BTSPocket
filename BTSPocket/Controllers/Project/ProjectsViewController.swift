@@ -163,7 +163,7 @@ extension ProjectsViewController: UISearchBarDelegate {
         if let text = searchBar.text?.trim() {
             if !text.isEmpty {
                 if text.count < Constants.kMinimumCharactersForSearch {
-                    MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Warning".localized, subtitle: "You have to write at least three characters".localized, type: .warning, containsIcon: true, fromBottom: false)
                 }
             }
         }
