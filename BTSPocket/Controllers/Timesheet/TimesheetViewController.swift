@@ -254,7 +254,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
     }
     
     func calendar(_ calendar: JTACMonthView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        if visibleDates.monthDates.contains(where: { $0.date.date == Date().date }){
+        if visibleDates.monthDates.contains(where: { $0.date.day == Date().day && $0.date.month == Date().month }){
             self.calendarView.selectDates([ Date() ])
         } else {
             self.calendarView.selectDates([ visibleDates.monthDates[0].date ])
@@ -311,7 +311,7 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
                             if deleted {
                                 self?.getTimesheets()
                             } else {
-                                MessageManager.shared.showBar(title: "Connot delete", subtitle: "Timesheet connot deleted try again".localized, type: .warning, containsIcon: true, fromBottom: false)
+                                MessageManager.shared.showBar(title: "Can not delete", subtitle: "Timesheet can not deleted try again".localized, type: .warning, containsIcon: true, fromBottom: false)
                             }
                         case .failure(let error):
                             print(error)
@@ -319,10 +319,14 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                     })
                 } else {
-                    self.timesheetVM.updateUserTimesheet(self.dayTimesheets) { resultPost in
+                    self.timesheetVM.updateUserTimesheet(self.dayTimesheets) { [weak self] resultPost in
                         switch resultPost {
-                        default:
-                            print("venga")
+                        case .success(let _):
+                            self?.getTimesheets()
+                            MessageManager.shared.showBar(title: "Success", subtitle: "Timesheet deleted", type: .success, containsIcon: true, fromBottom: false)
+                            print()
+                        case .failure(let error):
+                            MessageManager.shared.showBar(title: "Can not delete", subtitle: "Timesheet can not deleted try again", type: .error, containsIcon: true, fromBottom: false)
                         }
                     }
                 }
@@ -339,8 +343,8 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
         vcNewTimesheet.mode = .detail
-        vcNewTimesheet.dateTitle = dayTimesheets?.date
-        vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
+        vcNewTimesheet.dateTitle = dayTimesheets?.date?.toISODate()?.toFormat("MMM d, yyyy")
+        vcNewTimesheet.timesheetDetails = dayTimesheets?.descriptions?[indexPath.row]
         
         let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
         navBar.modalPresentationStyle = .fullScreen

@@ -47,28 +47,17 @@ struct TimesheetViewModel {
             }
             let postParams = PostTimesheet(date: dateString, descriptions: updateDescriptions)
             
-            do {
-                let jsonData = try JSONEncoder().encode(postParams)
-                let jsonString = String(data: jsonData, encoding: .utf8)
-                let params: [String: Any] = [
-                    "date": dateString,
-                    "descriptions": updateDescriptions.map( { $0.getDiccionary() } )
-                ]
-                BTSApi.shared.platformEP.postMethod(urlTimesheetRequest, nil, params) { (resultUpdate: UserTimesheetsResponse) in
-                    print(resultUpdate.message)
-                    completition(.success(""))
-                } onError: { error in
-                    print("Error in POST method")
-                    print(error)
-                    
-                    completition(.failure(error))
-                }
-            } catch {
-                print("Error JSON decoder")
+            let params: [String: Any] = [
+                "date": dateString,
+                "descriptions": updateDescriptions.map( { $0.getDiccionary() } )
+            ]
+            BTSApi.shared.platformEP.postMethod(urlTimesheetRequest, nil, params) { (resultUpdate: UserTimesheetsResponse) in
+                print(resultUpdate.message)
+                completition(.success(""))
+            } onError: { error in
                 print(error)
                 completition(.failure(error))
             }
-
         }
     }
     

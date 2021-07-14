@@ -17,6 +17,10 @@
 		2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF32638E69700AA880F /* AllUsersReponse.swift */; };
 		2B5E2D43269D305C0092D524 /* PostTimesheetDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D42269D305C0092D524 /* PostTimesheetDescriptions.swift */; };
 		2B5E2D45269D5DD60092D524 /* PostTimesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D44269D5DD60092D524 /* PostTimesheet.swift */; };
+		2B5E2D4A269E682F0092D524 /* HoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D48269E682F0092D524 /* HoursTableViewCell.swift */; };
+		2B5E2D4B269E682F0092D524 /* HoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D49269E682F0092D524 /* HoursTableViewCell.xib */; };
+		2B5E2D4E269E7EAE0092D524 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D4C269E7EAE0092D524 /* DescriptionTableViewCell.swift */; };
+		2B5E2D4F269E7EAE0092D524 /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D4D269E7EAE0092D524 /* DescriptionTableViewCell.xib */; };
 		2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A32026334D8F00006589 /* UIViewController+extensions.swift */; };
 		2B72C8642684E5610053C764 /* TimesheetDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8632684E5610053C764 /* TimesheetDescription.swift */; };
 		2B72C8662684E88E0053C764 /* GetTimesheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8652684E88E0053C764 /* GetTimesheets.swift */; };
@@ -126,6 +130,10 @@
 		2B47ADF32638E69700AA880F /* AllUsersReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersReponse.swift; sourceTree = "<group>"; };
 		2B5E2D42269D305C0092D524 /* PostTimesheetDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTimesheetDescriptions.swift; sourceTree = "<group>"; };
 		2B5E2D44269D5DD60092D524 /* PostTimesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTimesheet.swift; sourceTree = "<group>"; };
+		2B5E2D48269E682F0092D524 /* HoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursTableViewCell.swift; sourceTree = "<group>"; };
+		2B5E2D49269E682F0092D524 /* HoursTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoursTableViewCell.xib; sourceTree = "<group>"; };
+		2B5E2D4C269E7EAE0092D524 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		2B5E2D4D269E7EAE0092D524 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		2B67A32026334D8F00006589 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2B72C8632684E5610053C764 /* TimesheetDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetDescription.swift; sourceTree = "<group>"; };
 		2B72C8652684E88E0053C764 /* GetTimesheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimesheets.swift; sourceTree = "<group>"; };
@@ -266,6 +274,17 @@
 				2B1BB9EF2631C5E40060231F /* SkillsTableViewCell.xib */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		2B5E2D47269E67EE0092D524 /* TableViewDetailCells */ = {
+			isa = PBXGroup;
+			children = (
+				2B5E2D48269E682F0092D524 /* HoursTableViewCell.swift */,
+				2B5E2D49269E682F0092D524 /* HoursTableViewCell.xib */,
+				2B5E2D4C269E7EAE0092D524 /* DescriptionTableViewCell.swift */,
+				2B5E2D4D269E7EAE0092D524 /* DescriptionTableViewCell.xib */,
+			);
+			path = TableViewDetailCells;
 			sourceTree = "<group>";
 		};
 		2B798EA32625F9ED00394FF7 /* Components */ = {
@@ -428,6 +447,7 @@
 		2BF89353260D225A00061491 /* Timesheet */ = {
 			isa = PBXGroup;
 			children = (
+				2B5E2D47269E67EE0092D524 /* TableViewDetailCells */,
 				2BA972062689655F002EBAE6 /* TableViewCells */,
 				2B15993B267B95D800C9B642 /* CalendarCell */,
 				2BF89354260D227B00061491 /* TimesheetViewController.swift */,
@@ -700,6 +720,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF01E87C264DC4DE004687E7 /* Montserrat-Light.ttf in Resources */,
+				2B5E2D4F269E7EAE0092D524 /* DescriptionTableViewCell.xib in Resources */,
 				FF01E87F264DC4DE004687E7 /* Montserrat-Thin.ttf in Resources */,
 				FF01E87E264DC4DE004687E7 /* Montserrat-ExtraLight.ttf in Resources */,
 				FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */,
@@ -722,6 +743,7 @@
 				FF01E889264DC4DE004687E7 /* Montserrat-Italic.ttf in Resources */,
 				FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				FF01E883264DC4DE004687E7 /* Montserrat-SemiBold.ttf in Resources */,
+				2B5E2D4B269E682F0092D524 /* HoursTableViewCell.xib in Resources */,
 				2BA9720A26896605002EBAE6 /* TimesheetTableViewCell.xib in Resources */,
 				FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				FF01E87A264DC4DE004687E7 /* Montserrat-Medium.ttf in Resources */,
@@ -829,6 +851,7 @@
 				2B798E832625F6CD00394FF7 /* Experience.swift in Sources */,
 				2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */,
 				FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */,
+				2B5E2D4A269E682F0092D524 /* HoursTableViewCell.swift in Sources */,
 				2B798E742625F68800394FF7 /* ProfileTableViewCell.swift in Sources */,
 				2BAC79FE265CCAA0002291A8 /* ProjectDetails.swift in Sources */,
 				2BCAC1402655F02600C51830 /* PaginationProjectsFilterByUser.swift in Sources */,
@@ -861,6 +884,7 @@
 				2BCAC1432655F08C00C51830 /* ProjectByUserResponse.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
 				FFCC48E72620B7550030527D /* MessageManager.swift in Sources */,
+				2B5E2D4E269E7EAE0092D524 /* DescriptionTableViewCell.swift in Sources */,
 				FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */,
 				2BAC79F3265CC09A002291A8 /* Client.swift in Sources */,
 				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
