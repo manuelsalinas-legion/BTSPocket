@@ -92,19 +92,24 @@ class LoginViewController: UIViewController {
         // Authenticating...
         self.loginVM.login(email, pass) { [weak self] error in
             
-            // Indicator
-            self?.buttonLogin.isEnabled = true
-            MessageManager.shared.hideHUD()
-            
             if let error = error {
-                print(error.localizedDescription)
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    // Indicator
+                    self?.buttonLogin.isEnabled = true
+                    MessageManager.shared.hideHUD()
+                    
+                    // Error message
                     MessageManager.shared.showBar(title: "Error".localized, subtitle: "Invalid credentials".localized, type: .error, containsIcon: true, fromBottom: false)
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     // preguntar si guardar credenciales en keychain
                     if self?.canUseLocalBiometricAutentication() == true {
+                        
+                        // Indicator
+                        self?.buttonLogin.isEnabled = true
+                        MessageManager.shared.hideHUD()
+
                         // si hay credenciales en el key chain
                         if KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthUsername) == nil && KeychainWrapper.standard.string(forKey: Constants.Keychain.kAuthPassword) == nil {
                             // show alert
@@ -130,6 +135,10 @@ class LoginViewController: UIViewController {
                             self?.showHome()
                         }
                     } else {
+                        // Indicator
+                        self?.buttonLogin.isEnabled = true
+                        MessageManager.shared.hideHUD()
+
                         self?.showHome()
                     }
                 }

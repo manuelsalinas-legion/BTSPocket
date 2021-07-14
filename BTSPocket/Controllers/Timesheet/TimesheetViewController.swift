@@ -21,7 +21,6 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak private var weekViewStackView: UIStackView!
     @IBOutlet weak var tableTimesheets: UITableView!
     
-    private let alertService = AlertService()
     private var timesheetVM = TimesheetViewModel()
     private var weekTimesheets: [GetTimesheets]? {
         didSet {
@@ -130,6 +129,16 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         navBar.modalPresentationStyle = .fullScreen
         
         self.present(navBar, animated: true, completion: nil)
+    }
+    
+    // MARK: COMMENTS POPUP
+    private func presentCommentsPopup(_ message: String) {
+        let vcComments = Storyboard.getInstanceOf(NotesViewController.self, in: .Popups)
+        vcComments.message = message
+        vcComments.modalPresentationStyle = .overFullScreen
+        vcComments.modalTransitionStyle = .crossDissolve
+        
+        self.present(vcComments, animated: true, completion: nil)
     }
     
     // MARK: ACTIONS BUTTONS
@@ -275,7 +284,6 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withClass: TimesheetTableViewCell.self)
         guard let descriptionsTS = self.dayTimesheets?.descriptions else {
@@ -284,8 +292,10 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTimesheetValues(timesheetDescription: descriptionsTS[indexPath.row])
         
         cell.onTapNote = { [weak self] in
-            let alertVC = self?.alertService.alert(descriptionsTS[indexPath.row].note)
-            self?.present(alertVC!, animated: true)
+            // Show comment popup
+            if let comment = descriptionsTS[indexPath.row].note {
+                self?.presentCommentsPopup(comment)
+            }
         }
         return cell
     }
@@ -334,21 +344,18 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
             self.present(alertDelete, animated: true, completion: nil)
         }
         
-        actionEdit.backgroundColor = .blue
-        return [actionEdit, actionDelete]
+        actionEdit.backgroundColor = .blueBelize()
+        actionDelete.backgroundColor = .redAlizarin()
+        return [actionDelete, actionEdit]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
-        vcNewTimesheet.mode = .detail
-        vcNewTimesheet.dateTitle = dayTimesheets?.date?.toISODate()?.toFormat("MMM d, yyyy")
-        vcNewTimesheet.timesheetDetails = dayTimesheets?.descriptions?[indexPath.row]
-        
-        let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
-        navBar.modalPresentationStyle = .fullScreen
-        
-        self.present(navBar, animated: true, completion: nil)
+        vcNewTimesheet.dateTitle = dayTimesheets?.date
+        // vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
+                
+        self.navigationController?.pushViewController(vcNewTimesheet, animated: true)
     }
 }

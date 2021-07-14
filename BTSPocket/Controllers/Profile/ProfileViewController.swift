@@ -108,7 +108,7 @@ class ProfileViewController: UIViewController {
         // UI
         self.labelFullName.adjustsFontSizeToFitWidth = true
         self.buttonLogout.round()
-        self.buttonLogout.backgroundColor = UIColor.semiblackColor()
+        self.buttonLogout.backgroundColor = .semiblackColor()
         
         // register table view cells for the table view
         self.tableView.registerNib(ProfileTableViewCell.self)

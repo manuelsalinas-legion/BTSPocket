@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.3)
+  - IQKeyboardManagerSwift (6.5.6)
   - JTAppleCalendar (8.0.3)
   - Kingfisher (6.3.0)
   - PKHUD (5.3.0)
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - IQKeyboardManagerSwift
   - JTAppleCalendar
   - Kingfisher
   - PKHUD
@@ -25,6 +27,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IQKeyboardManagerSwift
     - JTAppleCalendar
     - Kingfisher
     - PKHUD
@@ -35,6 +38,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   JTAppleCalendar: 932cadea40b1051beab10f67843451d48ba16c99
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
@@ -43,6 +47,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftMessages: 77b847d1405f99046ffbd0d856bc7d73e6892686
 
-PODFILE CHECKSUM: 482e2dd3904fb85ec3c97ba06cc38cb2a1ac7eca
+PODFILE CHECKSUM: 253ea91424cd31679bd5bda9e4143799e7f346aa
 
 COCOAPODS: 1.10.1

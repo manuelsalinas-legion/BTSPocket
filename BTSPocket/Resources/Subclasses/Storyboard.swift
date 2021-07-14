@@ -7,7 +7,7 @@ import UIKit
  Add your storyboard names here if needed
  */
 enum StoryboardName: String {
-    case Main
+    case Main, Popups
 }
 
 class Storyboard
