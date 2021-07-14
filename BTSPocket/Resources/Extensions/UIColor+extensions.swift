@@ -362,4 +362,8 @@ extension UIColor
     class func daySelection() -> UIColor {
         return UIColor(red: 0.638021, green: 0.829152, blue: 0.945116, alpha: 1)
     }
+    
+    class func closeNote() -> UIColor {
+        return UIColor(red: 0.925312, green: 0.903708, blue: 0.672838, alpha: 1)
+    }
 }

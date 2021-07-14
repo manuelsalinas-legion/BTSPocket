@@ -12,7 +12,7 @@ enum TimesheetDetailMode {
 }
 
 class TimesheetDetailController: UIViewController {
-    // MARK: OUTLWTS & PROPERTIES
+    // MARK: OUTLETS & PROPERTIES
     @IBOutlet weak var labelHours: UILabel!
     @IBOutlet weak var labelTask: UITextView!
     @IBOutlet weak var labelComment: UITextView!

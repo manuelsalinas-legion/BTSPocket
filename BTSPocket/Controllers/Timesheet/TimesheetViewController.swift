@@ -21,7 +21,6 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak private var weekViewStackView: UIStackView!
     @IBOutlet weak var tableTimesheets: UITableView!
     
-    private let alertService = AlertService()
     private var timesheetVM = TimesheetViewModel()
     private var weekTimesheets: [GetTimesheets]? {
         didSet {
@@ -130,6 +129,16 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         navBar.modalPresentationStyle = .fullScreen
         
         self.present(navBar, animated: true, completion: nil)
+    }
+    
+    // MARK: COMMENTS POPUP
+    private func presentCommentsPopup(_ message: String) {
+        let vcComments = Storyboard.getInstanceOf(NotesViewController.self, in: .Popups)
+        vcComments.message = message
+        vcComments.modalPresentationStyle = .overFullScreen
+        vcComments.modalTransitionStyle = .crossDissolve
+        
+        self.present(vcComments, animated: true, completion: nil)
     }
     
     // MARK: ACTIONS BUTTONS
@@ -284,9 +293,10 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setTimesheetValues(timesheetDescription: descriptionsTS[indexPath.row])
         
         cell.onTapNote = { [weak self] in
-            // FIXME: Create a controller with popup style instead of use alert native class (uncustomizable)
-            let alertVC = self?.alertService.alert(descriptionsTS[indexPath.row].note)
-            self?.present(alertVC!, animated: true)
+            // Show comment popup
+            if let comment = descriptionsTS[indexPath.row].note {
+                self?.presentCommentsPopup(comment)
+            }
         }
         return cell
     }
