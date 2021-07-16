@@ -57,6 +57,7 @@ class ProfileViewController: UIViewController {
             
             // Update info
             self.getProfile()
+            // Get projects info
             self.getProjects()
             
         case .teamMember:
@@ -108,9 +109,23 @@ class ProfileViewController: UIViewController {
     private func getProjects() {
         self.projectsVM.getProjectsByUser(.justPage(1)) { resultProjects in
             switch resultProjects {
-            case .success(let paginationUsers):
-                BTSApi.shared.sessionProjects = paginationUsers.items
-                print(BTSApi.shared.sessionProjects)
+            case .success(let paginationProjects):
+                BTSApi.shared.sessionProjects = paginationProjects.items
+                // aqui debe de saber si tiene mas paginas de proyectos y traerlos por igual
+                if let pages = paginationProjects.pages {
+                    if pages > 1 {
+                        for page in 2...pages {
+                            self.projectsVM.getProjectsByUser(.justPage(page)) { result in
+                                switch result {
+                                case .success(let morePaginationsProjects):
+                                    BTSApi.shared.sessionProjects?.append(contentsOf: morePaginationsProjects.items ?? [])
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
+                        }
+                    }
+                }
             case .failure(let error):
                 print(error)
             }
