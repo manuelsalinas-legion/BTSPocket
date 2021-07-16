@@ -13,7 +13,7 @@ class BTSApi {
     // Session data
     var currentSession: ProfileData?
     var sessionToken: String?
-    var sessionProjects: [Project]?
+    var sessionProjects: [Project] = []
     
     // Networking models
     lazy var platformEP: BTSPlatformEndpoints = {

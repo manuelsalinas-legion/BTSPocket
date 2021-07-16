@@ -117,6 +117,10 @@
 		FFCC49012620BC4C0030527D /* NSAttributedString+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */; };
 		FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC49032620BE7A0030527D /* UIView+extensions.swift */; };
 		FFCC490E2620C0420030527D /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC490D2620C0420030527D /* Persistable.swift */; };
+		FFD2F37926A2362D0082055A /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD2F37726A2362D0082055A /* PickerCell.swift */; };
+		FFD2F37A26A2362D0082055A /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD2F37826A2362D0082055A /* PickerCell.xib */; };
+		FFD2F37D26A24CB80082055A /* ProjectTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD2F37B26A24CB80082055A /* ProjectTableCell.swift */; };
+		FFD2F37E26A24CB80082055A /* ProjectTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD2F37C26A24CB80082055A /* ProjectTableCell.xib */; };
 		FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +240,10 @@
 		FFCC48FF2620BC4C0030527D /* NSAttributedString+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+extensions.swift"; sourceTree = "<group>"; };
 		FFCC49032620BE7A0030527D /* UIView+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		FFCC490D2620C0420030527D /* Persistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		FFD2F37726A2362D0082055A /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
+		FFD2F37826A2362D0082055A /* PickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
+		FFD2F37B26A24CB80082055A /* ProjectTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableCell.swift; sourceTree = "<group>"; };
+		FFD2F37C26A24CB80082055A /* ProjectTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableCell.xib; sourceTree = "<group>"; };
 		FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,6 +293,8 @@
 				2B5E2D49269E682F0092D524 /* HoursViewCell.xib */,
 				2B5E2D50269FEA0B0092D524 /* isHappyViewCell.swift */,
 				2B5E2D51269FEA0B0092D524 /* isHappyViewCell.xib */,
+				FFD2F37B26A24CB80082055A /* ProjectTableCell.swift */,
+				FFD2F37C26A24CB80082055A /* ProjectTableCell.xib */,
 			);
 			path = TableViewDetailCells;
 			sourceTree = "<group>";
@@ -292,6 +302,7 @@
 		2B798EA32625F9ED00394FF7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FFD2F37626A2362D0082055A /* PickerCell */,
 				FF84A889269F254F0002578C /* Popups */,
 				FF03BB5A269E4AC3008FF927 /* TextViewCell */,
 			);
@@ -668,6 +679,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		FFD2F37626A2362D0082055A /* PickerCell */ = {
+			isa = PBXGroup;
+			children = (
+				FFD2F37726A2362D0082055A /* PickerCell.swift */,
+				FFD2F37826A2362D0082055A /* PickerCell.xib */,
+			);
+			path = PickerCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -732,10 +752,12 @@
 			files = (
 				FF01E87C264DC4DE004687E7 /* Montserrat-Light.ttf in Resources */,
 				FF01E87F264DC4DE004687E7 /* Montserrat-Thin.ttf in Resources */,
+				FFD2F37E26A24CB80082055A /* ProjectTableCell.xib in Resources */,
 				FF01E87E264DC4DE004687E7 /* Montserrat-ExtraLight.ttf in Resources */,
 				FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */,
 				2BF89303260C012700061491 /* LaunchScreen.storyboard in Resources */,
 				FF01E882264DC4DE004687E7 /* Montserrat-BlackItalic.ttf in Resources */,
+				FFD2F37A26A2362D0082055A /* PickerCell.xib in Resources */,
 				FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */,
 				FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */,
 				FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */,
@@ -889,6 +911,7 @@
 				2BF89346260D217C00061491 /* ProfileViewController.swift in Sources */,
 				FF0DDFEB260D4BFF003F2224 /* String+extensions.swift in Sources */,
 				FFB89BAB2652B6C000D67DC2 /* UserTableViewCell.swift in Sources */,
+				FFD2F37926A2362D0082055A /* PickerCell.swift in Sources */,
 				FF0DDFE4260D4943003F2224 /* Constants.swift in Sources */,
 				FF0DDFC9260D3FEF003F2224 /* BackendResponse.swift in Sources */,
 				2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */,
@@ -913,6 +936,7 @@
 				FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */,
 				2B5E2D43269D305C0092D524 /* TimesheetDescriptionsObject.swift in Sources */,
 				2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */,
+				FFD2F37D26A24CB80082055A /* ProjectTableCell.swift in Sources */,
 				2B5E2D52269FEA0B0092D524 /* isHappyViewCell.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
 				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,

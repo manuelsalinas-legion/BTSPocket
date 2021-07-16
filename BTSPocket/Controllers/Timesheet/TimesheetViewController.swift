@@ -284,7 +284,7 @@ extension TimesheetViewController: JTACMonthViewDelegate, JTACMonthViewDataSourc
 extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dayTimesheets?.descriptions?.count ?? 0 == 0 {
-            self.tableTimesheets.displayBackgroundMessage(message: "No timesheets registered".localized)
+            self.tableTimesheets.displayBackgroundMessage(message: "No Timesheets".localized)
             return 0
         } else {
             self.tableTimesheets.dismissBackgroundMessage()
@@ -367,5 +367,22 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         // vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
                 
         self.navigationController?.pushViewController(vcNewTimesheet, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         // Remove seperator inset
+         if cell.responds(to: #selector(setter: UITableViewCell.separatorInset)) {
+             cell.separatorInset = UIEdgeInsets.zero
+         }
+         
+         // Prevent the cell from inheriting the Table View's margin settings
+         if cell.responds(to: #selector(setter: UIView.preservesSuperviewLayoutMargins)) {
+             cell.preservesSuperviewLayoutMargins = false
+         }
+         
+         // Explictly set your cell's layout margins
+         if cell.responds(to: #selector(setter: UIView.layoutMargins)) {
+             cell.layoutMargins = UIEdgeInsets.zero
+         }
     }
 }

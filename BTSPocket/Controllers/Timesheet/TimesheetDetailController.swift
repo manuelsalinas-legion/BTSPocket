@@ -11,8 +11,8 @@ enum TimesheetDetailMode {
     case new, detail, editable
 }
 
-private enum DetailTimesheetSection: Int {
-    case hours,project, task, comment, isHappy
+private enum DetailTimesheetSection: Int, CaseIterable {
+    case hours, project, task, comment, rate
 }
 
 typealias TimesheetDetail = (timesheets: Timesheet, timesheetId: Int)
@@ -20,6 +20,12 @@ typealias TimesheetDetail = (timesheets: Timesheet, timesheetId: Int)
 class TimesheetDetailController: UIViewController {
     // MARK: OUTLETS & PROPERTIES
     @IBOutlet weak var tableViewTimesheet: UITableView!
+    
+    private var projectPickerCollapsed = true {
+        didSet {
+            self.tableViewTimesheet.reloadRows(at: [IndexPath(row: 1, section: DetailTimesheetSection.project.rawValue)], with: .fade)
+        }
+    }
     
     var mode: TimesheetDetailMode = .detail
     var dateTitle: String?
@@ -53,10 +59,16 @@ class TimesheetDetailController: UIViewController {
     
     // MARK: SETUP
     private func setup() {
+        
+        self.tableViewTimesheet.estimatedRowHeight = 70  //minimum size
+        self.tableViewTimesheet.rowHeight = UITableView.automaticDimension
+
         // register table cells
         self.tableViewTimesheet.registerNib(HoursViewCell.self)
         self.tableViewTimesheet.registerNib(TextViewCell.self)
         self.tableViewTimesheet.registerNib(isHappyViewCell.self)
+        self.tableViewTimesheet.registerNib(PickerCell.self)
+        self.tableViewTimesheet.registerNib(ProjectTableCell.self)
         self.tableViewTimesheet.hideEmtpyCells()
         
         switch self.mode {
@@ -85,16 +97,23 @@ class TimesheetDetailController: UIViewController {
 }
 
 extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        DetailTimesheetSection.allCases.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //checar primero si es nuevo van a ser 5
         // si en el showDetails no hay comments no mostrar los comments
         // van a ser 5 o 4
-        return 5
+    
+        // Projects has 2 rows (selected project and picker) if user has only 1 project, set it by default (no picker needed)
+        return section == DetailTimesheetSection.project.rawValue && BTSApi.shared.sessionProjects.count > 1 ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        
+        switch indexPath.section {
         case DetailTimesheetSection.hours.rawValue:
+            
             let hoursCell: HoursViewCell = tableView.dequeueReusableCell(withClass: HoursViewCell.self)
             if mode == .detail {
                 hoursCell.detailsMode()
@@ -104,15 +123,39 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                     self?.newTimesheet?.dedicatedHours = workedHours
                 }
             }
-            hoursCell.selectionStyle = .none
             return hoursCell
             
         case DetailTimesheetSection.project.rawValue:
-            let cell = UITableViewCell()
-            cell.textLabel?.text = timesheetDetails?.projectName?.capitalized
-            return cell
+            
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withClass: ProjectTableCell.self)
+                if let pName = timesheetDetails?.projectName, !pName.isEmpty {
+                    cell.loadInfo(pName)
+                } else {
+                    // Placeholder
+                    cell.loadInfo("- Select Project -")
+                }
+                
+                return cell
+                
+            } else {
+                let projects = BTSApi.shared.sessionProjects.map({ $0.name ?? "" })
+                let cell = tableView.dequeueReusableCell(withClass: PickerCell.self)
+                cell.options = projects
+                cell.onSelected = { index in
+                    
+                    let selectedProject = BTSApi.shared.sessionProjects[index]
+                    print("aqui va el proyecto seleccionado -> \(selectedProject.name)")
+                    self.timesheetDetails?.projectName = selectedProject.name
+                    
+                    tableView.reloadRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .none)
+                }
+                
+                return cell
+            }
             
         case DetailTimesheetSection.task.rawValue:
+            
             let taskCell: TextViewCell = tableView.dequeueReusableCell(withClass: TextViewCell.self)
             if mode == .detail {
                 taskCell.tvText.text = self.timesheetDetails?.task?.capitalized
@@ -126,6 +169,7 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             return taskCell
             
         case DetailTimesheetSection.comment.rawValue:
+            
             let noteCell: TextViewCell = tableView.dequeueReusableCell(withClass: TextViewCell.self)
             if mode == .detail {
                 noteCell.tvText.text = self.timesheetDetails?.note?.capitalized
@@ -138,7 +182,8 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             }
             return noteCell
             
-        case DetailTimesheetSection.isHappy.rawValue:
+        case DetailTimesheetSection.rate.rawValue:
+            
             let isHappyCell: isHappyViewCell = tableView.dequeueReusableCell(withClass: isHappyViewCell.self)
             if mode == .detail {
                 isHappyCell.setup(self.timesheetDetails?.isHappy ?? true)
@@ -148,11 +193,64 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                     self?.newTimesheet?.isHappy = isHappy
                 }
             }
-            isHappyCell.selectionStyle = .none
+
             return isHappyCell
             
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Editable?
+        guard self.mode == .new || self.mode == .editable else {
+            return
+        }
+        
+        // Projects?
+        if indexPath.section == DetailTimesheetSection.project.rawValue
+            && indexPath.row == 0
+            && BTSApi.shared.sessionProjects.count > 1 {
+            self.projectPickerCollapsed = !self.projectPickerCollapsed
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == DetailTimesheetSection.project.rawValue
+            && indexPath.row != 0 {
+            cell.isHidden = self.projectPickerCollapsed
+        }
+        
+        // Remove seperator inset
+        if cell.responds(to: #selector(setter: UITableViewCell.separatorInset)) {
+            cell.separatorInset = UIEdgeInsets.zero
+        }
+        
+        // Prevent the cell from inheriting the Table View's margin settings
+        if cell.responds(to: #selector(setter: UIView.preservesSuperviewLayoutMargins)) {
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        
+        // Explictly set your cell's layout margins
+        if cell.responds(to: #selector(setter: UIView.layoutMargins)) {
+            cell.layoutMargins = UIEdgeInsets.zero
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        switch indexPath.section {
+        case  DetailTimesheetSection.hours.rawValue:
+            return 130
+        case  DetailTimesheetSection.project.rawValue:
+            return indexPath.row == 0 ? tableView.rowHeight : self.projectPickerCollapsed ? CGFloat.leastNonzeroMagnitude :  120
+        case  DetailTimesheetSection.rate.rawValue:
+            return 88
+        default:
+            return tableView.rowHeight
         }
     }
 }

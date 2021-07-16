@@ -110,7 +110,11 @@ class ProfileViewController: UIViewController {
         self.projectsVM.getProjectsByUser(.justPage(1)) { resultProjects in
             switch resultProjects {
             case .success(let paginationProjects):
-                BTSApi.shared.sessionProjects = paginationProjects.items
+                
+                if let projects = paginationProjects.items {
+                    BTSApi.shared.sessionProjects = projects
+                }
+                
                 // aqui debe de saber si tiene mas paginas de proyectos y traerlos por igual
                 if let pages = paginationProjects.pages {
                     if pages > 1 {
@@ -118,7 +122,9 @@ class ProfileViewController: UIViewController {
                             self.projectsVM.getProjectsByUser(.justPage(page)) { result in
                                 switch result {
                                 case .success(let morePaginationsProjects):
-                                    BTSApi.shared.sessionProjects?.append(contentsOf: morePaginationsProjects.items ?? [])
+                                    if let moreProjects = morePaginationsProjects.items {
+                                        BTSApi.shared.sessionProjects += moreProjects
+                                    }
                                 case .failure(let error):
                                     print(error)
                                 }

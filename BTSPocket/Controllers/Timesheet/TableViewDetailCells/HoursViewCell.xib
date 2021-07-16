@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Montserrat-MediumItalic.ttf">
-            <string>Montserrat-MediumItalic</string>
+        <array key="Montserrat-Light.ttf">
+            <string>Montserrat-Light</string>
         </array>
         <array key="Montserrat-SemiBold.ttf">
             <string>Montserrat-SemiBold</string>
@@ -20,74 +19,74 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="HoursViewCell" customModule="BTSPocket" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="310" height="110"/>
+            <rect key="frame" x="0.0" y="0.0" width="310" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="310" height="110"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="310" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0Q-iz-9hg">
-                        <rect key="frame" x="137" y="24" width="36" height="78.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0Q-iz-9hg">
+                        <rect key="frame" x="115" y="8" width="80" height="90"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="78.5" id="OyD-Vp-Cvu"/>
+                            <constraint firstAttribute="width" constant="80" id="pMB-H1-Vv9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="64"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="65"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txV-Bi-Vh1">
-                        <rect key="frame" x="33" y="35" width="40" height="40"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOURS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdV-0x-HHF">
+                        <rect key="frame" x="0.0" y="98" width="310" height="24"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="7H8-oZ-7uW"/>
-                            <constraint firstAttribute="height" constant="40" id="fm5-8N-9cX"/>
+                            <constraint firstAttribute="height" constant="24" id="BT0-CE-PuE"/>
                         </constraints>
-                        <color key="tintColor" name="Purple BTS"/>
-                        <state key="normal" image="chevron.backward.2" catalog="system">
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
-                        </state>
-                        <connections>
-                            <action selector="lessHour:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9TL-xN-V3J"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFy-vy-TCV">
-                        <rect key="frame" x="237" y="35" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="1fg-Hm-91P"/>
-                            <constraint firstAttribute="height" constant="40" id="oO4-aS-Mdr"/>
-                        </constraints>
-                        <color key="tintColor" name="Purple BTS"/>
-                        <state key="normal" image="chevron.right.2" catalog="system">
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
-                        </state>
-                        <connections>
-                            <action selector="plusHour:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VWs-b3-L3K"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOURS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdV-0x-HHF">
-                        <rect key="frame" x="124.5" y="4" width="61" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Ng6-AG-m6b"/>
-                            <constraint firstAttribute="width" constant="61" id="isP-bU-c63"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Montserrat-MediumItalic" family="Montserrat" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pGu-oT-K6A">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="130"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txV-Bi-Vh1">
+                                <rect key="frame" x="0.0" y="0.0" width="145" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Purple BTS"/>
+                                <state key="normal" image="chevron.backward.2" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                </state>
+                                <connections>
+                                    <action selector="lessHour:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9TL-xN-V3J"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFy-vy-TCV">
+                                <rect key="frame" x="165" y="0.0" width="145" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Purple BTS"/>
+                                <state key="normal" image="chevron.right.2" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                </state>
+                                <connections>
+                                    <action selector="plusHour:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VWs-b3-L3K"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="txV-Bi-Vh1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="7hh-tr-0zS"/>
-                    <constraint firstItem="NdV-0x-HHF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="AVx-m9-gET"/>
-                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="8" id="FQS-uB-Req"/>
-                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="MZ9-FG-kQD"/>
-                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="top" secondItem="txV-Bi-Vh1" secondAttribute="bottom" constant="-51" id="NpB-ZH-GA5"/>
-                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="top" secondItem="QFy-vy-TCV" secondAttribute="bottom" constant="-51" id="S02-IA-LLC"/>
-                    <constraint firstAttribute="trailing" secondItem="QFy-vy-TCV" secondAttribute="trailing" constant="33" id="Ug5-yh-uQR"/>
-                    <constraint firstAttribute="bottom" secondItem="j0Q-iz-9hg" secondAttribute="bottom" constant="2" id="UnS-iX-Osi"/>
-                    <constraint firstItem="NdV-0x-HHF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="df8-8O-mvQ"/>
-                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="top" secondItem="NdV-0x-HHF" secondAttribute="bottom" id="ri4-5x-ddL"/>
+                    <constraint firstAttribute="bottom" secondItem="NdV-0x-HHF" secondAttribute="bottom" constant="8" id="4Qi-Yi-yP6"/>
+                    <constraint firstItem="NdV-0x-HHF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9fw-m3-uJn"/>
+                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="JJ8-4o-KvT"/>
+                    <constraint firstAttribute="bottom" secondItem="pGu-oT-K6A" secondAttribute="bottom" id="RlO-Sk-SQa"/>
+                    <constraint firstAttribute="trailing" secondItem="NdV-0x-HHF" secondAttribute="trailing" id="dOG-se-jE8"/>
+                    <constraint firstAttribute="trailing" secondItem="pGu-oT-K6A" secondAttribute="trailing" id="jEd-dC-3p8"/>
+                    <constraint firstItem="pGu-oT-K6A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="opP-xe-LDF"/>
+                    <constraint firstItem="j0Q-iz-9hg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="p4u-wm-Te4"/>
+                    <constraint firstItem="NdV-0x-HHF" firstAttribute="top" secondItem="j0Q-iz-9hg" secondAttribute="bottom" id="phl-Ot-0oI"/>
+                    <constraint firstItem="pGu-oT-K6A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rDt-K9-Bi2"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="buttonNext" destination="QFy-vy-TCV" id="fSd-MD-tV5"/>
                 <outlet property="buttonPrevious" destination="txV-Bi-Vh1" id="QYV-KQ-8uf"/>

@@ -21,6 +21,7 @@ class TimesheetTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.enableSelectedColor()
         self.viewLeft.addBorder(edges: [.right], color: .grayCity(), thickness: 1)
         self.labelTitle.textColor = .blueBelize()
     }
