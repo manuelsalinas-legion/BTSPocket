@@ -22,14 +22,15 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     @IBOutlet weak var tableTimesheets: UITableView!
     
     private var timesheetVM = TimesheetViewModel()
-    private var weekTimesheets: [GetTimesheets]? {
+    private var btnCreateNew: UIBarButtonItem?
+    private var weekTimesheets: [Timesheet]? {
         didSet {
             DispatchQueue.main.async {
                 self.calendarView.reloadData()
             }
         }
     }
-    private var dayTimesheets: GetTimesheets? {
+    private var dayTimesheets: Timesheet? {
         didSet {
             DispatchQueue.main.async {
                 self.tableTimesheets.reloadData()
@@ -66,8 +67,10 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.title = "Timesheet".localized
         self.weekViewStackView.addBorder(edges: [.top, .bottom], color: UIColor.grayCity(), thickness: 1)
         
-        let btnCreateNew = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createTimesheet))
-        self.navigationItem.rightBarButtonItem = btnCreateNew
+        self.btnCreateNew = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createTimesheet))
+        self.navigationItem.rightBarButtonItem = self.btnCreateNew
+            //queda deshabilitado
+//        self.btnCreateNew?.isEnabled = false
         
         // Table
         self.tableTimesheets.hideEmtpyCells()
@@ -124,9 +127,14 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
         vcNewTimesheet.mode = .new
+        vcNewTimesheet.dateTitle = dayTimesheets?.date?.toISODate()?.toFormat("MMM d, yyyy")
+        vcNewTimesheet.dayTimesheets = self.dayTimesheets
         
         let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
         navBar.modalPresentationStyle = .fullScreen
+        // aqui se debe de enviar el dia completo (todos los timesheets)
+        // y transformalo en timiesheets descriptions
+        // dado que hay que enviarlo todo junto para guardar bien.
         
         self.present(navBar, animated: true, completion: nil)
     }
@@ -346,14 +354,16 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         
         actionEdit.backgroundColor = .blueBelize()
         actionDelete.backgroundColor = .redAlizarin()
-        return [actionDelete, actionEdit]
+        return [actionDelete]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
-        vcNewTimesheet.dateTitle = dayTimesheets?.date
+        vcNewTimesheet.dateTitle = dayTimesheets?.date?.toISODate()?.toFormat("MMM d, yyyy")
+        vcNewTimesheet.timesheetDetails = dayTimesheets?.descriptions?[indexPath.row]
+        
         // vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
                 
         self.navigationController?.pushViewController(vcNewTimesheet, animated: true)

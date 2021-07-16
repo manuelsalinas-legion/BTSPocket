@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonBack: UIButton!
     
     private var profileVM: ProfileViewModel = ProfileViewModel()
+    private var projectsVM: ProjectsViewModel = ProjectsViewModel()
     private var profile: ProfileData? {
         didSet {
             DispatchQueue.main.async { self.tableView.reloadData() }
@@ -56,6 +57,7 @@ class ProfileViewController: UIViewController {
             
             // Update info
             self.getProfile()
+            self.getProjects()
             
         case .teamMember:
             self.memberConfiguration()
@@ -101,6 +103,18 @@ class ProfileViewController: UIViewController {
                 }
             }
         })
+    }
+    
+    private func getProjects() {
+        self.projectsVM.getProjectsByUser(.justPage(1)) { resultProjects in
+            switch resultProjects {
+            case .success(let paginationUsers):
+                BTSApi.shared.sessionProjects = paginationUsers.items
+                print(BTSApi.shared.sessionProjects)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // MARK:- setUpTable

@@ -101,7 +101,5 @@ extension TextViewCell: UITextViewDelegate
         
         //Avoiding over limit
         return textView.text.count + text.count - range.length <= self.kLimitOfCharacters
-        
-        return true
     }
 }

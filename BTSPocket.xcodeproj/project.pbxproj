@@ -15,15 +15,15 @@
 		2B47ADEA2638E27300AA880F /* PaginationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADE92638E27300AA880F /* PaginationResponse.swift */; };
 		2B47ADF12638E48200AA880F /* PaginationAllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */; };
 		2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47ADF32638E69700AA880F /* AllUsersReponse.swift */; };
-		2B5E2D43269D305C0092D524 /* PostTimesheetDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D42269D305C0092D524 /* PostTimesheetDescriptions.swift */; };
-		2B5E2D45269D5DD60092D524 /* PostTimesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D44269D5DD60092D524 /* PostTimesheet.swift */; };
-		2B5E2D4A269E682F0092D524 /* HoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D48269E682F0092D524 /* HoursTableViewCell.swift */; };
-		2B5E2D4B269E682F0092D524 /* HoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D49269E682F0092D524 /* HoursTableViewCell.xib */; };
-		2B5E2D4E269E7EAE0092D524 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D4C269E7EAE0092D524 /* DescriptionTableViewCell.swift */; };
-		2B5E2D4F269E7EAE0092D524 /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D4D269E7EAE0092D524 /* DescriptionTableViewCell.xib */; };
+		2B5E2D43269D305C0092D524 /* TimesheetDescriptionsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D42269D305C0092D524 /* TimesheetDescriptionsObject.swift */; };
+		2B5E2D45269D5DD60092D524 /* TimesheetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D44269D5DD60092D524 /* TimesheetObject.swift */; };
+		2B5E2D4A269E682F0092D524 /* HoursViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D48269E682F0092D524 /* HoursViewCell.swift */; };
+		2B5E2D4B269E682F0092D524 /* HoursViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D49269E682F0092D524 /* HoursViewCell.xib */; };
+		2B5E2D52269FEA0B0092D524 /* isHappyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D50269FEA0B0092D524 /* isHappyViewCell.swift */; };
+		2B5E2D53269FEA0B0092D524 /* isHappyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D51269FEA0B0092D524 /* isHappyViewCell.xib */; };
 		2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A32026334D8F00006589 /* UIViewController+extensions.swift */; };
 		2B72C8642684E5610053C764 /* TimesheetDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8632684E5610053C764 /* TimesheetDescription.swift */; };
-		2B72C8662684E88E0053C764 /* GetTimesheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8652684E88E0053C764 /* GetTimesheets.swift */; };
+		2B72C8662684E88E0053C764 /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8652684E88E0053C764 /* Timesheet.swift */; };
 		2B72C8682684E9040053C764 /* UserTimesheetsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8672684E9040053C764 /* UserTimesheetsResponse.swift */; };
 		2B72C86A2684EC860053C764 /* TimesheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8692684EC860053C764 /* TimesheetViewModel.swift */; };
 		2B72C86C268534B90053C764 /* DataTimesheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C86B268534B90053C764 /* DataTimesheets.swift */; };
@@ -129,15 +129,15 @@
 		2B47ADE92638E27300AA880F /* PaginationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationResponse.swift; sourceTree = "<group>"; };
 		2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationAllUsers.swift; sourceTree = "<group>"; };
 		2B47ADF32638E69700AA880F /* AllUsersReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersReponse.swift; sourceTree = "<group>"; };
-		2B5E2D42269D305C0092D524 /* PostTimesheetDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTimesheetDescriptions.swift; sourceTree = "<group>"; };
-		2B5E2D44269D5DD60092D524 /* PostTimesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTimesheet.swift; sourceTree = "<group>"; };
-		2B5E2D48269E682F0092D524 /* HoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursTableViewCell.swift; sourceTree = "<group>"; };
-		2B5E2D49269E682F0092D524 /* HoursTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoursTableViewCell.xib; sourceTree = "<group>"; };
-		2B5E2D4C269E7EAE0092D524 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
-		2B5E2D4D269E7EAE0092D524 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		2B5E2D42269D305C0092D524 /* TimesheetDescriptionsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetDescriptionsObject.swift; sourceTree = "<group>"; };
+		2B5E2D44269D5DD60092D524 /* TimesheetObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetObject.swift; sourceTree = "<group>"; };
+		2B5E2D48269E682F0092D524 /* HoursViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursViewCell.swift; sourceTree = "<group>"; };
+		2B5E2D49269E682F0092D524 /* HoursViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoursViewCell.xib; sourceTree = "<group>"; };
+		2B5E2D50269FEA0B0092D524 /* isHappyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isHappyViewCell.swift; sourceTree = "<group>"; };
+		2B5E2D51269FEA0B0092D524 /* isHappyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = isHappyViewCell.xib; sourceTree = "<group>"; };
 		2B67A32026334D8F00006589 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2B72C8632684E5610053C764 /* TimesheetDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetDescription.swift; sourceTree = "<group>"; };
-		2B72C8652684E88E0053C764 /* GetTimesheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimesheets.swift; sourceTree = "<group>"; };
+		2B72C8652684E88E0053C764 /* Timesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timesheet.swift; sourceTree = "<group>"; };
 		2B72C8672684E9040053C764 /* UserTimesheetsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTimesheetsResponse.swift; sourceTree = "<group>"; };
 		2B72C8692684EC860053C764 /* TimesheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetViewModel.swift; sourceTree = "<group>"; };
 		2B72C86B268534B90053C764 /* DataTimesheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTimesheets.swift; sourceTree = "<group>"; };
@@ -281,10 +281,10 @@
 		2B5E2D47269E67EE0092D524 /* TableViewDetailCells */ = {
 			isa = PBXGroup;
 			children = (
-				2B5E2D48269E682F0092D524 /* HoursTableViewCell.swift */,
-				2B5E2D49269E682F0092D524 /* HoursTableViewCell.xib */,
-				2B5E2D4C269E7EAE0092D524 /* DescriptionTableViewCell.swift */,
-				2B5E2D4D269E7EAE0092D524 /* DescriptionTableViewCell.xib */,
+				2B5E2D48269E682F0092D524 /* HoursViewCell.swift */,
+				2B5E2D49269E682F0092D524 /* HoursViewCell.xib */,
+				2B5E2D50269FEA0B0092D524 /* isHappyViewCell.swift */,
+				2B5E2D51269FEA0B0092D524 /* isHappyViewCell.xib */,
 			);
 			path = TableViewDetailCells;
 			sourceTree = "<group>";
@@ -460,17 +460,17 @@
 				2B798E792625F6BF00394FF7 /* Skill.swift */,
 				2B47ADE62638E22400AA880F /* User.swift */,
 				2B47ADF02638E48200AA880F /* PaginationAllUsers.swift */,
-				2BCAC13C2655EF2100C51830 /* Projet.swift */,
 				2BCAC13F2655F02600C51830 /* PaginationProjectsFilterByUser.swift */,
+				2BCAC13C2655EF2100C51830 /* Projet.swift */,
+				2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */,
 				2BAC79F2265CC09A002291A8 /* Client.swift */,
 				2BAC79F5265CC160002291A8 /* UserInProject.swift */,
-				2BAC79FD265CCAA0002291A8 /* ProjectDetails.swift */,
 				2BAC7A00265CCB61002291A8 /* ClientMember.swift */,
 				2B72C8632684E5610053C764 /* TimesheetDescription.swift */,
-				2B72C8652684E88E0053C764 /* GetTimesheets.swift */,
+				2B72C8652684E88E0053C764 /* Timesheet.swift */,
 				2B72C86B268534B90053C764 /* DataTimesheets.swift */,
-				2B5E2D42269D305C0092D524 /* PostTimesheetDescriptions.swift */,
-				2B5E2D44269D5DD60092D524 /* PostTimesheet.swift */,
+				2B5E2D42269D305C0092D524 /* TimesheetDescriptionsObject.swift */,
+				2B5E2D44269D5DD60092D524 /* TimesheetObject.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -731,7 +731,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF01E87C264DC4DE004687E7 /* Montserrat-Light.ttf in Resources */,
-				2B5E2D4F269E7EAE0092D524 /* DescriptionTableViewCell.xib in Resources */,
 				FF01E87F264DC4DE004687E7 /* Montserrat-Thin.ttf in Resources */,
 				FF01E87E264DC4DE004687E7 /* Montserrat-ExtraLight.ttf in Resources */,
 				FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */,
@@ -740,6 +739,7 @@
 				FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */,
 				FF01E880264DC4DE004687E7 /* Montserrat-Bold.ttf in Resources */,
 				FF01E887264DC4DE004687E7 /* Montserrat-Black.ttf in Resources */,
+				2B5E2D53269FEA0B0092D524 /* isHappyViewCell.xib in Resources */,
 				2BCAC1532656C94C00C51830 /* ProjectTableViewCell.xib in Resources */,
 				FF03BB5E269E4AC3008FF927 /* TextViewCell.xib in Resources */,
 				FFB89BAC2652B6C000D67DC2 /* UserTableViewCell.xib in Resources */,
@@ -755,7 +755,7 @@
 				FF01E88B264DC4DE004687E7 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				FF84A88B269F255D0002578C /* Popups.storyboard in Resources */,
 				FF01E883264DC4DE004687E7 /* Montserrat-SemiBold.ttf in Resources */,
-				2B5E2D4B269E682F0092D524 /* HoursTableViewCell.xib in Resources */,
+				2B5E2D4B269E682F0092D524 /* HoursViewCell.xib in Resources */,
 				2BA9720A26896605002EBAE6 /* TimesheetTableViewCell.xib in Resources */,
 				FF01E88A264DC4DE004687E7 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				FF01E87A264DC4DE004687E7 /* Montserrat-Medium.ttf in Resources */,
@@ -863,7 +863,7 @@
 				2B798E832625F6CD00394FF7 /* Experience.swift in Sources */,
 				2B1BB9F02631C5E40060231F /* SkillsTableViewCell.swift in Sources */,
 				FF0DDFDE260D48A1003F2224 /* WSAPI.swift in Sources */,
-				2B5E2D4A269E682F0092D524 /* HoursTableViewCell.swift in Sources */,
+				2B5E2D4A269E682F0092D524 /* HoursViewCell.swift in Sources */,
 				2B798E742625F68800394FF7 /* ProfileTableViewCell.swift in Sources */,
 				2BAC79FE265CCAA0002291A8 /* ProjectDetails.swift in Sources */,
 				2BCAC1402655F02600C51830 /* PaginationProjectsFilterByUser.swift in Sources */,
@@ -896,7 +896,6 @@
 				2BCAC1432655F08C00C51830 /* ProjectByUserResponse.swift in Sources */,
 				2BF89339260D0D6A00061491 /* HomeTabBarController.swift in Sources */,
 				FFCC48E72620B7550030527D /* MessageManager.swift in Sources */,
-				2B5E2D4E269E7EAE0092D524 /* DescriptionTableViewCell.swift in Sources */,
 				FFCC49002620BC4C0030527D /* NSMutableAttributedString+extensions.swift in Sources */,
 				2BAC79F3265CC09A002291A8 /* Client.swift in Sources */,
 				FFCC48DF2620B59B0030527D /* RealmAPI.swift in Sources */,
@@ -909,11 +908,12 @@
 				FF0DDFDA260D47F9003F2224 /* BTSApi.swift in Sources */,
 				FF03BB5D269E4AC3008FF927 /* TextViewCell.swift in Sources */,
 				2BC591F42627493F00F9A6EA /* SkillRealm.swift in Sources */,
-				2B5E2D45269D5DD60092D524 /* PostTimesheet.swift in Sources */,
-				2B72C8662684E88E0053C764 /* GetTimesheets.swift in Sources */,
+				2B5E2D45269D5DD60092D524 /* TimesheetObject.swift in Sources */,
+				2B72C8662684E88E0053C764 /* Timesheet.swift in Sources */,
 				FFCC49042620BE7A0030527D /* UIView+extensions.swift in Sources */,
-				2B5E2D43269D305C0092D524 /* PostTimesheetDescriptions.swift in Sources */,
+				2B5E2D43269D305C0092D524 /* TimesheetDescriptionsObject.swift in Sources */,
 				2B47ADF42638E69700AA880F /* AllUsersReponse.swift in Sources */,
+				2B5E2D52269FEA0B0092D524 /* isHappyViewCell.swift in Sources */,
 				2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */,
 				FF0DDFD1260D40D3003F2224 /* KeychainWrapper.swift in Sources */,
 				2BCAC13D2655EF2100C51830 /* Projet.swift in Sources */,

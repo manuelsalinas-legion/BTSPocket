@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GetTimesheets: Codable {
+struct Timesheet: Codable {
     var id: Int?
     var userId: Int?
     var date: String?

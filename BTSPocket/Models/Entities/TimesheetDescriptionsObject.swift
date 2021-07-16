@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostTimesheetDescriptions: Codable {
+struct TimesheetDescriptionsObject: Codable {
     var dedicatedHours: Int?
     var isHappy: Bool?
     var projectId: Int?

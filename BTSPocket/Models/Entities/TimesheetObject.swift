@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostTimesheet: Codable {
+struct TimesheetObject: Codable {
     var date: String?
-    var descriptions: [PostTimesheetDescriptions]?
+    var descriptions: [TimesheetDescriptionsObject]?
 }

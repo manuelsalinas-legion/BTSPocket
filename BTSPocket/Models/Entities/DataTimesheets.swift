@@ -9,5 +9,5 @@ import Foundation
 
 struct DataTimesheets: Codable {
     var holidays: [String?]?
-    var timesheets: [GetTimesheets]?
+    var timesheets: [Timesheet]?
 }
