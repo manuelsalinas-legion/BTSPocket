@@ -15,7 +15,7 @@ private enum DetailTimesheetSection: Int, CaseIterable {
     case hours, project, task, comment, rate
 }
 
-typealias TimesheetDetail = (timesheets: Timesheet, timesheetId: Int)
+typealias TimesheetDetail = (timesheets: Timesheet?, timesheetId: Int)
 
 class TimesheetDetailController: UIViewController {
     // MARK: OUTLETS & PROPERTIES
@@ -26,25 +26,19 @@ class TimesheetDetailController: UIViewController {
             self.tableViewTimesheet.reloadRows(at: [IndexPath(row: 1, section: DetailTimesheetSection.project.rawValue)], with: .fade)
         }
     }
-    
     var mode: TimesheetDetailMode = .detail
-    var dateTitle: String?
-    var info: TimesheetDetail?
-    //cuando se seleccione un timesheet
-    //popular la deswcripcion y el id
-    //para poderlo guardar.
-    //TimesheetDate(timesheets: TimesheetDescription, timesheetId: Int)
+    private var timesheetVM = TimesheetViewModel()
+    var currentDate: String?
+    var info: TimesheetDetail? {
+        didSet {
+            if let description = info?.timesheets?.descriptions {
+                currentTimesheet = description[info?.timesheetId ?? 0]
+            }
+        }
+    }
+    var currentTimesheet: TimesheetDescription?
     
-    // obtiene todos y el id del que se va a mostrar.
-    // teniendo el respaldo en el original.
-    // si la respuesta que es correcta. substituir el timesheet detail que esta dentro de la tupla
-    // y retornarlo para que actualice la data.
-    
-    var timesheetDetails: TimesheetDescription?
-    var dayTimesheets: Timesheet?
-    
-    private var newTimesheet: TimesheetDescriptionsObject?
-    
+    var newTimesheet = TimesheetDescriptionsObject()
     
     // MARK: LIFE CYCLE
     override func viewDidLoad() {
@@ -72,18 +66,34 @@ class TimesheetDetailController: UIViewController {
         self.tableViewTimesheet.hideEmtpyCells()
         
         switch self.mode {
-        case .new, .editable:
-            
-            let btnClose = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.close))
-            // Agregar propiedad de btnSave opcional para poderla maneajar en toda la clase.
-            let btnSave = UIBarButtonItem(title: "Save", style: .plain, target: self, action: nil)
-            self.navigationItem.leftBarButtonItem = btnClose
-            self.navigationItem.rightBarButtonItem = btnSave
-            self.title = self.mode == .new ? "New Timesheet".localized : "date title goes here"
+        case .new:
+            self.title = "New Timesheet".localized
+            self.setupNewAndEditable()
+        case .editable:
+            self.setupNewAndEditable()
+            self.title = self.info?.timesheets?.date?.toISODate()?.toFormat("MMM dd, yyyy")
+            self.newTimesheet.dedicatedHours = self.currentTimesheet?.dedicatedHours
+            self.newTimesheet.isHappy = self.currentTimesheet?.isHappy
+            self.newTimesheet.task = self.currentTimesheet?.task
+            self.newTimesheet.note = self.currentTimesheet?.note
+            self.newTimesheet.projectName = self.currentTimesheet?.projectName
+            self.newTimesheet.projectId = self.currentTimesheet?.projectId
+            self.tableViewTimesheet.reloadData()
             
         case .detail:
-            self.title = self.dateTitle
+            self.title = self.info?.timesheets?.date?.toISODate()?.toFormat("MMM dd, yyyy")
+            let btnEdit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: nil)
+            self.navigationItem.rightBarButtonItem = btnEdit
         }
+        self.hideSaveButton()
+    }
+    
+    // setup
+    private func setupNewAndEditable() {
+        let btnClose = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.close))
+        let btnSave = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.save))
+        self.navigationItem.leftBarButtonItem = btnClose
+        self.navigationItem.rightBarButtonItem = btnSave
     }
     
     // MARK: ACTIONS
@@ -92,21 +102,58 @@ class TimesheetDetailController: UIViewController {
     }
     
     @objc private func save() {
-        
+        self.timesheetVM.postUserTimesheet(self.currentDate, self.info?.timesheets, newTimesheet) { result in
+            switch result {
+            case .success(let Timesheet):
+                print(Timesheet)
+                self.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                print(error)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    private func hideSaveButton() {
+        if mode == .editable {
+            if self.newTimesheet.isReady()
+                && (self.newTimesheet.task != self.currentTimesheet?.task
+                        || self.newTimesheet.dedicatedHours != self.currentTimesheet?.dedicatedHours
+                        || self.newTimesheet.isHappy != self.currentTimesheet?.isHappy
+                        || self.newTimesheet.note != self.currentTimesheet?.note
+                        || self.newTimesheet.projectId != self.currentTimesheet?.projectId) {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        } else {
+            if self.newTimesheet.isReady() {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }
     }
 }
 
+//MARK: Table Delegate
 extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         DetailTimesheetSection.allCases.count
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //checar primero si es nuevo van a ser 5
-        // si en el showDetails no hay comments no mostrar los comments
-        // van a ser 5 o 4
     
-        // Projects has 2 rows (selected project and picker) if user has only 1 project, set it by default (no picker needed)
-        return section == DetailTimesheetSection.project.rawValue && BTSApi.shared.sessionProjects.count > 1 ? 2 : 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case DetailTimesheetSection.comment.rawValue:
+            // The note row is hidden when it is empty
+            return self.mode == .detail && currentTimesheet?.note ?? nil == nil ? 0 : 1
+        case DetailTimesheetSection.project.rawValue:
+            // Projects has 2 rows (selected project and picker) if user has only 1 project, set it by default (no picker needed)
+            return section == DetailTimesheetSection.project.rawValue && BTSApi.shared.sessionProjects.count > 1 ? 2 : 1
+        default:
+            return 1
+        }
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,11 +164,19 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             let hoursCell: HoursViewCell = tableView.dequeueReusableCell(withClass: HoursViewCell.self)
             if mode == .detail {
                 hoursCell.detailsMode()
-                hoursCell.labelHours?.text = String(self.timesheetDetails?.dedicatedHours ?? 1)
+                hoursCell.labelHours?.text = String(self.currentTimesheet?.dedicatedHours ?? 1)
+            } else if mode == .editable{
+                hoursCell.onHourChange = { [weak self] workedHours in
+                    self?.newTimesheet.dedicatedHours = workedHours
+                    self?.hideSaveButton()
+                }
+                hoursCell.labelChanged(self.newTimesheet.dedicatedHours ?? 8)
             } else {
                 hoursCell.onHourChange = { [weak self] workedHours in
-                    self?.newTimesheet?.dedicatedHours = workedHours
+                    self?.newTimesheet.dedicatedHours = workedHours
+                    self?.hideSaveButton()
                 }
+                hoursCell.setup(self.info)
             }
             return hoursCell
             
@@ -129,7 +184,7 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withClass: ProjectTableCell.self)
-                if let pName = timesheetDetails?.projectName, !pName.isEmpty {
+                if let pName = self.newTimesheet.projectName, !pName.isEmpty {
                     cell.loadInfo(pName)
                 } else {
                     // Placeholder
@@ -145,9 +200,9 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                 cell.onSelected = { index in
                     
                     let selectedProject = BTSApi.shared.sessionProjects[index]
-                    print("aqui va el proyecto seleccionado -> \(selectedProject.name)")
-                    self.timesheetDetails?.projectName = selectedProject.name
-                    
+                    self.newTimesheet.projectId = selectedProject.id
+                    self.newTimesheet.projectName = selectedProject.name
+                    self.hideSaveButton()
                     tableView.reloadRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .none)
                 }
                 
@@ -158,12 +213,19 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             
             let taskCell: TextViewCell = tableView.dequeueReusableCell(withClass: TextViewCell.self)
             if mode == .detail {
-                taskCell.tvText.text = self.timesheetDetails?.task?.capitalized
+                taskCell.tvText.text = self.currentTimesheet?.task?.capitalized
                 taskCell.tvText.isEditable = false
-            } else {
+            } else if mode == .new {
                 taskCell.placeHolder = "Describe your task"
                 taskCell.onTextChange = { [weak self] newTask in
-                    self?.newTimesheet?.task = newTask
+                    self?.newTimesheet.task = newTask
+                    self?.hideSaveButton()
+                }
+            } else {
+                taskCell.tvText.text = self.newTimesheet.task
+                taskCell.onTextChange = { [weak self] newTask in
+                    self?.newTimesheet.task = newTask
+                    self?.hideSaveButton()
                 }
             }
             return taskCell
@@ -172,12 +234,23 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             
             let noteCell: TextViewCell = tableView.dequeueReusableCell(withClass: TextViewCell.self)
             if mode == .detail {
-                noteCell.tvText.text = self.timesheetDetails?.note?.capitalized
+                noteCell.tvText.text = self.currentTimesheet?.note?.capitalized
                 noteCell.tvText.isEditable = false
-            } else {
+            } else if mode == .new {
                 noteCell.placeHolder = "Any comments?"
                 noteCell.onTextChange = { [weak self] newNote in
-                    self?.newTimesheet?.note = newNote
+                    self?.newTimesheet.note = newNote
+                    self?.hideSaveButton()
+                }
+            } else {
+                if self.newTimesheet.note?.isEmpty == true {
+                    noteCell.placeHolder = "Any comments?"
+                } else {
+                    noteCell.tvText.text = self.newTimesheet.note
+                }
+                noteCell.onTextChange = { [weak self] newNote in
+                    self?.newTimesheet.note = newNote
+                    self?.hideSaveButton()
                 }
             }
             return noteCell
@@ -186,11 +259,18 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
             
             let isHappyCell: isHappyViewCell = tableView.dequeueReusableCell(withClass: isHappyViewCell.self)
             if mode == .detail {
-                isHappyCell.setup(self.timesheetDetails?.isHappy ?? true)
+                isHappyCell.setup(self.currentTimesheet?.isHappy ?? true)
             }
-            else {
+            else if mode == .new {
                 isHappyCell.onChangeSelection = { [weak self] isHappy in
-                    self?.newTimesheet?.isHappy = isHappy
+                    self?.newTimesheet.isHappy = isHappy
+                    self?.hideSaveButton()
+                }
+            } else {
+                isHappyCell.setup(self.newTimesheet.isHappy ?? true)
+                isHappyCell.onChangeSelection = { [weak self] isHappy in
+                    self?.newTimesheet.isHappy = isHappy
+                    self?.hideSaveButton()
                 }
             }
 

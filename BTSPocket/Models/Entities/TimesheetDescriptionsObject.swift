@@ -8,21 +8,28 @@
 import Foundation
 
 struct TimesheetDescriptionsObject: Codable {
-    var dedicatedHours: Int?
-    var isHappy: Bool?
     var projectId: Int?
+    var dedicatedHours: Int?
     var task: String?
+    var isHappy: Bool?
     var note: String?
+    var projectName: String?
+    
     
     func getDiccionary() -> [String: Any] {
         var dict: [String : Any] = [:]
-        dict += ["dedicatedHours": self.dedicatedHours ?? 0]
-        dict += ["isHappy": self.isHappy ?? true]
         dict += ["projectId": self.projectId ?? nil]
+        dict += ["dedicatedHours": self.dedicatedHours ?? 0]
         dict += ["task": self.task ?? ""]
-//        if let note = self.note, !note.isEmpty {
-            dict += ["note": note ?? "Test"]
-//        }
+        dict += ["isHappy": self.isHappy ?? true]
+        dict += ["note": note ?? "Test"]
         return dict
+    }
+    
+    func isReady() -> Bool {
+        return dedicatedHours != nil
+            && isHappy != nil
+            && projectId != nil
+            && task != nil
     }
 }

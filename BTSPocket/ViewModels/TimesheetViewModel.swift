@@ -11,12 +11,39 @@ import JTAppleCalendar
 typealias postTimesheet = [String: Any]
 
 struct TimesheetViewModel {
-    func postUserTimesheet(_ date: Date, _ timesheetDesc: TimesheetDescriptionsObject) {
-        if let userId = BTSApi.shared.currentSession?.id {
+    func postUserTimesheet(_ date: String?, _ dayTimesheet: Timesheet? = nil, _ newTimesheet: TimesheetDescriptionsObject, _ completition: @escaping( ( Result<String, Error>) -> Void )) {
+        if let userId = BTSApi.shared.currentSession?.id,
+           let date = date {
             let url = Constants.Endpoints.userTimesheet.replacingOccurrences(of: "{userId}", with: String(userId))
             let urlRequest = "\(Constants.serverAddress)\(url)"
-            print(urlRequest)
-            print(timesheetDesc)
+            var postDescriptions: [TimesheetDescriptionsObject] = []
+            if let descriptions = dayTimesheet?.descriptions {
+                for description in descriptions {
+                    let aDescription = TimesheetDescriptionsObject(
+                        projectId: description.projectId,
+                        dedicatedHours: description.dedicatedHours,
+                        task: description.task,
+                        isHappy: description.isHappy,
+                        note: description.note
+                    )
+                    postDescriptions.append(aDescription)
+                }
+            }
+            postDescriptions.append(newTimesheet)
+            let postParams = TimesheetObject(date: date, descriptions: postDescriptions)
+            
+            let params: [String: Any] = [
+                "date": date,
+                "descriptions": postDescriptions.map( { $0.getDiccionary() } )
+            ]
+            print(params)
+            BTSApi.shared.platformEP.postMethod(urlRequest, nil, params) { (timesheetResponse: UserTimesheetsResponse) in
+                completition(.success(""))
+            } onError: { (error) in
+                print(error.localizedDescription)
+                completition(.failure(error))
+            }
+
         }
     }
     
@@ -40,21 +67,19 @@ struct TimesheetViewModel {
            let descriptions = dayTimesheet?.descriptions {
             let urlTimesheet = Constants.Endpoints.userTimesheet.replacingOccurrences(of: "{userId}", with: String(userId))
             let urlTimesheetRequest = "\(Constants.serverAddress)\(urlTimesheet)"
-            
+            let dateString = String(date.prefix(10))
             var updateDescriptions: [TimesheetDescriptionsObject] = []
-            var dateString = String(date.prefix(10))
             
             for description in descriptions {
                 let aDescription = TimesheetDescriptionsObject(
-                    dedicatedHours: description.dedicatedHours,
-                    isHappy: description.isHappy,
                     projectId: description.projectId,
+                    dedicatedHours: description.dedicatedHours,
                     task: description.task,
+                    isHappy: description.isHappy,
                     note: description.note
                 )
                 updateDescriptions.append(aDescription)
             }
-            let postParams = TimesheetObject(date: dateString, descriptions: updateDescriptions)
             
             let params: [String: Any] = [
                 "date": dateString,

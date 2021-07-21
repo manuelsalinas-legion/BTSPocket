@@ -54,7 +54,6 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.setupCalendarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,26 +63,7 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
     // MARK: SETUP
     private func setup() {
-        self.title = "Timesheet".localized
-        self.weekViewStackView.addBorder(edges: [.top, .bottom], color: UIColor.grayCity(), thickness: 1)
-        
-        self.btnCreateNew = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createTimesheet))
-        self.navigationItem.rightBarButtonItem = self.btnCreateNew
-            //queda deshabilitado
-//        self.btnCreateNew?.isEnabled = false
-        
-        // Table
-        self.tableTimesheets.hideEmtpyCells()
-
-        // refresh controller
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        self.tableTimesheets.refreshControl = refreshControl
-        self.tableTimesheets.registerNib(TimesheetTableViewCell.self)
-    }
-    
-    // MARK: setup UI calendar
-    private func setupCalendarView() {
+        // setup UI calendar
         self.calendarView.minimumLineSpacing = 0
         self.calendarView.minimumInteritemSpacing = 0
         self.calendarView.showsHorizontalScrollIndicator = false
@@ -91,6 +71,24 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         self.calendarView.scrollDirection = .horizontal
         self.calendarView.allowsMultipleSelection = false
         self.calendarView.scrollToDate(Date(), animateScroll: false)
+        
+        self.title = "Timesheet".localized
+        self.weekViewStackView.addBorder(edges: [.top, .bottom], color: UIColor.grayCity(), thickness: 1)
+        
+        self.btnCreateNew = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createTimesheet))
+        self.navigationItem.rightBarButtonItem = self.btnCreateNew
+        //queda deshabilitado
+        //
+//        self.btnCreateNew?.isEnabled = false
+        
+        // refresh controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        
+        // Table
+        self.tableTimesheets.hideEmtpyCells()
+        self.tableTimesheets.refreshControl = refreshControl
+        self.tableTimesheets.registerNib(TimesheetTableViewCell.self)
     }
     
     // MARK:- WEB SERVICE
@@ -124,18 +122,12 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
     
     // MARK: NEW TIMESHEET
     @objc private func createTimesheet() {
-        
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
         vcNewTimesheet.mode = .new
-        vcNewTimesheet.dateTitle = dayTimesheets?.date?.toISODate()?.toFormat("MMM d, yyyy")
-        vcNewTimesheet.dayTimesheets = self.dayTimesheets
-        
+        vcNewTimesheet.info = TimesheetDetail(dayTimesheets, 0)
+        vcNewTimesheet.currentDate = self.selectedDate?.toFormat("YYYY-MM-dd")
         let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
         navBar.modalPresentationStyle = .fullScreen
-        // aqui se debe de enviar el dia completo (todos los timesheets)
-        // y transformalo en timiesheets descriptions
-        // dado que hay que enviarlo todo junto para guardar bien.
-        
         self.present(navBar, animated: true, completion: nil)
     }
     
@@ -145,18 +137,16 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         vcComments.message = message
         vcComments.modalPresentationStyle = .overFullScreen
         vcComments.modalTransitionStyle = .crossDissolve
-        
+
         self.present(vcComments, animated: true, completion: nil)
     }
     
     // MARK: ACTIONS BUTTONS
     @IBAction private func nextWeek(_ sender: Any) {
-        self.calendarView.deselectAllDates()
         self.calendarView.scrollToSegment(.next)
     }
     
     @IBAction private func previousWeek(_ sender: Any) {
-        self.calendarView.deselectAllDates()
         self.calendarView.scrollToSegment(.previous)
     }
     
@@ -314,9 +304,15 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let actionEdit: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Edit") { (action, index) in
-            print("edit")
+            let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
+            vcNewTimesheet.mode = .editable
+            vcNewTimesheet.info = TimesheetDetail(self.dayTimesheets, index.row)
+            vcNewTimesheet.currentDate = self.selectedDate?.toFormat("YYYY-MM-dd")
+            let navBar = BTSNavigationController(rootViewController: vcNewTimesheet)
+            navBar.modalPresentationStyle = .fullScreen
+            self.present(navBar, animated: true, completion: nil)
         }
-        
+
         let actionDelete: UITableViewRowAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, index) in
             let alertDelete = UIAlertController(title: "Wait", message: "Are you sure you want to delete it?", preferredStyle: .alert)
             alertDelete.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -354,18 +350,14 @@ extension TimesheetViewController: UITableViewDelegate, UITableViewDataSource {
         
         actionEdit.backgroundColor = .blueBelize()
         actionDelete.backgroundColor = .redAlizarin()
-        return [actionDelete]
+        return [actionDelete, actionEdit]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let vcNewTimesheet = Storyboard.getInstanceOf(TimesheetDetailController.self)
-        vcNewTimesheet.dateTitle = dayTimesheets?.date?.toISODate()?.toFormat("MMM d, yyyy")
-        vcNewTimesheet.timesheetDetails = dayTimesheets?.descriptions?[indexPath.row]
-        
-        // vcNewTimesheet.setupVales(dayTimesheets?.descriptions?[indexPath.row])
-                
+        vcNewTimesheet.info = TimesheetDetail(self.dayTimesheets, indexPath.row)
+        vcNewTimesheet.mode = .detail
         self.navigationController?.pushViewController(vcNewTimesheet, animated: true)
     }
     

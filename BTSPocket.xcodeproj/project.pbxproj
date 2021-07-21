@@ -21,6 +21,8 @@
 		2B5E2D4B269E682F0092D524 /* HoursViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D49269E682F0092D524 /* HoursViewCell.xib */; };
 		2B5E2D52269FEA0B0092D524 /* isHappyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E2D50269FEA0B0092D524 /* isHappyViewCell.swift */; };
 		2B5E2D53269FEA0B0092D524 /* isHappyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5E2D51269FEA0B0092D524 /* isHappyViewCell.xib */; };
+		2B5E2D5526A3CDA40092D524 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B5E2D5726A4AFE50092D524 /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45518CD28891F17A32BB076 /* Pods_BTSPocket.framework */; };
 		2B67A32126334D8F00006589 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A32026334D8F00006589 /* UIViewController+extensions.swift */; };
 		2B72C8642684E5610053C764 /* TimesheetDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8632684E5610053C764 /* TimesheetDescription.swift */; };
 		2B72C8662684E88E0053C764 /* Timesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B72C8652684E88E0053C764 /* Timesheet.swift */; };
@@ -66,7 +68,6 @@
 		2BF8934B260D21AF00061491 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934A260D21AF00061491 /* TeamViewController.swift */; };
 		2BF89350260D225400061491 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF8934F260D225400061491 /* ProjectsViewController.swift */; };
 		2BF89355260D227B00061491 /* TimesheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF89354260D227B00061491 /* TimesheetViewController.swift */; };
-		E5F138825F6B043570A50A41 /* Pods_BTSPocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8095DD20DF2CE5A11C8ECDFC /* Pods_BTSPocket.framework */; };
 		FF01E879264DC4DE004687E7 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E866264DC4DE004687E7 /* Montserrat-LightItalic.ttf */; };
 		FF01E87A264DC4DE004687E7 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E867264DC4DE004687E7 /* Montserrat-Medium.ttf */; };
 		FF01E87B264DC4DE004687E7 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF01E868264DC4DE004687E7 /* Montserrat-BoldItalic.ttf */; };
@@ -123,6 +124,20 @@
 		FFD2F37E26A24CB80082055A /* ProjectTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD2F37C26A24CB80082055A /* ProjectTableCell.xib */; };
 		FFFA72BA264ACEF60082D510 /* Bundle+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFA72B9264ACEF60082D510 /* Bundle+extensions.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2B5E2D5626A3CDA40092D524 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B5E2D5526A3CDA40092D524 /* (null) in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2B15993C267B976900C9B642 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -186,9 +201,9 @@
 		2BF8934A260D21AF00061491 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		2BF8934F260D225400061491 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		2BF89354260D227B00061491 /* TimesheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetViewController.swift; sourceTree = "<group>"; };
-		8095DD20DF2CE5A11C8ECDFC /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB89DC46EBC1E2B1DCACB2B2 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
-		B3AA7A2633D1C58FFC897DA0 /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
+		365C8C6C7532A30FE8162E48 /* Pods-BTSPocket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.debug.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.debug.xcconfig"; sourceTree = "<group>"; };
+		BA9B962F1B81A664BFBA1E61 /* Pods-BTSPocket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTSPocket.release.xcconfig"; path = "Target Support Files/Pods-BTSPocket/Pods-BTSPocket.release.xcconfig"; sourceTree = "<group>"; };
+		D45518CD28891F17A32BB076 /* Pods_BTSPocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BTSPocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF01E866264DC4DE004687E7 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		FF01E867264DC4DE004687E7 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		FF01E868264DC4DE004687E7 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -252,21 +267,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5F138825F6B043570A50A41 /* Pods_BTSPocket.framework in Frameworks */,
+				2B5E2D5726A4AFE50092D524 /* Pods_BTSPocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A8FA9BDCDFF084FC885D7BD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8095DD20DF2CE5A11C8ECDFC /* Pods_BTSPocket.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2B15993B267B95D800C9B642 /* CalendarCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,7 +350,7 @@
 				2BF892F5260C012300061491 /* BTSPocket */,
 				2BF892F4260C012300061491 /* Products */,
 				6315D35E6D5D6AA08DBCFB3D /* Pods */,
-				2A8FA9BDCDFF084FC885D7BD /* Frameworks */,
+				8FC18D31DE0A5CF61F98FB6F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -489,10 +496,18 @@
 		6315D35E6D5D6AA08DBCFB3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B3AA7A2633D1C58FFC897DA0 /* Pods-BTSPocket.debug.xcconfig */,
-				AB89DC46EBC1E2B1DCACB2B2 /* Pods-BTSPocket.release.xcconfig */,
+				365C8C6C7532A30FE8162E48 /* Pods-BTSPocket.debug.xcconfig */,
+				BA9B962F1B81A664BFBA1E61 /* Pods-BTSPocket.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8FC18D31DE0A5CF61F98FB6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D45518CD28891F17A32BB076 /* Pods_BTSPocket.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FF01E864264DC4DE004687E7 /* Fonts */ = {
@@ -695,13 +710,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BF89307260C012700061491 /* Build configuration list for PBXNativeTarget "BTSPocket" */;
 			buildPhases = (
-				7A75F265C34EB37B2BAA4A8E /* [CP] Check Pods Manifest.lock */,
+				A145CF996F6B7CC9BBE49560 /* [CP] Check Pods Manifest.lock */,
 				2BF892EF260C012300061491 /* Sources */,
 				2BF892F0260C012300061491 /* Frameworks */,
 				2BF892F1260C012300061491 /* Resources */,
 				FF021836268F7C9C00E4A2B1 /* Alphabetic Sorting Localization */,
 				FF021837268F7CBF00E4A2B1 /* Duplicated Localization */,
-				A7868E793C23DBB99A215873 /* [CP] Embed Pods Frameworks */,
+				2B5E2D5626A3CDA40092D524 /* Embed Frameworks */,
+				764A10422F4D6226C4EB4850 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -790,7 +806,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7A75F265C34EB37B2BAA4A8E /* [CP] Check Pods Manifest.lock */ = {
+		764A10422F4D6226C4EB4850 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A145CF996F6B7CC9BBE49560 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -810,23 +843,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7868E793C23DBB99A215873 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BTSPocket/Pods-BTSPocket-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF021836268F7C9C00E4A2B1 /* Alphabetic Sorting Localization */ = {
@@ -1106,7 +1122,7 @@
 		};
 		2BF89308260C012700061491 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3AA7A2633D1C58FFC897DA0 /* Pods-BTSPocket.debug.xcconfig */;
+			baseConfigurationReference = 365C8C6C7532A30FE8162E48 /* Pods-BTSPocket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1127,7 +1143,7 @@
 		};
 		2BF89309260C012700061491 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB89DC46EBC1E2B1DCACB2B2 /* Pods-BTSPocket.release.xcconfig */;
+			baseConfigurationReference = BA9B962F1B81A664BFBA1E61 /* Pods-BTSPocket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
