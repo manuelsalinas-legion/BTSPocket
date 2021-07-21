@@ -82,7 +82,7 @@ class TimesheetDetailController: UIViewController {
             
         case .detail:
             self.title = self.info?.timesheets?.date?.toISODate()?.toFormat("MMM dd, yyyy")
-            let btnEdit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: nil)
+            let btnEdit = UIBarButtonItem(title: "Edit".localized, style: .plain, target: self, action: nil)
             self.navigationItem.rightBarButtonItem = btnEdit
         }
         self.hideSaveButton()
@@ -91,7 +91,7 @@ class TimesheetDetailController: UIViewController {
     // setup
     private func setupNewAndEditable() {
         let btnClose = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.close))
-        let btnSave = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.save))
+        let btnSave = UIBarButtonItem(title: "Save".localized, style: .plain, target: self, action: #selector(self.save))
         self.navigationItem.leftBarButtonItem = btnClose
         self.navigationItem.rightBarButtonItem = btnSave
     }
@@ -192,7 +192,7 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                     cell.loadInfo(pName)
                 } else {
                     // Placeholder
-                    cell.loadInfo("- Select Project -")
+                    cell.loadInfo("- Select Project -".localized)
                 }
                 
                 return cell
@@ -220,7 +220,7 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                 taskCell.tvText.text = self.currentTimesheet?.task?.capitalized
                 taskCell.tvText.isEditable = false
             } else if mode == .new {
-                taskCell.placeHolder = "Describe your task"
+                taskCell.placeHolder = "Describe your task".localized
                 taskCell.onTextChange = { [weak self] newTask in
                     self?.newTimesheet.task = newTask
                     self?.hideSaveButton()
@@ -241,14 +241,14 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                 noteCell.tvText.text = self.currentTimesheet?.note?.capitalized
                 noteCell.tvText.isEditable = false
             } else if mode == .new {
-                noteCell.placeHolder = "Any comments?"
+                noteCell.placeHolder = "Any comments?".localized
                 noteCell.onTextChange = { [weak self] newNote in
                     self?.newTimesheet.note = newNote
                     self?.hideSaveButton()
                 }
             } else {
                 if self.newTimesheet.note?.isEmpty == true {
-                    noteCell.placeHolder = "Any comments?"
+                    noteCell.placeHolder = "Any comments?".localized
                 } else {
                     noteCell.tvText.text = self.newTimesheet.note
                 }

@@ -1,8 +1,14 @@
+" At " = " At ";
+"- Select Project -" = "- Select Project -";
 "Agree" = "Agree";
+"Any comments?" = "Any comments?";
 "Cannot get members" = "Cannot get members";
 "Comment" = "Comment";
+"Describe your task" = "Describe your task";
+"Edit" = "Edit";
 "Empty password" = "Empty password";
 "Error" = "Error";
+"Experience" = "Experience";
 "Expired session" = "Expired session";
 "Info" = "Info";
 "Invalid credentials" = "Invalid credentials";
@@ -16,8 +22,10 @@
 "Projects" = "Projects";
 "Relate credentials with biometric autentication" = "Relate credentials with biometric autentication";
 "Relate credentials" = "Relate credentials";
+"Save" = "Save";
 "Search Projects" = "Search Projects";
 "Search Team Member" = "Search Team Member";
+"Skills" = "Skills";
 "Team" = "Team";
 "Warning" = "Warning";
 "You have to write at least three characters" = "You have to write at least three characters";

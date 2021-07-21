@@ -1,8 +1,14 @@
+" At " = " En ";
+"- Select Project -" = "- Selecciona Proyecto -";
 "Agree" = "De acuerdo";
+"Any comments?" = "Comentarios?";
 "Cannot get members" = "Integrantes no obtenidos";
 "Comment" = "Nota";
+"Describe your task" = "Describe tu tarea";
+"Edit" = "Editar";
 "Empty password" = "Contraseña vacía";
 "Error" = "Error";
+"Experience" = "Experiencia";
 "Expired session" = "Sesión expirada";
 "Info" = "Info";
 "Invalid credentials" = "Credenciales no válidas";
@@ -16,8 +22,10 @@
 "Projects" = "Projectos";
 "Relate credentials with biometric autentication" = "Relacionar credenciales con sus datos biométricos";
 "Relate credentials" = "Relacionar credenciales";
+"Save" = "Guardar";
 "Search Projects" = "Buscar proyectos";
 "Search Team Member" = "Buscar integrante del equipo";
+"Skills" = "Habilidades";
 "Team" = "Equipo";
 "Warning" = "Advertencia";
 "You have to write at least three characters" = "Debe escribir al menos tres caracteres";

@@ -304,7 +304,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = createDefaultCell()
             if let postionCompany = self.currentUser?.experiences?[indexPath.row].position,
                let companyExp = self.currentUser?.experiences?[indexPath.row].company {
-                cell.textLabel?.text = postionCompany.capitalized + " At " + companyExp.capitalized
+                cell.textLabel?.text = postionCompany.capitalized + " At ".localized + companyExp.capitalized
             }
             cell.textLabel?.font = UIFont(name: "Hiragino Maru Gothic ProN", size: 15.0)
             cell.textLabel?.lineBreakMode = .byCharWrapping
