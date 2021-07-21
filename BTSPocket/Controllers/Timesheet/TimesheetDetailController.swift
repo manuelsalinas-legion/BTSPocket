@@ -183,7 +183,11 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
         case DetailTimesheetSection.project.rawValue:
             
             if indexPath.row == 0 {
+                
                 let cell = tableView.dequeueReusableCell(withClass: ProjectTableCell.self)
+                if mode == .detail {
+                    cell.loadInfo(self.currentTimesheet?.projectName)
+                }
                 if let pName = self.newTimesheet.projectName, !pName.isEmpty {
                     cell.loadInfo(pName)
                 } else {
