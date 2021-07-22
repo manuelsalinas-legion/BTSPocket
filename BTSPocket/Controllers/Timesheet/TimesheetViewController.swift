@@ -77,9 +77,6 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         
         self.btnCreateNew = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createTimesheet))
         self.navigationItem.rightBarButtonItem = self.btnCreateNew
-        //queda deshabilitado
-        //
-//        self.btnCreateNew?.isEnabled = false
         
         // refresh controller
         let refreshControl = UIRefreshControl()
