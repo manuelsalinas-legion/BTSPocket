@@ -18,6 +18,16 @@ target 'BTSPocket' do
   
 # - - - Image cache 'Kingfisher'
   pod 'Kingfisher'
+
+# - - - Calendar - - -
+  pod 'JTAppleCalendar'
+  
+# - - - SwiftDate - - -
+  pod 'SwiftDate'
+
+# - - - Keyboard - - - 
+pod 'IQKeyboardManagerSwift'
+
 end
 
 post_install do |installer|

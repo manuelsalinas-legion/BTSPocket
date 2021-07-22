@@ -23,7 +23,6 @@ class TeamViewController: UIViewController {
     @IBOutlet weak private var tableViewTeam: UITableView!
     
     private var searchbarController = UISearchController()
-    private var refreshControl = UIRefreshControl()
     private var currentPage: Int = 1
     private var totalPages: Int = 1
     private var teamsVM: TeamViewModel = TeamViewModel()
@@ -54,10 +53,15 @@ class TeamViewController: UIViewController {
             self.getTeamMembers(.firstPage)
         case .projectUsers:
             // Title
-            self.title = (project?.name ?? "") + "Team".localized
+            self.title = (project?.name?.capitalized ?? "") + " " + "Team".localized
             // Load users in project infor
             self.getProfileTeamMembers()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.backButtonArrow()
     }
         
     // MARK: SETUP
@@ -67,7 +71,7 @@ class TeamViewController: UIViewController {
         self.searchbarController.searchBar.tintColor = .white
         self.searchbarController.searchBar.barStyle = .black
         self.searchbarController.searchBar.searchTextField.tintColor = .white
-        self.searchbarController.searchBar.placeholder = "Search Team Member"
+        self.searchbarController.searchBar.placeholder = "Search Team Member".localized
         self.searchbarController.obscuresBackgroundDuringPresentation = false
         self.searchbarController.searchBar.sizeToFit()
         self.searchbarController.searchBar.delegate = self
@@ -83,10 +87,11 @@ class TeamViewController: UIViewController {
         self.tableViewTeam.registerNib(UserTableViewCell.self)
         self.tableViewTeam.hideEmtpyCells()
         
-        // refresh control
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
-        self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        self.tableViewTeam.addSubview(self.refreshControl)
+        // refresh controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        self.tableViewTeam.refreshControl = refreshControl
     }
     
     // MARK:- WEB SERVICE TO GET USER PROJECTS
@@ -97,12 +102,12 @@ class TeamViewController: UIViewController {
                 self?.projectUsers = projectDetails.activeUsers
                 self?.tableViewTeam.reloadData()
             case .failure(let error):
-                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     // Logout
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     self?.tableViewTeam.displayBackgroundMessage(message: "No project members found".localized)
-                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Info".localized, subtitle: "Cannot get members".localized, type: .info, containsIcon: true, fromBottom: false)
                 }
             }
         }
@@ -144,12 +149,12 @@ class TeamViewController: UIViewController {
                 self?.tableViewTeam.reloadData()
                 
             case .failure(let error):
-                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     // Logout
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
-                    MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get members", type: .info, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Info".localized, subtitle: "Cannot get members".localized, type: .info, containsIcon: true, fromBottom: false)
                 }
             }
         }
@@ -230,7 +235,7 @@ extension TeamViewController: UISearchBarDelegate {
         if let text = searchBar.text?.trim() {
             if !text.isEmpty {
                 if text.count < 3 {
-                    MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Warning".localized, subtitle: "You have to write at least three characters".localized, type: .warning, containsIcon: true, fromBottom: false)
                 }
             }
         }
@@ -247,8 +252,8 @@ extension TeamViewController: UISearchBarDelegate {
     }
     
     // reload page of users
-    @objc func reload() {
+    @objc private func reload() {
         self.getTeamMembers(.refresh(1, self.searchbarController.searchBar.text?.trim() ?? ""))
-        self.refreshControl.endRefreshing()
+        self.tableViewTeam.refreshControl?.endRefreshing()
     }
 }

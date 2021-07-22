@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.4.3)
+  - IQKeyboardManagerSwift (6.5.6)
+  - JTAppleCalendar (8.0.3)
   - Kingfisher (6.3.0)
   - PKHUD (5.3.0)
   - Realm (10.7.5):
@@ -7,34 +9,44 @@ PODS:
   - Realm/Headers (10.7.5)
   - RealmSwift (10.7.5):
     - Realm (= 10.7.5)
+  - SwiftDate (6.3.1)
   - SwiftMessages (9.0.2):
     - SwiftMessages/App (= 9.0.2)
   - SwiftMessages/App (9.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
-  - Kingfisher (~> 6.0)
+  - IQKeyboardManagerSwift
+  - JTAppleCalendar
+  - Kingfisher
   - PKHUD
   - RealmSwift
+  - SwiftDate
   - SwiftMessages
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - IQKeyboardManagerSwift
+    - JTAppleCalendar
     - Kingfisher
     - PKHUD
     - Realm
     - RealmSwift
+    - SwiftDate
     - SwiftMessages
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  JTAppleCalendar: 932cadea40b1051beab10f67843451d48ba16c99
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   Realm: 06f5c67f87cb8c5f27b122218ce22e9a77314517
   RealmSwift: b46535b52e69b9ed33912f0fcb3182ab0a5743ee
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftMessages: 77b847d1405f99046ffbd0d856bc7d73e6892686
 
-PODFILE CHECKSUM: 5e47f4966157ee652ddd379cde75c3025be820b6
+PODFILE CHECKSUM: 253ea91424cd31679bd5bda9e4143799e7f346aa
 
 COCOAPODS: 1.10.1

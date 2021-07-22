@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="KGk-i7-Jjw" customClass="isHappyViewCell" customModule="BTSPocket" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How do you feel?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0M-ih-qrm">
+                        <rect key="frame" x="16" y="12" width="288" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="VJK-WV-Wlf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="pUK-I0-ryR">
+                        <rect key="frame" x="118.5" y="45" width="83" height="35"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gV-HP-c7Z">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="mhm-jD-r2S"/>
+                                    <constraint firstAttribute="width" constant="35" id="uAv-Wg-Nxr"/>
+                                </constraints>
+                                <state key="normal" image="iconHappy"/>
+                                <connections>
+                                    <action selector="happySelection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RRJ-am-EZH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUC-sC-DtH">
+                                <rect key="frame" x="48" y="0.0" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="I9x-57-Ivi"/>
+                                    <constraint firstAttribute="height" constant="35" id="UNt-1M-37e"/>
+                                </constraints>
+                                <state key="normal" image="iconSad"/>
+                                <connections>
+                                    <action selector="unappySelection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5jv-Dv-CTD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="pUK-I0-ryR" secondAttribute="bottom" constant="8" id="0xM-hb-6n4"/>
+                    <constraint firstAttribute="trailing" secondItem="u0M-ih-qrm" secondAttribute="trailing" constant="16" id="DC8-c4-Sgu"/>
+                    <constraint firstItem="pUK-I0-ryR" firstAttribute="top" secondItem="u0M-ih-qrm" secondAttribute="bottom" constant="8" id="MWf-RC-5iy"/>
+                    <constraint firstItem="pUK-I0-ryR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="PeD-us-kI0"/>
+                    <constraint firstItem="u0M-ih-qrm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="V1I-12-oUD"/>
+                    <constraint firstItem="u0M-ih-qrm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="iKG-Ud-buZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imageViewBad" destination="mUC-sC-DtH" id="acX-DF-pOL"/>
+                <outlet property="imageViewGood" destination="3gV-HP-c7Z" id="aiX-RV-W4e"/>
+            </connections>
+            <point key="canvasLocation" x="169.56521739130437" y="95.758928571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="iconHappy" width="60" height="60"/>
+        <image name="iconSad" width="60" height="60"/>
+    </resources>
+</document>

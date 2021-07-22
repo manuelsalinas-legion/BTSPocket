@@ -8,15 +8,15 @@
 import Foundation
 
 struct Project: Codable {
-    let id: Int?
-    let name: String?
-    let description: String?
-    let image: String?
-    let startDate: String?
-    let endDate: String?
-    let clientId: Int?
-    let createdAt: String?
-    let updatedAt: String?
-    let deletedAt: String?
-    let users: [Int]?
+    var id: Int?
+    var name: String?
+    var description: String?
+    var image: String?
+    var startDate: String?
+    var endDate: String?
+    var clientId: Int?
+    var createdAt: String?
+    var updatedAt: String?
+    var deletedAt: String?
+    var users: [Int]?
 }

@@ -27,8 +27,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonLogout: UIButton!
     @IBOutlet weak var buttonBack: UIButton!
     
-    private var refreshControl = UIRefreshControl()
     private var profileVM: ProfileViewModel = ProfileViewModel()
+    private var projectsVM: ProjectsViewModel = ProjectsViewModel()
     private var profile: ProfileData? {
         didSet {
             DispatchQueue.main.async { self.tableView.reloadData() }
@@ -51,11 +51,14 @@ class ProfileViewController: UIViewController {
             // Logged user
             if let loggedSession = BTSApi.shared.currentSession {
                 self.profile = loggedSession
+                self.title = "Profile".localized
                 self.setupProfile()
             }
             
             // Update info
             self.getProfile()
+            // Get projects info
+            self.getProjects()
             
         case .teamMember:
             self.memberConfiguration()
@@ -69,6 +72,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.backButtonArrow()
         self.navigationController?.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,7 +98,7 @@ class ProfileViewController: UIViewController {
                 self.setupProfile()
             case .failure(let error):
                 if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
-                    self.logout()
+                    self.logout(expiredSession: true)
                 } else {
                     self.showGenericErrorAlert("Error", "Generic Error", "OK")
                 }
@@ -102,12 +106,44 @@ class ProfileViewController: UIViewController {
         })
     }
     
+    private func getProjects() {
+        self.projectsVM.getProjectsByUser(.justPage(1)) { resultProjects in
+            switch resultProjects {
+            case .success(let paginationProjects):
+                
+                if let projects = paginationProjects.items {
+                    BTSApi.shared.sessionProjects = projects
+                }
+                
+                // aqui debe de saber si tiene mas paginas de proyectos y traerlos por igual
+                if let pages = paginationProjects.pages {
+                    if pages > 1 {
+                        for page in 2...pages {
+                            self.projectsVM.getProjectsByUser(.justPage(page)) { result in
+                                switch result {
+                                case .success(let morePaginationsProjects):
+                                    if let moreProjects = morePaginationsProjects.items {
+                                        BTSApi.shared.sessionProjects += moreProjects
+                                    }
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     // MARK:- setUpTable
     private func setupUI() {
         // UI
         self.labelFullName.adjustsFontSizeToFitWidth = true
         self.buttonLogout.round()
-        self.buttonLogout.backgroundColor = UIColor.semiblackColor()
+        self.buttonLogout.backgroundColor = .semiblackColor()
         
         // register table view cells for the table view
         self.tableView.registerNib(ProfileTableViewCell.self)
@@ -115,9 +151,9 @@ class ProfileViewController: UIViewController {
         self.tableView.separatorStyle = .none
         
         // refresh controller
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: #selector(self.reloadProfile), for: .valueChanged)
-        self.tableView.addSubview(self.refreshControl)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.reloadProfile), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
     }
     
     @objc private func reloadProfile() {
@@ -127,7 +163,7 @@ class ProfileViewController: UIViewController {
         case .teamMember:
             self.getMemberProfile()
         }
-        self.refreshControl.endRefreshing()
+        self.tableView.refreshControl?.endRefreshing()
     }
     
     // MARK: WEB SERVICE
@@ -137,7 +173,7 @@ class ProfileViewController: UIViewController {
             if let error = error {
                 // Expired session?
                 if error.code == HttpStatusCode.unauthorized.rawValue {
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     print(error.localizedDescription)
                     MessageManager.shared.showBar(title: "Error", subtitle: "Profile update failed.  Please, try again.", type: .error, containsIcon: true, fromBottom: false)
@@ -195,7 +231,7 @@ class ProfileViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes, Logout", style: .default, handler: { [weak self  ] _ in
             // Logout
-            self?.logout()
+            self?.logout(expiredSession: false)
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -268,7 +304,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = createDefaultCell()
             if let postionCompany = self.currentUser?.experiences?[indexPath.row].position,
                let companyExp = self.currentUser?.experiences?[indexPath.row].company {
-                cell.textLabel?.text = postionCompany.capitalized + " At " + companyExp.capitalized
+                cell.textLabel?.text = postionCompany.capitalized + " At ".localized + companyExp.capitalized
             }
             cell.textLabel?.font = UIFont(name: "Hiragino Maru Gothic ProN", size: 15.0)
             cell.textLabel?.lineBreakMode = .byCharWrapping

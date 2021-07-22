@@ -29,6 +29,11 @@ class ProjectsViewController: UIViewController {
         self.setUpUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.backButtonArrow()
+    }
+    
     // MARK: setupUI function
     private func setUpUI() {
         self.title = "Projects".localized
@@ -49,10 +54,11 @@ class ProjectsViewController: UIViewController {
         self.tableViewProjects.hideEmtpyCells()
         self.tableViewProjects.registerNib(ProjectTableViewCell.self)
         
-        // Refresh control
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized)
-        self.refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
-        self.tableViewProjects.addSubview(refreshControl)
+        // refresh controller
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        self.tableViewProjects.refreshControl = refreshControl
         
         self.getProjectsByUser(.firstPage)
     }
@@ -92,9 +98,9 @@ class ProjectsViewController: UIViewController {
                 self?.tableViewProjects.reloadData()
                 
             case .failure(let error):
-                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     // Logout
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     self?.tableViewProjects.displayBackgroundMessage(message: "No projects found".localized)
                     MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get projects".localized, type: .info, containsIcon: true, fromBottom: false)
@@ -157,13 +163,13 @@ extension ProjectsViewController: UISearchBarDelegate {
         if let text = searchBar.text?.trim() {
             if !text.isEmpty {
                 if text.count < Constants.kMinimumCharactersForSearch {
-                    MessageManager.shared.showBar(title: "Warning", subtitle: "You have to write at least three characters", type: .warning, containsIcon: true, fromBottom: false)
+                    MessageManager.shared.showBar(title: "Warning".localized, subtitle: "You have to write at least three characters".localized, type: .warning, containsIcon: true, fromBottom: false)
                 }
             }
         }
     }
     
-    @objc func reload() {
+    @objc private func reload() {
         self.getProjectsByUser(.refresh(1, self.searchController.searchBar.text?.trim() ?? ""))
         self.refreshControl.endRefreshing()
     }
