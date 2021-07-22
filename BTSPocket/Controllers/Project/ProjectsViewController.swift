@@ -98,9 +98,9 @@ class ProjectsViewController: UIViewController {
                 self?.tableViewProjects.reloadData()
                 
             case .failure(let error):
-                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     // Logout
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     self?.tableViewProjects.displayBackgroundMessage(message: "No projects found".localized)
                     MessageManager.shared.showBar(title: "Info", subtitle: "Cannot get projects".localized, type: .info, containsIcon: true, fromBottom: false)

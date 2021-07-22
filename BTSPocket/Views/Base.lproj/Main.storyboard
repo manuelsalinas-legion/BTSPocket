@@ -111,14 +111,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKk-zc-IUa">
-                                <rect key="frame" x="92" y="548.5" width="230" height="40"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="172" y="548.5" width="70" height="70"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="TVm-QW-l7n"/>
-                                    <constraint firstAttribute="width" constant="230" id="X20-RQ-Ep3"/>
+                                    <constraint firstAttribute="height" constant="70" id="TVm-QW-l7n"/>
+                                    <constraint firstAttribute="width" constant="70" id="X20-RQ-Ep3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
-                                <state key="normal" title="Login with Biometrics ID">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>

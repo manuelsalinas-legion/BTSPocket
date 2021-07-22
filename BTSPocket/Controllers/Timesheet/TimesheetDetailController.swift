@@ -194,7 +194,6 @@ extension TimesheetDetailController: UITableViewDelegate, UITableViewDataSource 
                     // Placeholder
                     cell.loadInfo("- Select Project -".localized)
                 }
-                
                 return cell
                 
             } else {

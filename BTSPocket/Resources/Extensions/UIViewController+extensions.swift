@@ -10,15 +10,15 @@ import UIKit
 
 extension UIViewController {
     
-    func logout() {
+    func logout(expiredSession: Bool) {
         BTSApi.shared.deleteSession()
-        self.showLogin()
+        self.showLogin(expiredSession)
     }
     
-    func showLogin() {
+    func showLogin(_ expiredSession: Bool) {
         DispatchQueue.main.async {
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-            sceneDelegate?.switchRoot(to: .login(true))
+            sceneDelegate?.switchRoot(to: .login(expiredSession))
         }
     }
     

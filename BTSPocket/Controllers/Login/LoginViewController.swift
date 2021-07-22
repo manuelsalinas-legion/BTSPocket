@@ -30,9 +30,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.setup()
         
-//        if expiredToken {
-//            MessageManager.shared.showBar(title: "Expired session".localized, subtitle: "Your session has expired. Please, login again".localized, type: .info, containsIcon: true, fromBottom: false)
-//        }
+        if expiredToken {
+            MessageManager.shared.showBar(title: "Expired session".localized, subtitle: "Your session has expired. Please, login again".localized, type: .info, containsIcon: true, fromBottom: false)
+        }
     }
     
     deinit {
@@ -62,7 +62,8 @@ class LoginViewController: UIViewController {
                     return
                 }
                 self.buttonFaceIdTouchId.isHidden = false
-                self.buttonFaceIdTouchId.setTitle(LAContext().biometryType == LABiometryType.faceID ? "Login with Face ID".localized : "Login with Touch ID".localized, for: .normal)
+                self.buttonFaceIdTouchId.setImage(LAContext().biometryType == LABiometryType.faceID ? UIImage(named: "iconFaceId") : UIImage(named: "iconTouchId"), for: .normal)
+//                self.buttonFaceIdTouchId.setTitle(LAContext().biometryType == LABiometryType.faceID ? "Login with Face ID".localized : "Login with Touch ID".localized, for: .normal)
             }
         } else {
             self.buttonFaceIdTouchId.isHidden = true

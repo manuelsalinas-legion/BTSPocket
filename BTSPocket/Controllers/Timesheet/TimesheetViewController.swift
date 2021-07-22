@@ -34,6 +34,10 @@ class TimesheetViewController: UIViewController, UINavigationBarDelegate {
         didSet {
             DispatchQueue.main.async {
                 self.tableTimesheets.reloadData()
+                // enable btncreate if total day hours is equal to 24
+                let hoursFilter = self.dayTimesheets?.descriptions?.map({ Int( $0.dedicatedHours ?? 0 ) })
+                let totalHours = hoursFilter?.reduce(0, +)
+                self.btnCreateNew?.isEnabled = totalHours ?? 0 == 24 ? false : true
             }
         }
     }

@@ -102,9 +102,9 @@ class TeamViewController: UIViewController {
                 self?.projectUsers = projectDetails.activeUsers
                 self?.tableViewTeam.reloadData()
             case .failure(let error):
-                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     // Logout
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     self?.tableViewTeam.displayBackgroundMessage(message: "No project members found".localized)
                     MessageManager.shared.showBar(title: "Info".localized, subtitle: "Cannot get members".localized, type: .info, containsIcon: true, fromBottom: false)
@@ -149,9 +149,9 @@ class TeamViewController: UIViewController {
                 self?.tableViewTeam.reloadData()
                 
             case .failure(let error):
-                if error.asAFError?.responseCode == HttpStatusCode.forbidden.rawValue {
+                if error.asAFError?.responseCode == HttpStatusCode.unauthorized.rawValue {
                     // Logout
-                    self?.logout()
+                    self?.logout(expiredSession: true)
                 } else {
                     self?.tableViewTeam.displayBackgroundMessage(message: "No team members found".localized)
                     MessageManager.shared.showBar(title: "Info".localized, subtitle: "Cannot get members".localized, type: .info, containsIcon: true, fromBottom: false)
